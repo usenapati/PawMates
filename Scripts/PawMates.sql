@@ -9,19 +9,19 @@ USE PawMates;
 GO
 CREATE TABLE Users(
     Id INT PRIMARY KEY IDENTITY(1,1),
-    PetParentId INT NOT NULL,
     Username NVARCHAR(50) NOT NULL,
-    [Password] NVARCHAR(50) NOT NULL,
-    CONSTRAINT FK_Users_PetParents
-		  FOREIGN KEY (PetParentId)
-		  REFERENCES PetParent(Id)
+    [Password] NVARCHAR(50) NOT NULL
 );
 CREATE TABLE PetParents(
     Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT NOT NULL,
     FirstName NVARCHAR(50) NOT NULL,
     LastName NVARCHAR(50) NOT NULL,
     PhoneNumber NVARCHAR(15) NULL,
-    Email NVARCHAR(50) NOT NULL
+    Email NVARCHAR(50) NOT NULL,
+    CONSTRAINT FK_PetParents_Users
+		  FOREIGN KEY (UserId)
+		  REFERENCES Users(Id)
 );
 GO
 CREATE TABLE Locations(
