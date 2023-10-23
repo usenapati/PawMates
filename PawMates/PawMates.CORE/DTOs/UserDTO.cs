@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PawMates.CORE.Entities
+namespace PawMates.CORE.DTOs
 {
-    public class User
+    public class UserDTO
     {
         [Required]
         public int Id { get; set; }
