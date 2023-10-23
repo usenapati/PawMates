@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace PawMates.DAL.Models;
 
 public partial class PetParent
@@ -20,4 +21,5 @@ public partial class PetParent
     public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+
 }
