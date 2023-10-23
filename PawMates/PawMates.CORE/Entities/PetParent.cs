@@ -20,6 +20,4 @@ public partial class PetParent
     public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
-
-
 }

@@ -17,3 +17,4 @@ public partial class EventType
 
     public virtual RestrictionType? RestrictionType { get; set; }
 }
+
