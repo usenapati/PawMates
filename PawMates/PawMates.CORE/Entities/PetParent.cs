@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PawMates.CORE.Entities
+namespace PawMates.DAL.Models;
+
+public partial class PetParent
 {
-    public class PetParent
-    {
-        [Required]
-        public int Id { get; set; }
-        [Required]
-        public int UserId { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-        [Required]
-        [Phone]
-        public string PhoneNumber { get; set; }
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+    public int Id { get; set; }
 
-    }
+    public string FirstName { get; set; } = null!;
+
+    public string LastName { get; set; } = null!;
+
+    public string? PhoneNumber { get; set; }
+
+    public string Email { get; set; } = null!;
+
+    public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
+
+    public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

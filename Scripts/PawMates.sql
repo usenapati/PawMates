@@ -7,31 +7,49 @@ CREATE DATABASE PawMates;
 GO
 USE PawMates;
 GO
-CREATE TABLE Users(
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Username NVARCHAR(50) NOT NULL,
-    [Password] NVARCHAR(50) NOT NULL
-);
+
 CREATE TABLE PetParents(
     Id INT PRIMARY KEY IDENTITY(1,1),
-    UserId INT NOT NULL,
     FirstName NVARCHAR(50) NOT NULL,
     LastName NVARCHAR(50) NOT NULL,
     PhoneNumber NVARCHAR(15) NULL,
-    Email NVARCHAR(50) NOT NULL,
-    CONSTRAINT FK_PetParents_Users
-		  FOREIGN KEY (UserId)
-		  REFERENCES Users(Id)
+    Email NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Users(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PetParentId INT NOT NULL,
+    Username NVARCHAR(50) NOT NULL,
+    [Password] NVARCHAR(50) NOT NULL,
+    CONSTRAINT FK_Users_PetParents
+		  FOREIGN KEY (PetParentId)
+		  REFERENCES PetParents(Id)
 );
 GO
+
+CREATE TABLE RestrictionTypes(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    [Name] NVARCHAR(50) NOT NULL
+);
+CREATE TABLE EventTypes(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    RestrictionTypeId INT NULL,
+    [Name] NVARCHAR(50) NOT NULL,
+    [Description] NVARCHAR(255) NOT NULL,
+    CONSTRAINT FK_EventTypes_RestrictionTypes
+		  FOREIGN KEY (RestrictionTypeId)
+		  REFERENCES RestrictionTypes(Id)
+);
+
+
 CREATE TABLE PetTypes(
     Id INT PRIMARY KEY IDENTITY(1,1),
     Species NVARCHAR(50) NOT NULL
 );
-GO
+
 CREATE TABLE Locations(
     Id INT PRIMARY KEY IDENTITY(1,1),
-    PetTypeId NVARCHAR(15) NOT NULL,
+    PetTypeId INT NOT NULL,
     [Name] NVARCHAR(50) NOT NULL,
     Street1 NVARCHAR(50) NOT NULL,
     City NVARCHAR(50) NOT NULL,
@@ -58,22 +76,6 @@ CREATE TABLE Pets(
 		  FOREIGN KEY (PetTypeId)
 		  REFERENCES PetTypes(Id)
 );
-GO
-CREATE TABLE RestrictionTypes(
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    [Name] NVARCHAR(50) NOT NULL
-);
-GO
-CREATE TABLE EventTypes(
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    RestrictionTypeId INT NULL,
-    [Name] NVARCHAR(50) NOT NULL,
-    [Description] NVARCHAR(255) NOT NULL,
-    CONSTRAINT FK_EventTypes_RestrictionTypes
-		  FOREIGN KEY (RestrictionTypeId)
-		  REFERENCES RestrictionTypes(Id)
-);
-GO
 CREATE TABLE PlayDates(
     Id INT PRIMARY KEY IDENTITY(1,1),
     PetParentId INT NOT NULL,
@@ -89,9 +91,10 @@ CREATE TABLE PlayDates(
 		  REFERENCES Locations(Id),
     CONSTRAINT FK_PlayDates_EventTypes
 		  FOREIGN KEY (EventTypeId)
-		  REFERENCES EventTypes(Id)      
+		  REFERENCES EventTypes(Id)
+
 );
-GO
+
 CREATE TABLE PlayDatesPets(
     PlayDateId INT NOT NULL,
     PetId INT NOT NULL,
@@ -104,4 +107,3 @@ CREATE TABLE PlayDatesPets(
       FOREIGN KEY (PlayDateId)
       REFERENCES PlayDates(Id)
 );
-GO

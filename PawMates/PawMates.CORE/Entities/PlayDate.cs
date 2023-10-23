@@ -1,19 +1,27 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PawMates.CORE.Entities
+namespace PawMates.DAL.Models;
+
+public partial class PlayDate
 {
-    public class PlayDate
-    {
-        public int Id { get; set; }
-        public int PetParentId { get; set; }
-        public int LocationId { get; set; }
-        public int EventTypeId { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+    public int Id { get; set; }
 
-    }
+    public int PetParentId { get; set; }
+
+    public int LocationId { get; set; }
+
+    public int EventTypeId { get; set; }
+
+    public DateTime StartTime { get; set; }
+
+    public DateTime EndTime { get; set; }
+
+    public virtual EventType EventType { get; set; } = null!;
+
+    public virtual Location Location { get; set; } = null!;
+
+    public virtual PetParent PetParent { get; set; } = null!;
+
+    public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
 }
