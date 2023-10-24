@@ -86,7 +86,7 @@ SET IDENTITY_INSERT PlayDates ON
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (1, 1, 4, 8, '2023-06-11 10:00:00', '2023-06-11 16:00:00');
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (2, 1, 4, 5, '2023-10-15 10:00:00', '2023-10-15 15:30:00');
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (3, 2, 2, 3, '2023-08-18 08:00:00', '2023-08-18 14:30:00');
-INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (4, 2, 2, 2, '2023-11-27 09:00:00', '2023-11-27 13:30:00');
+INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (4, 2, 2, 7, '2023-11-27 09:00:00', '2023-11-27 13:30:00');
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (5, 3, 1, 9, '2023-07-05 10:00:00', '2023-07-05 17:00:00');
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (6, 4, 5, 4, '2023-07-17 10:00:00', '2023-07-17 16:00:00');
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (7, 4, 5, 5, '2023-08-30 09:30:00', '2023-08-30 16:30:00');
