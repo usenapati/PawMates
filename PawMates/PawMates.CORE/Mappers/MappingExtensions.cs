@@ -1,4 +1,4 @@
-﻿using PawMates.CORE.DTOs;
+using PawMates.CORE.DTOs;
 using PawMates.CORE.Models;
 
 namespace PawMates.CORE.Mappers

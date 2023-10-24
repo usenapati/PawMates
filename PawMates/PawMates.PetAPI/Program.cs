@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using PawMates.CORE.Interfaces;
+using PawMates.DAL.EF;
+using PawMates.CORE.Models;
+using PawMates.DAL;
+
 namespace PawMates.PetAPI
 {
     public class Program
@@ -7,6 +13,12 @@ namespace PawMates.PetAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // Add services to the container.
+            builder.Services.AddDbContext<PawMatesContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            builder.Services.AddTransient<IRepository<Pet>, EFRepository<Pet>>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
