@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Models;
 
-namespace PawMates.DAL.Models;
+namespace PawMates.DAL;
 
 public partial class PawMatesContext : DbContext
 {
@@ -150,7 +150,7 @@ public partial class PawMatesContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07BAE20558");
 
             entity.Property(e => e.Password).HasMaxLength(50);
-            entity.Property(e => e.UserName).HasMaxLength(50);
+            entity.Property(e => e.Username).HasMaxLength(50);
 
             entity.HasOne(d => d.PetParent).WithMany(p => p.Users)
                 .HasForeignKey(d => d.PetParentId)

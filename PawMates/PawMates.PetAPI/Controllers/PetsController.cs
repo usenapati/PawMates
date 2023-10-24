@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
-using PawMates.DAL.Models;
+using PawMates.CORE.Models;
+
 
 namespace PawMates.PetAPI.Controllers
 {
@@ -17,7 +18,7 @@ namespace PawMates.PetAPI.Controllers
             this._repo = repo;
         }
 
-        // GET: api/<AgentsController>
+        // GET: api/<petsController>
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,21 +27,22 @@ namespace PawMates.PetAPI.Controllers
             {
                 return NotFound();
             }
-            var agents = _repo.GetAll().Data.ToList();
+            var pets = _repo.GetAll().Data.ToList();
 
-            return Ok(agents.Select(a => a.MapToDto()).ToList());
+            return Ok(pets.Select(a => a.MapToDto()).ToList());
         }
 
         // GET api/<PetsController>/5
         [HttpGet("{id}", Name = "GetPet")]
         public IActionResult GetById(int id)
         {
-            var Pet = _repo.GetById(id);
-            if (Pet == null)
+            var getResult = _repo.GetById(id);
+            if (!getResult.Success || getResult.Data == null)
             {
                 return NotFound();
             }
-            return Ok(Pet.MapToDto());
+            Pet pet = getResult.Data; 
+            return Ok(pet.MapToDto());
 
         }
 
@@ -53,13 +55,9 @@ namespace PawMates.PetAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var Pet = new Pet();
-       
-
-            _repo.Add(Pet);
-            //return CreatedAtRoute(nameof(GetById), new { id = Pet.Id }, Pet.MapToDto());
-            return CreatedAtAction(nameof(GetById), new { id = Pet.Id }, Pet.MapToDto());
-            //return Ok(Pet.MapToDto());
+            var pet = value.MapToEntity();
+            _repo.Add(pet);            
+            return CreatedAtAction(nameof(GetById), new { id = pet.Id }, pet.MapToDto());
         }
 
         // PUT api/<PetsController>/5
@@ -70,9 +68,21 @@ namespace PawMates.PetAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var Pet = value.MapToEntity();
 
-            _repo.Update(Pet);
+            var getResult = _repo.GetById(id);
+            if (!getResult.Success || getResult.Data == null)
+            {
+                return NotFound();
+            }
+            var pet = getResult.Data;
+            pet.PetParentId = value.ParentId;
+            pet.Name = value.Name;
+            pet.Age = value.Age;
+            pet.Breed = value.Breed;
+            pet.PetTypeId = value.PetTypeId;
+            pet.PostalCode = value.PostalCode;
+
+            _repo.Update(pet);
             return NoContent();
         }
 
@@ -80,12 +90,12 @@ namespace PawMates.PetAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var Pet = _repo.GetById(id);
-            if (Pet == null)
+            var getResult = _repo.GetById(id);
+            if (!getResult.Success || getResult.Data == null)
             {
                 return NotFound();
             }
-            _repo.Delete(Pet);
+            _repo.Delete(getResult.Data);
             return NoContent();
         }
     }
