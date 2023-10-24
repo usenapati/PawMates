@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PawMates.CORE.Interfaces;
 
-namespace PawMates.DAL.Models;
+namespace PawMates.CORE.Models;
 
-public partial class RestrictionType
+public partial class RestrictionType : IEntity
 {
     public int Id { get; set; }
 
