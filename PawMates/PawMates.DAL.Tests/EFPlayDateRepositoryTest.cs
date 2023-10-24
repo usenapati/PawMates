@@ -6,7 +6,7 @@ namespace PawMates.DAL.Tests
 {
     public class EFPlayDateRepositoryTest
     {
-        EFPlayDateRepository _playDateRepository;
+        EFPlayDatesRepository _playDateRepository;
         EFLocationRepository _locationRepository;
         EFParentRepository _petParentRepository;
         EFRepository<Pet> _petRepository;
@@ -32,7 +32,7 @@ namespace PawMates.DAL.Tests
             _context.Database.OpenConnection();
             _context.Database.EnsureCreated();
 
-            _playDateRepository = new EFPlayDateRepository(_context);
+            _playDateRepository = new EFPlayDatesRepository(_context);
             _locationRepository = new EFLocationRepository(_context);
             _petParentRepository = new EFParentRepository(_context);
             _petRepository = new EFRepository<Pet>(_context);
@@ -84,43 +84,7 @@ namespace PawMates.DAL.Tests
             _context.Database.CloseConnection();
         }
 
-        // GetByLocation
-        [Test]
-        public void GetByLocation_Success()
-        {
-            var location = _locationRepository.GetById(1);
-            Assert.IsTrue(location.Success);
-
-            var expected = _playDateRepository.GetById(1);
-            var playDates = _playDateRepository.GetByLocation(location.Data);
-            Assert.IsTrue(playDates.Success);
-            Assert.AreEqual(1, playDates.Data.Count());
-            Assert.AreEqual(expected.Data, playDates.Data.First());
-        }
-
-        [Test]
-        public void GetByLocation_NotSuccess()
-        {
-            var location = _locationRepository.GetById(1);
-            Assert.IsTrue(location.Success);
-            location.Data.Id = 2;
-
-            var playDates = _playDateRepository.GetByLocation(location.Data);
-            Assert.IsFalse(playDates.Success);
-            Assert.AreEqual("Location not found.", playDates.Message);
-        }
-
-        // GetByDate
-        [Test]
-        public void GetByDate_Success()
-        {
-            var expected = _playDateRepository.GetById(1);
-            var playDates = _playDateRepository.GetByDate(new DateTime(2023, 10, 31));
-            Assert.IsTrue(playDates.Success);
-            Assert.AreEqual(1, playDates.Data.Count());
-            Assert.AreEqual(expected.Data, playDates.Data.First());
-        }
-
+        
         // AddPet
         [Test]
         public void AddPet_Success()
@@ -129,7 +93,7 @@ namespace PawMates.DAL.Tests
             Assert.IsTrue(pet.Success);
 
 
-            var addResponse = _playDateRepository.AddPet(1, pet.Data);
+            var addResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
             Assert.IsTrue(addResponse.Success);
 
             var getResponse = _playDateRepository.GetById(1);
@@ -144,15 +108,15 @@ namespace PawMates.DAL.Tests
             Assert.IsTrue(pet.Success);
 
 
-            var addResponse = _playDateRepository.AddPet(2, pet.Data);
+            var addResponse = _playDateRepository.AddPetToPlayDate(2, pet.Data.Id);
             Assert.IsFalse(addResponse.Success);
-            Assert.AreEqual("PlayDate not found.", addResponse.Message);
+            Assert.AreEqual("Play Date not found.", addResponse.Message);
 
 
             pet.Data.Id = 2;
-            addResponse = _playDateRepository.AddPet(1, pet.Data);
+            addResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
             Assert.IsFalse(addResponse.Success);
-            Assert.AreEqual("Could not add Pet to Play Date.", addResponse.Message);
+            Assert.AreEqual("Pet 2 does not exist.", addResponse.Message);
 
         }
 
@@ -164,14 +128,14 @@ namespace PawMates.DAL.Tests
             Assert.IsTrue(pet.Success);
 
 
-            var addResponse = _playDateRepository.AddPet(1, pet.Data);
+            var addResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
             Assert.IsTrue(addResponse.Success);
 
             var getResponse = _playDateRepository.GetById(1);
             Assert.IsTrue(getResponse.Success);
             Assert.AreEqual(pet.Data, getResponse.Data.Pets.First());
 
-            var removeResponse = _playDateRepository.RemovePet(1, pet.Data);
+            var removeResponse = _playDateRepository.DeletePetFromPlayDate(1, pet.Data.Id);
             Assert.IsTrue(removeResponse.Success);
             Assert.AreEqual(0, getResponse.Data.Pets.Count);
         }
@@ -183,14 +147,14 @@ namespace PawMates.DAL.Tests
             Assert.IsTrue(pet.Success);
 
 
-            var removeResponse = _playDateRepository.RemovePet(2, pet.Data);
+            var removeResponse = _playDateRepository.DeletePetFromPlayDate(2, pet.Data.Id);
             Assert.IsFalse(removeResponse.Success);
-            Assert.AreEqual("PlayDate not found.", removeResponse.Message);
+            Assert.AreEqual("Play Date not found.", removeResponse.Message);
 
             pet.Data.Id = 2;
-            removeResponse = _playDateRepository.RemovePet(1, pet.Data);
+            removeResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
             Assert.IsFalse(removeResponse.Success);
-            Assert.AreEqual("Could not remove Pet from Play Date.", removeResponse.Message);
+            Assert.AreEqual("Pet 2 does not exist.", removeResponse.Message);
         }
     }
 }
