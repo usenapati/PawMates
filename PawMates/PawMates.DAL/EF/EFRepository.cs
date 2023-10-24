@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using PawMates.CORE;
+﻿using PawMates.CORE;
 using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
-using PawMates.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PawMates.DAL;
 
 namespace PawMates.DAL.EF
 {

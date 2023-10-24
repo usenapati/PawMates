@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
 using PawMates.DAL.EF;
-using PawMates.DAL.Models;
+using PawMates.DAL;
 
 namespace PawMates.DAL.Tests
 {
@@ -42,10 +42,31 @@ namespace PawMates.DAL.Tests
 
             // Act
             _petParentRepository.Add(petParent);
-            var count = _petParentRepository.GetAll().ToList().Count;
+            var count = _petParentRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
+        }
+
+        [Test]
+        public void DeleteUser_ShouldDecreaseCount()
+        {
+            // Arrange
+            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com"};
+
+            // Act
+            _petParentRepository.Add(petParent);
+            var count = _petParentRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(1, count);
+
+            // Act
+            _petParentRepository.Delete(petParent);
+            count = _petParentRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(0, count);
         }
     }
 }

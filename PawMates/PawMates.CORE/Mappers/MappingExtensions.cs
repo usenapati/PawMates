@@ -1,10 +1,5 @@
 ﻿using PawMates.CORE.DTOs;
-using PawMates.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PawMates.CORE.Models;
 
 namespace PawMates.CORE.Mappers
 {
