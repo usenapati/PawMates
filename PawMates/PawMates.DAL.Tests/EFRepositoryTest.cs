@@ -25,7 +25,7 @@ namespace PawMates.DAL.Tests
             _context.Database.EnsureCreated();
 
             // Instantiate repository with InMemory Database
-            _petParentRepository = new EFRepository<PetParent>(_context);
+            _petParentRepository = new EFParentRepository(_context);
         }
 
         [TearDown]
