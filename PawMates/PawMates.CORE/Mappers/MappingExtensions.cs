@@ -32,5 +32,32 @@ namespace PawMates.CORE.Mappers
 
             };
         }
+
+        public static PlayDateDTO MapToDto(this PlayDate source)
+        {
+            return new PlayDateDTO
+            {
+                Id = source.Id,
+                PetParentId = source.PetParentId,
+                LocationId = source.LocationId,
+                EventTypeId = source.EventTypeId,
+                StartTime = source.StartTime,
+                EndTime = source.EndTime
+                
+            };
+        }
+        public static PlayDate MapToEntity(this PlayDateDTO source)
+        {
+            return new PlayDate
+            {
+                Id = source.Id,
+                PetParentId = source.PetParentId,
+                LocationId = source.LocationId,
+                EventTypeId = source.EventTypeId,
+                StartTime = source.StartTime,
+                EndTime = source.EndTime
+
+            };
+        }
     }
 }
