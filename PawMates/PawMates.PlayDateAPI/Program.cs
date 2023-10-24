@@ -3,6 +3,7 @@ using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
 using PawMates.DAL;
 using PawMates.DAL.EF;
+using PawMates.PlayDateAPI.ApiClients;
 
 namespace PawMates.PlayDateAPI
 {
@@ -17,7 +18,10 @@ namespace PawMates.PlayDateAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
                 );
 
-            builder.Services.AddTransient<IRepository<PlayDate>, EFRepository<PlayDate>>();
+            builder.Services.AddScoped<IPetsService, PetsService>();
+            builder.Services.AddHttpClient();
+
+            builder.Services.AddTransient<IPlayDateRepository, EFPlayDatesRepository>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
