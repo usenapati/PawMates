@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Polly" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PawMates.CORE\PawMates.CORE.csproj" />
+    <ProjectReference Include="..\PawMates.DAL\PawMates.DAL.csproj" />
   </ItemGroup>
 
 </Project>
