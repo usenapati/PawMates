@@ -59,6 +59,9 @@ namespace PawMates.DAL.Tests
 
             Assert.IsTrue(pets.Success);
             Assert.AreEqual(1, pets.Data.Count());
+            var pet = _petRepository.GetOne(p => p.Id == 1);
+            Assert.IsTrue(pet.Success);
+            Assert.AreEqual(pet.Data, pets.Data.First());
         }
 
         [Test]
@@ -69,7 +72,7 @@ namespace PawMates.DAL.Tests
             var pets = _petParentRepository.GetPets(petParent.Data);
 
             Assert.IsFalse(pets.Success);
-            Assert.AreEqual("Entity not found.", pets.Message);
+            Assert.AreEqual("PetParent not found.", pets.Message);
         }
     }
 }

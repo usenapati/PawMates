@@ -23,4 +23,22 @@ public partial class Location : IEntity
     public virtual PetType PetType { get; set; } = null!;
 
     public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Location location &&
+               Id == location.Id &&
+               PetTypeId == location.PetTypeId &&
+               Name == location.Name &&
+               Street1 == location.Street1 &&
+               City == location.City &&
+               State == location.State &&
+               PostalCode == location.PostalCode &&
+               PetAge == location.PetAge;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, PetTypeId, Name, Street1, City, State, PostalCode, PetAge);
+    }
 }
