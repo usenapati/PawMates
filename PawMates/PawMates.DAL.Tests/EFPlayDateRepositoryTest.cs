@@ -43,7 +43,10 @@ namespace PawMates.DAL.Tests
             // Seed Data
             _petParentRepository.Add(new PetParent
             {
-                FirstName = "Udayan", LastName = "Senapati", PhoneNumber = "(111) 111-1111", Email = "test@example.com"
+                FirstName = "Udayan",
+                LastName = "Senapati",
+                PhoneNumber = "(111) 111-1111",
+                Email = "test@example.com"
             });
             _petTypeRepository.Add(new PetType
             {
@@ -51,11 +54,22 @@ namespace PawMates.DAL.Tests
             });
             _petRepository.Add(new Pet
             {
-                PetParentId = 1, PetTypeId = 1, Age = 3, Name = "Maruki", Breed = "Tabby", PostalCode = "11111",
+                PetParentId = 1,
+                PetTypeId = 1,
+                Age = 3,
+                Name = "Maruki",
+                Breed = "Tabby",
+                PostalCode = "11111",
             });
             _locationRepository.Add(new Location
             {
-                PetTypeId = 1, Name = "Cat Cafe", Street1 = "123 Main Street", City = "Apex", State = "NC", PostalCode = "27502", PetAge = 2
+                PetTypeId = 1,
+                Name = "Cat Cafe",
+                Street1 = "123 Main Street",
+                City = "Apex",
+                State = "NC",
+                PostalCode = "27502",
+                PetAge = 2
             });
             _restrictionTypeRepository.Add(new RestrictionType
             {
@@ -63,7 +77,7 @@ namespace PawMates.DAL.Tests
             });
             _eventTypeRepository.Add(new EventType
             {
-                Name = "Purrfect Picnic", 
+                Name = "Purrfect Picnic",
                 Description = "An indoor play date for cats and their owners, featuring cozy blankets and a variety of interactive toys. Cats can explore, relax, and enjoy a gourmet picnic.",
                 RestrictionTypeId = 1
 
@@ -84,7 +98,52 @@ namespace PawMates.DAL.Tests
             _context.Database.CloseConnection();
         }
 
+        // Add and GetAll
+        [Test]
+        public void AddPlayDate_Success()
+        {
+
+        }
         
+        [Test]
+        public void AddPlayDate_Failure()
+        {
+
+        }
+
+        // Delete
+        [Test]
+        public void DeletePlayDate_Success()
+        {
+
+        }
+
+        [Test]
+        public void DeletePlayDate_Failure()
+        {
+
+        }
+
+        // Update
+        [Test]
+        public void UpdatePlayDate_Success()
+        {
+
+        }
+        
+        [Test]
+        public void UpdatePlayDate_Failure()
+        {
+
+        }
+
+        // GetPred[Test]
+        public void GetPredicatePlayDate_Success()
+        {
+
+        }
+        
+
         // AddPet
         [Test]
         public void AddPet_Success()
