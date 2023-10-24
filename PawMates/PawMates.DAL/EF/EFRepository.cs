@@ -36,7 +36,7 @@ namespace PawMates.DAL.EF
                 var entity = _context.Set<T>().FirstOrDefault(x => x.Id == id);
                 if (entity == null)
                 {
-                    response.Message = "Entity not found.";
+                    response.Message = $"{typeof(T).Name} not found.";
                     return response;
                 }
                 response.Data = entity;
@@ -61,7 +61,7 @@ namespace PawMates.DAL.EF
             }
             catch (Exception ex)
             {
-                throw new DALException("Unable to save entity", ex);
+                throw new DALException($"Unable to save {typeof(T).Name}", ex);
             }
             return response;
         }
@@ -143,7 +143,7 @@ namespace PawMates.DAL.EF
             }
             catch (Exception ex)
             {
-                throw new DALException("Unable to get entity", ex);
+                throw new DALException($"Unable to get {typeof(T).Name}", ex);
             }
             return response;          
         }

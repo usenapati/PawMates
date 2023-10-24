@@ -77,7 +77,7 @@ namespace PawMates.DAL.Tests
             // Get By ID
             var actualResponse = _petParentRepository.GetById(petParent.Id);
             Assert.IsFalse(actualResponse.Success);
-            Assert.AreEqual("Entity not found.", actualResponse.Message);
+            Assert.AreEqual("PetParent not found.", actualResponse.Message);
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace PawMates.DAL.Tests
             // Assert
             Assert.AreEqual(0, count);
             Assert.IsFalse(response.Success);
-            Assert.AreEqual("Entity not found.", response.Message);
+            Assert.AreEqual("PetParent not found.", response.Message);
         }
 
         // Update
@@ -137,7 +137,7 @@ namespace PawMates.DAL.Tests
             // Assert
             Assert.AreEqual(0, count);
             Assert.IsFalse(response.Success);
-            Assert.AreEqual("Entity not found.", response.Message);
+            Assert.AreEqual("PetParent not found.", response.Message);
         }
 
         // GetAll Predicate

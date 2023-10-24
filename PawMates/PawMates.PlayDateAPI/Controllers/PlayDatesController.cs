@@ -3,6 +3,7 @@ using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
 using PawMates.CORE.Models;
+using PawMates.PlayDateAPI.ApiClients;
 
 namespace PawMates.PlayDateAPI.Controllers
 {
@@ -10,10 +11,12 @@ namespace PawMates.PlayDateAPI.Controllers
     [ApiController]
     public class PlayDatesController : ControllerBase
     {
-        private readonly IRepository<PlayDate> _repo;
-        public PlayDatesController(IRepository<PlayDate> repo)
+        private readonly IPlayDateRepository _repo;
+        private readonly IPetsService _petsService;
+        public PlayDatesController(IPlayDateRepository repo, IPetsService petsService)
         {
             this._repo = repo;
+            this._petsService = petsService;
         }
 
         // GET: api/<PlayDatesController>
@@ -40,9 +43,84 @@ namespace PawMates.PlayDateAPI.Controllers
                 return NotFound();
             }
             PlayDate playDate = getResult.Data;
+            //Console.WriteLine("========******=========="+ playDate.Pets.ToList()[0].Name);
             return Ok(playDate.MapToDto());
 
         }
+
+        // /api/Playdates/{playdateId}/Pets - GET - # Returns Pets on a Playdate
+        [HttpGet, Route("{playdateId}/pets")]
+        public IActionResult GetPetsOnPlaydate(int playdateId)
+        {
+            var existResult = _repo.GetById(playdateId);
+            if (!existResult.Success || existResult.Data == null)
+            {
+                return BadRequest($"Playdate {playdateId} is not exist.");
+            }
+
+            return Ok(existResult.Data.Pets.Select(a => a.MapToDto()).ToList());
+        }
+
+        // /api/playDates/{playDateId}/pets/{petId} -POST - # Add the pet to the playDate
+        [HttpPost, Route("{playDateId}/pets/{petId}")]
+        //[Authorize]
+        public async Task<IActionResult> PostpetOnplayDate(int playDateId, int petId)
+        {
+            var playDate = _repo.GetById(playDateId).Data;
+            if (playDate == null)
+            {
+                return BadRequest($"playDate {playDateId} is not exist.");
+            }
+
+            //if (playDate.Pets.Count >= 3)
+            //{
+            //    ModelState.AddModelError("pets", "No more than 3 pets per playDate.");
+            //    return BadRequest(ModelState);
+            //}
+
+            PetDTO pet = await _petsService.GetPetAsync(petId);
+
+            if (pet == null)
+            {
+                return BadRequest($"pet {petId} is not exist.");
+            }
+
+            var addResult = _repo.AddPetToPlayDate(playDateId, petId);
+
+            if (!addResult.Success)
+            {
+                return BadRequest($"Failed to add pet.");
+            }
+            return NoContent();
+        }
+
+        // /api/playDates/{playDateId}/pets/{petId} - DELETE - # Remove the pet from the playDate
+        [HttpDelete, Route("{playDateId}/pets/{petId}")]
+        //[Authorize]
+        public async Task<IActionResult> RemovepetOnplayDate(int playDateId, int petId)
+        {
+            var playDate = _repo.GetById(playDateId).Data;
+            if (playDate == null)
+            {
+                return BadRequest($"playDate {playDateId} is not exist.");
+            }
+
+            PetDTO pet = await _petsService.GetPetAsync(petId);
+
+            if (pet == null)
+            {
+                return BadRequest($"pet {petId} is not exist.");
+            }
+
+            var addResult = _repo.DeletePetFromPlayDate(playDateId, petId);
+
+            if (!addResult.Success)
+            {
+                return BadRequest($"Failed to add pet.");
+            }
+            return NoContent();
+        }
+
 
         // POST api/<PlayDatesController>
         [HttpPost]
