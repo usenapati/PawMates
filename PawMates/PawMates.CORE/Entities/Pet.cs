@@ -23,4 +23,21 @@ public partial class Pet : IEntity
     public virtual PetType PetType { get; set; } = null!;
 
     public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Pet pet &&
+               Id == pet.Id &&
+               PetParentId == pet.PetParentId &&
+               PetTypeId == pet.PetTypeId &&
+               Name == pet.Name &&
+               Breed == pet.Breed &&
+               Age == pet.Age &&
+               PostalCode == pet.PostalCode;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, PetParentId, PetTypeId, Name, Breed, Age, PostalCode);
+    }
 }

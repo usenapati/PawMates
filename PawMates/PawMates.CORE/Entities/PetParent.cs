@@ -19,4 +19,19 @@ public partial class PetParent : IEntity
     public virtual ICollection<PlayDate> PlayDates { get; set; } = new List<PlayDate>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+    public override bool Equals(object? obj)
+    {
+        return obj is PetParent parent &&
+               Id == parent.Id &&
+               FirstName == parent.FirstName &&
+               LastName == parent.LastName &&
+               PhoneNumber == parent.PhoneNumber &&
+               Email == parent.Email;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, FirstName, LastName, PhoneNumber, Email);
+    }
 }
