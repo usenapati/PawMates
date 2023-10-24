@@ -48,8 +48,8 @@ namespace PawMates.DAL.Tests
         public void GetByPetType_Success()
         {
             var petType = _petTypeRepository.GetById(1);
-
             Assert.IsTrue(petType.Success);
+
             var expected = _locationRepository.GetById(1);
             var locations = _locationRepository.GetByPetType(petType.Data);
             Assert.IsTrue(locations.Success);

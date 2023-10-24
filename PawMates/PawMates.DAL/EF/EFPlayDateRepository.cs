@@ -68,7 +68,7 @@ namespace PawMates.DAL.EF
                 var updateResponse = Update( getResponse.Data);
                 if (!updateResponse.Success)
                 {
-                    response.Message = getResponse.Message;
+                    response.Message = "Could not add Pet to Play Date.";
                     return response;
                 }
                 response.Success = true;
@@ -95,7 +95,7 @@ namespace PawMates.DAL.EF
                 var updateResponse = Update( getResponse.Data);
                 if (!updateResponse.Success)
                 {
-                    response.Message = getResponse.Message;
+                    response.Message = "Could not remove Pet from Play Date.";
                     return response;
                 }
                 response.Success = true;
