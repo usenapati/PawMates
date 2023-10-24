@@ -1,7 +1,6 @@
 ﻿using PawMates.CORE;
 using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
-using PawMates.DAL;
 
 namespace PawMates.DAL.EF
 {
