@@ -1,7 +1,5 @@
 ﻿using PawMates.CORE;
-using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
-using System.Net;
 
 namespace PawMates.DAL.EF
 {
