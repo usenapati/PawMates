@@ -59,7 +59,7 @@ INSERT INTO PetTypes(Id, Species) VALUES (6, 'Rabbit');
 SET IDENTITY_INSERT PetTypes OFF
 SET IDENTITY_INSERT Locations ON
 INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (1, 1, 'The Critter Collective', '123 Bellvue', 'Durham', 'NC', '27701',1);
-INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (2, 3, 'SKIPTOWN', '222 Rampart St', 'Charlotte', 'NC', '28203', 2);
+INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (2, 3, 'Skiptown', '222 Rampart St', 'Charlotte', 'NC', '28203', 2);
 INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (3, 2, 'Crooked Tail Cat Cafe', '604 S Elm St', 'Greensboro', 'NC', '27406', 2);
 INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (4, 3, 'West Street Dog', '400 W. North Street Unit 110', 'Raleigh', 'NC', '27603', 1);
 INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (5, 3, 'Ruff Draft Dog Park & Bar', '2144 Wrightsville Avenue', 'Wilmington', 'NC', '28403', 3);
