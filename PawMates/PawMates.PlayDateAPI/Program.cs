@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
 using PawMates.DAL;
