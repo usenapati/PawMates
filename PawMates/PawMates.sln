@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{6200
 		..\Scripts\PawMates.sql = ..\Scripts\PawMates.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.LocationAPI", "PawMates.LocationAPI\PawMates.LocationAPI.csproj", "{A950E500-8A99-4095-B894-D56F4B52345C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{516D7E9C-0587-48A0-BA98-00597483B844}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516D7E9C-0587-48A0-BA98-00597483B844}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516D7E9C-0587-48A0-BA98-00597483B844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A950E500-8A99-4095-B894-D56F4B52345C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A950E500-8A99-4095-B894-D56F4B52345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A950E500-8A99-4095-B894-D56F4B52345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A950E500-8A99-4095-B894-D56F4B52345C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{16DFFB77-09E5-4D1A-B239-7D8D4DB5C9E9} = {0FED3FE7-B203-4FFC-BF30-8CE9C815AC0A}
 		{63BBC740-3E1D-4198-8EB8-1150B839DA77} = {DF13A998-67D1-4024-B6DC-87FF2F5C2BF0}
 		{516D7E9C-0587-48A0-BA98-00597483B844} = {DF13A998-67D1-4024-B6DC-87FF2F5C2BF0}
+		{A950E500-8A99-4095-B894-D56F4B52345C} = {0FED3FE7-B203-4FFC-BF30-8CE9C815AC0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A213DC1-11EE-48A6-90C4-E6B4A04F074F}
