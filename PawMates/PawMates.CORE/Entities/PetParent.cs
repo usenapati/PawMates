@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PawMates.CORE.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace PawMates.DAL.Models;
 
-public partial class PetParent
+public partial class PetParent : IEntity
 {
     public int Id { get; set; }
 
