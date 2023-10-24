@@ -16,6 +16,6 @@ namespace PawMates.CORE.DTOs
         [Required]
         public int Age { get; set; }
         [Required]
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
     }
 }

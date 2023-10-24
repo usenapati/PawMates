@@ -1,4 +1,6 @@
-﻿using PawMates.CORE.Exceptions;
+﻿using Microsoft.Extensions.Logging;
+using PawMates.CORE;
+using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
 using PawMates.DAL.Models;
 using System;
@@ -16,56 +18,147 @@ namespace PawMates.DAL.EF
         {
             _context = context;
         }
-        public void Add(T entity)
+
+        public Response<IEnumerable<T>> GetAll()
         {
+            var response = new Response<IEnumerable<T>>() { Success = false };
+            try
+            {
+                response.Data = _context.Set<T>().ToList();
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        public Response<T> GetById(int id)
+        {
+            var response = new Response<T>() { Success = false };
+            try
+            {
+                var entity = _context.Set<T>().FirstOrDefault(x => x.Id == id);
+                if (entity == null)
+                {
+                    response.Message = "Entity not found.";
+                    return response;
+                }
+                response.Data = entity;
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        public Response<T> Add(T entity)
+        {
+            var response = new Response<T>() { Success = false };
             try
             {
                 _context.Add(entity);
                 _context.SaveChanges();
+                response.Success = true;
+                response.Data = entity;
+            }
+            catch (Exception ex)
+            {
+                throw new DALException("Unable to save entity", ex);
+            }
+            return response;
+        }
+
+        public Response Delete(T entity)
+        {
+            Response response = new Response() { Success = false };
+            try
+            {
+                var getResponse = GetById(entity.Id);
+                if (!getResponse.Success)
+                {
+                    response.Message = getResponse.Message;
+                    return response;
+                } 
+                _context.Remove(getResponse.Data);
+                _context.SaveChanges();
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+            return response;
+
+        }
+
+        public Response Update(T entity)
+        {
+            Response response = new Response() { Success = false };
+            try
+            {
+                var getResponse = GetById(entity.Id);
+                if (!getResponse.Success)
+                {
+                    response.Message = getResponse.Message;
+                    return response;
+                }
+                _context.Update(entity);
+                _context.SaveChanges();
+                response.Success = true;
 
             }
             catch (Exception ex)
             {
-
-                throw new DALException("Unable to save entity", ex);
+                response.Message = ex.Message;
             }
-
-
+            return response;
         }
 
-        public void Delete(T entity)
-        {
-            _context.Remove(entity);
-            _context.SaveChanges();
 
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return _context.Set<T>().ToList();
-        }
 
         // Add a method to get all entities that match a predicate
-        public IEnumerable<T> GetAll(Func<T, bool> predicate)
+        public Response<IEnumerable<T>> GetAll(Func<T, bool> predicate)
         {
-            return _context.Set<T>().Where(predicate).ToList();
-        }
+            var response = new Response<IEnumerable<T>>() { Success = false };
+            try
+            {
+                response.Data = _context.Set<T>().Where(predicate).ToList();
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
 
-        public T GetById(int id)
-        {
-            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
-        }
+            return response;
+        }  
 
         // add a method to get one entity that matches a predicate
-        public T? GetOne(Func<T, bool> predicate)
+        public Response<T> GetOne(Func<T, bool> predicate)
         {
-            return _context.Set<T>().FirstOrDefault(predicate);
+            var response = new Response<T>() { Success = false };
+            try
+            {
+                response.Data = _context.Set<T>().FirstOrDefault(predicate);
+                response.Success = true;
+               
+            }
+            catch (Exception ex)
+            {
+                throw new DALException("Unable to get entity", ex);
+            }
+            return response;          
         }
 
-        public void Update(T entity)
-        {
-            _context.Update(entity);
-            _context.SaveChanges();
-        }
+  
+
+
+
+
     }
 }
