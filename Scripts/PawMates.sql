@@ -18,7 +18,7 @@ CREATE TABLE PetParents(
 
 CREATE TABLE Users(
     Id INT PRIMARY KEY IDENTITY(1,1),
-    PetParentId INT NOT NULL,
+    PetParentId INT NULL,
     Username NVARCHAR(50) NOT NULL,
     [Password] NVARCHAR(50) NOT NULL,
     CONSTRAINT FK_Users_PetParents
