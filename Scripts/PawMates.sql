@@ -54,6 +54,7 @@ CREATE TABLE Locations(
     City NVARCHAR(50) NOT NULL,
     [State] NVARCHAR(50) NOT NULL,
     PostalCode NVARCHAR(15) NOT NULL,
+    PetAge INT NULL,
     CONSTRAINT FK_Locations_PetTypes
 		  FOREIGN KEY (PetTypeId)
 		  REFERENCES PetTypes(Id)
