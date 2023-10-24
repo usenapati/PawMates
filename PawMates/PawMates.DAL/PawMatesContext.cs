@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using PawMates.CORE.Models;
 
-namespace PawMates.DAL.Models;
+namespace PawMates.DAL;
 
 public partial class PawMatesContext : DbContext
 {

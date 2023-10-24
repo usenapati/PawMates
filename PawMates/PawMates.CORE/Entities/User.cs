@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+using PawMates.CORE.Interfaces;
 
-namespace PawMates.DAL.Models;
+namespace PawMates.CORE.Models;
 
-public partial class User
+public class User : IEntity
 {
     public int Id { get; set; }
-
     public int PetParentId { get; set; }
-
-    public string Username { get; set; } = null!;
-
-    public string Password { get; set; } = null!;
-
+    public string Username { get; set; }
+    public string Password { get; set; }
     public virtual PetParent PetParent { get; set; } = null!;
 }
