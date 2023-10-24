@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.ParentAPI", "PawMates.ParentAPI\PawMates.ParentAPI.csproj", "{C8E8D74E-3B86-4524-B37D-249FF3ECEB41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.ParentAPI", "PawMates.ParentAPI\PawMates.ParentAPI.csproj", "{C8E8D74E-3B86-4524-B37D-249FF3ECEB41}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9BA02BD1-ECD8-4803-9478-B6F0A94A2956}"
 EndProject
@@ -11,21 +11,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0FED3FE7-B20
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF13A998-67D1-4024-B6DC-87FF2F5C2BF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.CORE", "PawMates.CORE\PawMates.CORE.csproj", "{C61856B4-4BC3-4537-81E2-D5C9A538D33C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.CORE", "PawMates.CORE\PawMates.CORE.csproj", "{C61856B4-4BC3-4537-81E2-D5C9A538D33C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.DAL", "PawMates.DAL\PawMates.DAL.csproj", "{99DB9E52-3941-4193-B2B0-BED2ACEAF4B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.DAL", "PawMates.DAL\PawMates.DAL.csproj", "{99DB9E52-3941-4193-B2B0-BED2ACEAF4B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.PetAPI", "PawMates.PetAPI\PawMates.PetAPI.csproj", "{CFBD9AC2-0E0C-4BB3-A1A5-43A3D635B377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.PetAPI", "PawMates.PetAPI\PawMates.PetAPI.csproj", "{CFBD9AC2-0E0C-4BB3-A1A5-43A3D635B377}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.PlayDateAPI", "PawMates.PlayDateAPI\PawMates.PlayDateAPI.csproj", "{3590F654-1FC8-4B6B-946B-F8DFF68114AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.PlayDateAPI", "PawMates.PlayDateAPI\PawMates.PlayDateAPI.csproj", "{3590F654-1FC8-4B6B-946B-F8DFF68114AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.AuthService", "PawMates.AuthService\PawMates.AuthService.csproj", "{195741D2-2615-4DDA-A50F-7F270F9FAF9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.AuthService", "PawMates.AuthService\PawMates.AuthService.csproj", "{195741D2-2615-4DDA-A50F-7F270F9FAF9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.Gateway", "PawMates.Gateway\PawMates.Gateway.csproj", "{16DFFB77-09E5-4D1A-B239-7D8D4DB5C9E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.Gateway", "PawMates.Gateway\PawMates.Gateway.csproj", "{16DFFB77-09E5-4D1A-B239-7D8D4DB5C9E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.DAL.Tests", "PawMates.DAL.Tests\PawMates.DAL.Tests.csproj", "{63BBC740-3E1D-4198-8EB8-1150B839DA77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.DAL.Tests", "PawMates.DAL.Tests\PawMates.DAL.Tests.csproj", "{63BBC740-3E1D-4198-8EB8-1150B839DA77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.Integration.Tests", "PawMates.Integration.Tests\PawMates.Integration.Tests.csproj", "{516D7E9C-0587-48A0-BA98-00597483B844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.Integration.Tests", "PawMates.Integration.Tests\PawMates.Integration.Tests.csproj", "{516D7E9C-0587-48A0-BA98-00597483B844}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{6200DC25-C87D-4A9A-9802-1D611F5AAE56}"
+	ProjectSection(SolutionItems) = preProject
+		..\Scripts\PawMates.sql = ..\Scripts\PawMates.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

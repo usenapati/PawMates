@@ -1,8 +1,6 @@
 using PawMates.CORE.Interfaces;
-using System;
-using System.Collections.Generic;
 
-namespace PawMates.DAL.Models;
+namespace PawMates.CORE.Models;
 
 public partial class PlayDate : IEntity
 {
