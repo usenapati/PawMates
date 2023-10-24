@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Interfaces;
 using PawMates.DAL.EF;
-using PawMates.DAL.Models;
+using PawMates.CORE.Models;
+using PawMates.DAL;
 
 namespace PawMates.PetAPI
 {

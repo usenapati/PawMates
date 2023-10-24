@@ -2,7 +2,6 @@
 using PawMates.CORE;
 using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
-using PawMates.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

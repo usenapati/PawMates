@@ -1,5 +1,5 @@
 ﻿using PawMates.CORE.DTOs;
-using PawMates.DAL.Models;
+using PawMates.CORE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

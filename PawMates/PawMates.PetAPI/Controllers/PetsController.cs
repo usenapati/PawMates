@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
-using PawMates.DAL.Models;
+using PawMates.CORE.Models;
+
 
 namespace PawMates.PetAPI.Controllers
 {
