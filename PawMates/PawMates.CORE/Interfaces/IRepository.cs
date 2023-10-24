@@ -9,12 +9,12 @@ namespace PawMates.CORE.Interfaces
 {
     public interface IRepository<T> where T : class, IEntity
     {
-        IEnumerable<T> GetAll();
-        T GetById(int id);
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        IEnumerable<T> GetAll(Func<T, bool> predicate);
-        T? GetOne(Func<T, bool> predicate);
+        Response<IEnumerable<T>> GetAll();
+        Response<T> GetById(int id);
+        Response<T> Add(T entity);
+        Response Update(T entity);
+        Response Delete(T entity);
+        Response<IEnumerable<T>> GetAll(Func<T, bool> predicate);
+        Response<T> GetOne(Func<T, bool> predicate);
     }
 }
