@@ -28,6 +28,7 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             var pets = _repo.GetAll().Data.ToList();
+            //Console.WriteLine("===============*****=================" + pets[0].PetParent.FirstName);
 
             return Ok(pets.Select(a => a.MapToDto()).ToList());
         }
@@ -41,7 +42,9 @@ namespace PawMates.PetAPI.Controllers
             {
                 return NotFound();
             }
-            Pet pet = getResult.Data; 
+            Pet pet = getResult.Data;
+            //Console.WriteLine("===============*****=================" + pet.PetType.Species);
+            //Console.WriteLine("===============*****================="+ pet.PetParent);
             return Ok(pet.MapToDto());
 
         }

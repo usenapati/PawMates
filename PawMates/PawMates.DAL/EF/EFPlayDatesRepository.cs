@@ -144,7 +144,7 @@ namespace PawMates.DAL.EF
             var response = new Response<IEnumerable<PlayDate>>() { Success = false };
             try
             {
-                response.Data = _context.PlayDates.Include(a => a.Pets).ToList();
+                response.Data = _context.PlayDates.Include(a => a.Pets).Include(p => p.Location).ToList();
                 response.Success = true;
             }
             catch (Exception ex)
@@ -175,7 +175,7 @@ namespace PawMates.DAL.EF
             var response = new Response<PlayDate>() { Success = false };
             try
             {
-                var PlayDate = _context.PlayDates.Include(a => a.Pets).FirstOrDefault(a => a.Id == id);
+                var PlayDate = _context.PlayDates.Include(a => a.Pets).Include(p => p.Location).Include(p => p.PetParent).FirstOrDefault(a => a.Id == id);
                 //var PlayDate = _context.PlayDates.FirstOrDefault(a => a.PlayDateId == PlayDateId);
                 if (PlayDate == null)
                 {
