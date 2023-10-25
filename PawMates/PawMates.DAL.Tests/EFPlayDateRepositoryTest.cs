@@ -79,7 +79,8 @@ namespace PawMates.DAL.Tests
             {
                 Name = "Purrfect Picnic",
                 Description = "An indoor play date for cats and their owners, featuring cozy blankets and a variety of interactive toys. Cats can explore, relax, and enjoy a gourmet picnic.",
-                RestrictionTypeId = 1
+                RestrictionTypeId = 1,
+                PetTypeId = 1
 
             });
             _playDateRepository.Add(new PlayDate
