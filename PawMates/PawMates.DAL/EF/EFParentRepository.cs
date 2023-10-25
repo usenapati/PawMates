@@ -81,11 +81,11 @@ namespace PawMates.DAL.EF
             return new Response<PetParent>() { Data = parent, Success = true };
         }
 
-        public Response Delete(int id)
+        public Response Delete(PetParent parent)
         {
             try
             {
-                var response = GetById(id);
+                var response = GetById(parent.Id);
                 if (!response.Success)
                 {
                     return new Response() { Message = "Pet parent could not found.\n", Success = false };

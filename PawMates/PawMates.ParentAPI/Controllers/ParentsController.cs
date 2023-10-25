@@ -12,9 +12,9 @@ namespace PawMates.ParentAPI.Controllers
     [ApiController]
     public class ParentsController : ControllerBase
     {
-        private readonly EFRepository<PetParent> _parentRepository;
+        private readonly EFParentRepository _parentRepository;
 
-        public ParentsController(EFRepository<PetParent> parentRepository)
+        public ParentsController(EFParentRepository parentRepository)
         {
             _parentRepository = parentRepository;
         }
