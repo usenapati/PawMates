@@ -11,11 +11,14 @@ namespace PawMates.CORE.DTOs
         [Required]
         public int PetTypeId { get; set; }
         [Required]
+        [MaxLength(50)]
         public string Name { get; set; }
+        [MaxLength(50)]
         public string? Breed { get; set; }
         [Required]
         public int Age { get; set; }
         [Required]
+        [MaxLength(10)]
         public string? PostalCode { get; set; }
     }
 }
