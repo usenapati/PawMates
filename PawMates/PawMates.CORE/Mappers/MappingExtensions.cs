@@ -88,5 +88,29 @@ namespace PawMates.CORE.Mappers
                 PetAge = source.PetAge
             };
         }
+
+        public static UserDTO MapToDto(this User source)
+        {
+            return new UserDTO
+            {
+                Id = source.Id,
+                PetParentId = source.PetParentId,
+                Username = source.Username,
+                Password = source.Password 
+
+            };
+        }
+        public static User MapToEntity(this UserDTO source)
+        {
+            return new User
+            {
+                Id = source.Id,
+                PetParentId = source.PetParentId,
+                Username = source.Username,
+                Password = source.Password
+            };
+        }
+
+
     }
 }

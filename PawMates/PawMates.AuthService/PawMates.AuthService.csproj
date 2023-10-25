@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.23" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.24.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PawMates.CORE\PawMates.CORE.csproj" />
+    <ProjectReference Include="..\PawMates.DAL\PawMates.DAL.csproj" />
   </ItemGroup>
 
 </Project>
