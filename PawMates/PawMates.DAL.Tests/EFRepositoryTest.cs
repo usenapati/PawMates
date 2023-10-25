@@ -114,7 +114,7 @@ namespace PawMates.DAL.Tests
             restrictionType.Name = "Dogs Only";
 
             _restrictionTypeRepository.Update(restrictionType);
-
+            count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);

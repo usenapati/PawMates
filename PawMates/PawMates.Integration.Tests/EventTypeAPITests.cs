@@ -3,13 +3,8 @@ using Newtonsoft.Json;
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Models;
 using PawMates.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PawMates.Integration.Tests
 {
