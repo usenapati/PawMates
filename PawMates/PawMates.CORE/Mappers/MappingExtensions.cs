@@ -59,5 +59,34 @@ namespace PawMates.CORE.Mappers
 
             };
         }
+
+        public static LocationDTO MapToDto(this Location source)
+        {
+            return new LocationDTO
+            {
+                Id = source.Id,
+                PetTypeId = source.PetTypeId,
+                Name = source.Name,
+                Street1 = source.Street1,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode,
+                PetAge = source.PetAge
+            };
+        }
+        public static Location MapToEntity(this LocationDTO source)
+        {
+            return new Location
+            {
+                Id = source.Id,
+                PetTypeId = source.PetTypeId,
+                Name = source.Name,
+                Street1 = source.Street1,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode,
+                PetAge = source.PetAge
+            };
+        }
     }
 }
