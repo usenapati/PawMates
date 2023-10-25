@@ -7,7 +7,7 @@ namespace PawMates.DAL.Tests
 {
     public class EFRepositoryTest
     {
-        private IRepository<PetParent> _petParentRepository;
+        private IRepository<RestrictionType> _restrictionTypeRepository;
         private PawMatesContext _context;
 
         [SetUp]
@@ -24,7 +24,7 @@ namespace PawMates.DAL.Tests
             _context.Database.EnsureCreated();
 
             // Instantiate repository with InMemory Database
-            _petParentRepository = new EFParentRepository(_context);
+            _restrictionTypeRepository = new EFRepository<RestrictionType>(_context);
         }
 
         [TearDown]
@@ -35,21 +35,21 @@ namespace PawMates.DAL.Tests
 
         // Add
         [Test]
-        public void AddPetParent_Success()
+        public void AddRestrictionType_Success()
         {
             // Arrange
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
 
             // Act
-            _petParentRepository.Add(petParent);
-            var count = _petParentRepository.GetAll().Data.ToList().Count;
+            _restrictionTypeRepository.Add(restrictionType);
+            var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _petParentRepository.GetById(petParent.Id);
-            Assert.AreEqual(petParent, actualUser.Data);
+            var actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualUser.Data);
         }
 
         // Delete
@@ -57,39 +57,39 @@ namespace PawMates.DAL.Tests
         public void DeletePetParent_Success()
         {
             // Arrange
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
 
             // Act
-            _petParentRepository.Add(petParent);
-            var count = _petParentRepository.GetAll().Data.ToList().Count;
+            _restrictionTypeRepository.Add(restrictionType);
+            var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
 
             // Act
-            _petParentRepository.Delete(petParent);
-            count = _petParentRepository.GetAll().Data.ToList().Count;
+            _restrictionTypeRepository.Delete(restrictionType);
+            count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(0, count);
 
             // Get By ID
-            var actualResponse = _petParentRepository.GetById(petParent.Id);
+            var actualResponse = _restrictionTypeRepository.GetById(restrictionType.Id);
             Assert.IsFalse(actualResponse.Success);
-            Assert.AreEqual("PetParent not found.", actualResponse.Message);
+            Assert.AreEqual("RestrictionType not found.", actualResponse.Message);
         }
 
         [Test]
         public void DeletePetParent_NotSuccess()
         {
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
-            var response = _petParentRepository.Delete(petParent);
-            var count = _petParentRepository.GetAll().Data.ToList().Count;
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
+            var response = _restrictionTypeRepository.Delete(restrictionType);
+            var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(0, count);
             Assert.IsFalse(response.Success);
-            Assert.AreEqual("PetParent not found.", response.Message);
+            Assert.AreEqual("RestrictionType not found.", response.Message);
         }
 
         // Update
@@ -97,31 +97,31 @@ namespace PawMates.DAL.Tests
         public void UpdatePetParent_Success()
         {
             // Arrange
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
 
             // Act
-            _petParentRepository.Add(petParent);
-            var count = _petParentRepository.GetAll().Data.ToList().Count;
+            _restrictionTypeRepository.Add(restrictionType);
+            var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _petParentRepository.GetById(petParent.Id);
-            Assert.AreEqual(petParent, actualUser.Data);
+            var actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualUser.Data);
 
             // Arrange
-            petParent.FirstName = "Jane";
+            restrictionType.Name = "Dogs Only";
 
-            _petParentRepository.Update(petParent);
+            _restrictionTypeRepository.Update(restrictionType);
 
 
             // Assert
             Assert.AreEqual(1, count);
 
             // Get By ID
-            actualUser = _petParentRepository.GetById(petParent.Id);
-            Assert.AreEqual(petParent, actualUser.Data);
+            actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualUser.Data);
 
 
         }
@@ -129,14 +129,14 @@ namespace PawMates.DAL.Tests
         [Test]
         public void UpdatePetParent_NotSuccess()
         {
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
-            var response = _petParentRepository.Update(petParent);
-            var count = _petParentRepository.GetAll().Data.ToList().Count;
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
+            var response = _restrictionTypeRepository.Update(restrictionType);
+            var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(0, count);
             Assert.IsFalse(response.Success);
-            Assert.AreEqual("PetParent not found.", response.Message);
+            Assert.AreEqual("RestrictionType not found.", response.Message);
         }
 
         // GetAll Predicate
@@ -144,18 +144,18 @@ namespace PawMates.DAL.Tests
         public void GetPred_Success()
         {
             // Arrange
-            var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
+            var restrictionType = new RestrictionType { Name = "Cats Only" };
 
             // Act
-            _petParentRepository.Add(petParent);
-            var count = _petParentRepository.GetAll(p => p.FirstName == "John").Data.ToList().Count;
+            _restrictionTypeRepository.Add(restrictionType);
+            var count = _restrictionTypeRepository.GetAll(p => p.Name == "Cats Only").Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _petParentRepository.GetOne(p => p.Id == petParent.Id);
-            Assert.AreEqual(petParent, actualUser.Data);
+            var actualUser = _restrictionTypeRepository.GetOne(p => p.Id == restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualUser.Data);
         }
     }
 }

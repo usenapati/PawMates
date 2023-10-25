@@ -1,37 +1,36 @@
-﻿using PawMates.DAL;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PawMates.DAL;
 
 namespace PawMates.Integration.Tests
 {
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
-
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureServices(services =>
+           builder.ConfigureServices(services =>
             {
+                // Find the descriptor for the original DbContext
                 var dbContextDescriptor = services.SingleOrDefault(
                     d => d.ServiceType == typeof(DbContextOptions<PawMatesContext>));
 
+                // Remove the original DbContext registration
                 if (dbContextDescriptor != null)
                 {
                     services.Remove(dbContextDescriptor);
                 }
 
+                // Register the in-memory DbContext
                 services.AddDbContext<PawMatesContext>(options =>
                 {
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
 
                 });
+                // Unload real service and load in mock 
+                // Play Date Services
+
             });
 
             base.ConfigureWebHost(builder);

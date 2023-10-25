@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PawMates.CORE.Interfaces;
-using PawMates.CORE.Models;
-using PawMates.CORE.Mappers;
-using PawMates.DAL.EF;
 using PawMates.CORE.DTOs;
+using PawMates.CORE.Interfaces;
+using PawMates.CORE.Mappers;
+using PawMates.CORE.Models;
+using PawMates.DAL.EF;
 
 namespace PawMates.ParentAPI.Controllers
 {
