@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
+using PawMates.CORE.Mappers;
 using PawMates.DAL.EF;
+using PawMates.CORE.DTOs;
 
 namespace PawMates.ParentAPI.Controllers
 {
@@ -38,7 +40,16 @@ namespace PawMates.ParentAPI.Controllers
         {
             try
             {
-                
+                var parent = _parentRepository.GetById(id);
+                if (!parent.Success)
+                {
+                    return BadRequest(parent.Message);
+                }
+                if (parent.Data == null)
+                {
+                    return NotFound();
+                }
+                return Ok(parent.Data.MapToDTO());
             }
             catch (Exception ex)
             {
@@ -49,7 +60,7 @@ namespace PawMates.ParentAPI.Controllers
         // POST api/<PetParentsController>
         [HttpPost]
         //[Authorize]
-        public IActionResult Post([FromBody] PetParentDTO agent)
+        public IActionResult Post([FromBody] PetParentDTO parent)
         {
             if (!ModelState.IsValid)
             {
@@ -57,7 +68,8 @@ namespace PawMates.ParentAPI.Controllers
             }
             try
             {
-                
+                _parentRepository.Add(parent.MapToEntity());
+                return CreatedAtAction(nameof(Get), new { id = parent.Id }, parent);
             }
             catch (Exception ex)
             {
@@ -76,7 +88,17 @@ namespace PawMates.ParentAPI.Controllers
             }
             try
             {
-              
+                var parent = _parentRepository.GetById(id).Data;
+                if(parent == null)
+                {
+                    return NotFound();
+                }
+                parent.FirstName = value.FirstName;
+                parent.LastName = value.LastName;
+                parent.Email = value.Email;
+                parent.PhoneNumber = value.PhoneNumber;
+                _parentRepository.Update(parent);
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -91,7 +113,13 @@ namespace PawMates.ParentAPI.Controllers
         {
             try
             {
-               
+                var parent = _parentRepository.GetById(id).Data;
+                if (parent == null)
+                {
+                    return NotFound();
+                }
+                _parentRepository.Delete(parent);
+                return NoContent();
             }
             catch (Exception ex)
             {
