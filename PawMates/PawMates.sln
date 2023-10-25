@@ -29,10 +29,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.Integration.Tests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{6200DC25-C87D-4A9A-9802-1D611F5AAE56}"
 	ProjectSection(SolutionItems) = preProject
+		..\Scripts\CREATE.sql = ..\Scripts\CREATE.sql
 		..\Scripts\PawMates.sql = ..\Scripts\PawMates.sql
+		..\Scripts\PawMatesSeedScript.sql = ..\Scripts\PawMatesSeedScript.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.LocationAPI", "PawMates.LocationAPI\PawMates.LocationAPI.csproj", "{A950E500-8A99-4095-B894-D56F4B52345C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawMates.LocationAPI", "PawMates.LocationAPI\PawMates.LocationAPI.csproj", "{A950E500-8A99-4095-B894-D56F4B52345C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawMates.EventTypeAPI", "PawMates.EventTypeAPI\PawMates.EventTypeAPI.csproj", "{925D196E-0E6C-4B3F-9132-2089DECB2798}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +84,10 @@ Global
 		{A950E500-8A99-4095-B894-D56F4B52345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A950E500-8A99-4095-B894-D56F4B52345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A950E500-8A99-4095-B894-D56F4B52345C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925D196E-0E6C-4B3F-9132-2089DECB2798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925D196E-0E6C-4B3F-9132-2089DECB2798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925D196E-0E6C-4B3F-9132-2089DECB2798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925D196E-0E6C-4B3F-9132-2089DECB2798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +104,7 @@ Global
 		{63BBC740-3E1D-4198-8EB8-1150B839DA77} = {DF13A998-67D1-4024-B6DC-87FF2F5C2BF0}
 		{516D7E9C-0587-48A0-BA98-00597483B844} = {DF13A998-67D1-4024-B6DC-87FF2F5C2BF0}
 		{A950E500-8A99-4095-B894-D56F4B52345C} = {0FED3FE7-B203-4FFC-BF30-8CE9C815AC0A}
+		{925D196E-0E6C-4B3F-9132-2089DECB2798} = {0FED3FE7-B203-4FFC-BF30-8CE9C815AC0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A213DC1-11EE-48A6-90C4-E6B4A04F074F}

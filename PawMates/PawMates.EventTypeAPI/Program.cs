@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
-using PawMates.DAL.EF;
 using PawMates.DAL;
+using PawMates.DAL.EF;
 
-namespace PawMates.ParentAPI
+namespace PawMates.EventTypeAPI
 {
     public class Program
     {
@@ -16,7 +16,8 @@ namespace PawMates.ParentAPI
             builder.Services.AddDbContext<PawMatesContext>(options =>
           options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
           );
-            builder.Services.AddTransient<IParentRepository, EFParentRepository>();
+            builder.Services.AddTransient<IRepository<EventType>, EFRepository<EventType>>();
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

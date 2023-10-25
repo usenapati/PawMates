@@ -6,8 +6,9 @@ namespace PawMates.CORE.DTOs
     {
         [Required]
         public int Id { get; set; }
+        public int? RestrictionTypeId { get; set; }
         [Required]
-        public int RestrictionTypeId { get; set; }
+        public int PetTypeId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
