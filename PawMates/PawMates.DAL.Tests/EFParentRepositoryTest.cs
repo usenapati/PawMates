@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
 using PawMates.DAL.EF;
+using System.Net;
 
 namespace PawMates.DAL.Tests
 {
@@ -33,7 +35,15 @@ namespace PawMates.DAL.Tests
             // Add Seed Data
             _petParentRepository.Add(new PetParent
             {
-                FirstName = "Udayan", LastName = "Senapati", PhoneNumber = "(111) 111-1111", Email = "test@example.com"
+                 FirstName = "Udayan", LastName = "Senapati", PhoneNumber = "(111) 111-1111", Email = "test@example.com"
+            });
+            _petParentRepository.Add(new PetParent
+            {
+                Id = 55,
+                FirstName = "Chester",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "cmac@tester.com"
             });
             _petTypeRepository.Add(new PetType
             {
@@ -68,11 +78,142 @@ namespace PawMates.DAL.Tests
         public void GetPets_NotSuccess()
         {
             var petParent = _petParentRepository.GetById(1);
-            petParent.Data.Id = 2;
+            petParent.Data.Id = 999;
             var pets = _petParentRepository.GetPets(petParent.Data);
 
             Assert.IsFalse(pets.Success);
             Assert.AreEqual("Pet parent could not found.\n", pets.Message);
+        }
+
+        [Test]
+        public void ShouldGetAll()
+        {
+            //Arrange
+            var expected = 2;
+            //Act
+            var actual = _petParentRepository.GetAll().Data.Count();
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ShouldGetById()
+        {
+            //Arrange
+            int id = 55;
+            var expected = new PetParent
+            {
+                Id = 55,
+                FirstName = "Chester",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "cmac@tester.com"
+            };
+            //Act
+            var actual = _petParentRepository.GetById(id).Data;
+            //Assert
+            Assert.AreEqual(expected.FirstName, actual.FirstName);
+            Assert.AreEqual(expected.LastName, actual.LastName);
+            Assert.AreEqual(expected.PhoneNumber, actual.PhoneNumber);
+            Assert.AreEqual(expected.Email, actual.Email);
+        }
+
+        [Test]
+        public void ShouldNotGetByIdThatDoesNotExist()
+        {
+            //Arrange
+            int id = 999;
+            //Act
+            var test = _petParentRepository.GetById(id);
+            //Assert
+            Assert.IsFalse(test.Success);
+        }
+
+        [Test]
+        public void ShouldAdd()
+        {
+            //Arrange
+            var expected = new PetParent
+            {
+                FirstName = "Test",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "tmac@tester.com"
+            };
+            //Act
+            var actual = _petParentRepository.Add(expected);
+            //Assert
+            Assert.IsTrue(actual.Success);
+            Assert.AreEqual(expected.FirstName, actual.Data.FirstName);
+            Assert.AreEqual(expected.LastName, actual.Data.LastName);
+            Assert.AreEqual(expected.PhoneNumber, actual.Data.PhoneNumber);
+            Assert.AreEqual(expected.Email, actual.Data.Email);
+        }
+
+        [Test]
+        public void ShouldUpdate()
+        {
+            //Arrange
+            var expected = _petParentRepository.GetById(55).Data;
+            expected.FirstName = "String";
+            //Act
+            var actual = _petParentRepository.Update(expected);
+            //Assert
+            Assert.IsTrue(actual.Success);
+        }
+
+        [Test]
+        public void ShouldNotUpdateParentThatDoesNotExist()
+        {
+            //Arrange
+            var expected = new PetParent
+            {
+                Id = 999,
+                FirstName = "Test",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "tmac@tester.com"
+            };
+            //Act
+            var actual = _petParentRepository.Update(expected);
+            //Assert
+            Assert.IsFalse(actual.Success);
+        }
+
+        [Test]
+        public void ShouldDelete()
+        {
+            //Arrange
+            var expected = new PetParent
+            {
+                Id = 55,
+                FirstName = "Chester",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "cmac@tester.com"
+            };
+            //Act
+            var actual = _petParentRepository.Delete(expected);
+            //Assert
+            Assert.IsTrue(actual.Success);
+        }
+
+        [Test]
+        public void ShouldNotDeleteParentThatDoesNotExist()
+        {
+            //Arrange
+            var expected = new PetParent
+            {
+                Id = 999,
+                FirstName = "Test",
+                LastName = "McTester",
+                PhoneNumber = "123-456-7890",
+                Email = "tmac@tester.com"
+            };
+            //Act
+            var actual = _petParentRepository.Delete(expected);
+            //Assert
+            Assert.IsFalse(actual.Success);
         }
     }
 }
