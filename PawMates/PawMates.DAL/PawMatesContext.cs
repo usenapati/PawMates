@@ -151,6 +151,7 @@ public partial class PawMatesContext : DbContext
 
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Username).HasMaxLength(50);
+            entity.Property(e => e.PetParentId).IsRequired(false);
 
             entity.HasOne(d => d.PetParent).WithMany(p => p.Users)
                 .HasForeignKey(d => d.PetParentId)
