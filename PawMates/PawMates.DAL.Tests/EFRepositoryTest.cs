@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
 using PawMates.DAL.EF;
-using PawMates.DAL;
 
 namespace PawMates.DAL.Tests
 {
@@ -36,7 +35,7 @@ namespace PawMates.DAL.Tests
 
         // Add
         [Test]
-        public void AddUser_Success()
+        public void AddPetParent_Success()
         {
             // Arrange
             var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
@@ -55,7 +54,7 @@ namespace PawMates.DAL.Tests
 
         // Delete
         [Test]
-        public void DeleteUser_Success()
+        public void DeletePetParent_Success()
         {
             // Arrange
             var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
@@ -81,7 +80,7 @@ namespace PawMates.DAL.Tests
         }
 
         [Test]
-        public void DeleteUser_NotSuccess()
+        public void DeletePetParent_NotSuccess()
         {
             var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
             var response = _petParentRepository.Delete(petParent);
@@ -95,7 +94,7 @@ namespace PawMates.DAL.Tests
 
         // Update
         [Test]
-        public void UpdateUser_Success()
+        public void UpdatePetParent_Success()
         {
             // Arrange
             var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
@@ -128,7 +127,7 @@ namespace PawMates.DAL.Tests
         }
 
         [Test]
-        public void UpdateUser_NotSuccess()
+        public void UpdatePetParent_NotSuccess()
         {
             var petParent = new PetParent { FirstName = "John", LastName = "Doe", PhoneNumber = "(111) 111-1111", Email = "johndoe@example.com" };
             var response = _petParentRepository.Update(petParent);

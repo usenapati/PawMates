@@ -1,15 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using PawMates.CORE;
 using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PawMates.DAL.EF
 {
@@ -56,7 +49,7 @@ namespace PawMates.DAL.EF
                 Pet? getPet = _context.Pets.Find(petId);
                 if (getPet == null)
                 {
-                    response.Message = $"Pet {petId} is not exist.";
+                    response.Message = $"Pet {petId} does not exist.";
                     return response;
                 }
                 getResponse.Data.Pets.Add(getPet);
@@ -85,7 +78,7 @@ namespace PawMates.DAL.EF
                 Pet? getPet = _context.Pets.Find(petId);
                 if (getPet == null)
                 {
-                    response.Message = $"Pet {petId} is not exist.";
+                    response.Message = $"Pet {petId} does not exist.";
                     return response;
                 }
 
@@ -179,7 +172,7 @@ namespace PawMates.DAL.EF
                 //var PlayDate = _context.PlayDates.FirstOrDefault(a => a.PlayDateId == PlayDateId);
                 if (PlayDate == null)
                 {
-                    response.Message = "PlayDate not found.";
+                    response.Message = "Play Date not found.";
                     return response;
                 }
                 response.Data = PlayDate;
@@ -203,7 +196,7 @@ namespace PawMates.DAL.EF
             }
             catch (Exception ex)
             {
-                throw new DALException("Unable to get entity", ex);
+                throw new DALException($"Unable to get Play Date", ex);
             }
             return response;
         }
