@@ -49,6 +49,21 @@ namespace PawMates.PetAPI.Controllers
 
         }
 
+        // /api/pets/{id}/PetParent - GET - # Returns Pet's Parent
+        [HttpGet, Route("{id}/petparent")]
+        public IActionResult GetPetsOnPlaydate(int id)
+        {
+            var existResult = _repo.GetById(id);
+            if (!existResult.Success || existResult.Data == null)
+            {
+                return BadRequest($"Pet {id} is not exist.");
+            }
+            //PetParent petParent = existResult.Data.PetParent;
+            
+
+            return Ok(existResult.Data.PetParent.MapToDTO());
+        }
+
         // POST api/<PetsController>
         [HttpPost]
        // [Authorize]
