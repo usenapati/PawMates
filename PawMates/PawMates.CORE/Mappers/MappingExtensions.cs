@@ -134,6 +134,28 @@ namespace PawMates.CORE.Mappers
                 PhoneNumber = source.PhoneNumber
             };
         }
+        public static EventTypeDTO MapToDto(this EventType source)
+        {
+            return new EventTypeDTO
+            {
+                Id= source.Id,
+                RestrictionTypeId = source.RestrictionTypeId,
+                PetTypeId = source.PetTypeId,
+                Name= source.Name,
+                Description= source.Description,
+            };
+        }
 
+        public static EventType MapToEntity(this EventTypeDTO source)
+        {
+            return new EventType
+            {
+                Id = source.Id,
+                RestrictionTypeId = source.RestrictionTypeId,
+                PetTypeId = source.PetTypeId,
+                Name= source.Name,
+                Description= source.Description,
+            };
+        }
     }
 }
