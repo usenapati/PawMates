@@ -9,11 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.24" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.13" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PawMates.CORE\PawMates.CORE.csproj" />
+    <ProjectReference Include="..\PawMates.DAL\PawMates.DAL.csproj" />
+    <ProjectReference Include="..\PawMates.EventTypeAPI\PawMates.EventTypeAPI.csproj" />
+    <ProjectReference Include="..\PawMates.LocationAPI\PawMates.LocationAPI.csproj" />
+    <ProjectReference Include="..\PawMates.ParentAPI\PawMates.ParentAPI.csproj" />
+    <ProjectReference Include="..\PawMates.PetAPI\PawMates.PetAPI.csproj" />
+    <ProjectReference Include="..\PawMates.PlayDateAPI\PawMates.PlayDateAPI.csproj" />
   </ItemGroup>
 
 </Project>

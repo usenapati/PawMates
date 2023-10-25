@@ -72,7 +72,7 @@ namespace PawMates.DAL.Tests
             var pets = _petParentRepository.GetPets(petParent.Data);
 
             Assert.IsFalse(pets.Success);
-            Assert.AreEqual("PetParent not found.", pets.Message);
+            Assert.AreEqual("Pet parent could not found.\n", pets.Message);
         }
     }
 }
