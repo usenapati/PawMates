@@ -48,13 +48,13 @@ namespace PawMates.DAL.Tests
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
-            Assert.AreEqual(restrictionType, actualUser.Data);
+            var actualRestrictionType = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualRestrictionType.Data);
         }
 
         // Delete
         [Test]
-        public void DeletePetParent_Success()
+        public void DeleteRestrictionType_Success()
         {
             // Arrange
             var restrictionType = new RestrictionType { Name = "Cats Only" };
@@ -67,11 +67,12 @@ namespace PawMates.DAL.Tests
             Assert.AreEqual(1, count);
 
             // Act
-            _restrictionTypeRepository.Delete(restrictionType);
+            var deleteResponse = _restrictionTypeRepository.Delete(restrictionType);
             count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(0, count);
+            Assert.IsTrue(deleteResponse.Success);
 
             // Get By ID
             var actualResponse = _restrictionTypeRepository.GetById(restrictionType.Id);
@@ -80,9 +81,12 @@ namespace PawMates.DAL.Tests
         }
 
         [Test]
-        public void DeletePetParent_NotSuccess()
+        public void DeleteRestrictionType_NotSuccess()
         {
+            // Arrange
             var restrictionType = new RestrictionType { Name = "Cats Only" };
+
+            // Act
             var response = _restrictionTypeRepository.Delete(restrictionType);
             var count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
@@ -94,7 +98,7 @@ namespace PawMates.DAL.Tests
 
         // Update
         [Test]
-        public void UpdatePetParent_Success()
+        public void UpdateRestrictionType_Success()
         {
             // Arrange
             var restrictionType = new RestrictionType { Name = "Cats Only" };
@@ -107,27 +111,28 @@ namespace PawMates.DAL.Tests
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
-            Assert.AreEqual(restrictionType, actualUser.Data);
+            var actualRestrictionType = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualRestrictionType.Data);
 
             // Arrange
             restrictionType.Name = "Dogs Only";
 
-            _restrictionTypeRepository.Update(restrictionType);
+            var updateResponse = _restrictionTypeRepository.Update(restrictionType);
             count = _restrictionTypeRepository.GetAll().Data.ToList().Count;
 
             // Assert
             Assert.AreEqual(1, count);
+            Assert.IsTrue(updateResponse.Success);
 
             // Get By ID
-            actualUser = _restrictionTypeRepository.GetById(restrictionType.Id);
-            Assert.AreEqual(restrictionType, actualUser.Data);
+            actualRestrictionType = _restrictionTypeRepository.GetById(restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualRestrictionType.Data);
 
 
         }
 
         [Test]
-        public void UpdatePetParent_NotSuccess()
+        public void UpdateRestrictionType_NotSuccess()
         {
             var restrictionType = new RestrictionType { Name = "Cats Only" };
             var response = _restrictionTypeRepository.Update(restrictionType);
@@ -141,7 +146,7 @@ namespace PawMates.DAL.Tests
 
         // GetAll Predicate
         [Test]
-        public void GetPred_Success()
+        public void GetPredicateRestrictionType_Success()
         {
             // Arrange
             var restrictionType = new RestrictionType { Name = "Cats Only" };
@@ -154,8 +159,8 @@ namespace PawMates.DAL.Tests
             Assert.AreEqual(1, count);
 
             // Get By ID
-            var actualUser = _restrictionTypeRepository.GetOne(p => p.Id == restrictionType.Id);
-            Assert.AreEqual(restrictionType, actualUser.Data);
+            var actualRestrictionType = _restrictionTypeRepository.GetOne(p => p.Id == restrictionType.Id);
+            Assert.AreEqual(restrictionType, actualRestrictionType.Data);
         }
     }
 }
