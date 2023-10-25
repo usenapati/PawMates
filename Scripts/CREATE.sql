@@ -14,10 +14,10 @@ CREATE PROCEDURE GetPlayDatesBySpecies
 @Species NVARCHAR
 AS
 SELECT p.Species, e.[Name], pd.StartTime, pd.EndTime, l.City, l.[State], l.PostalCode
-FROM Locations l
-LEFT JOIN PlayDates pd ON pd.LocationId = l.Id
-LEFT JOIN PetTypes p ON p.Id = l.PetTypeId
-LEFT JOIN EventTypes e ON e.Id = pd.EventTypeId
+FROM PlayDates pd
+INNER JOIN Locations l ON l.Id = pd.LocationId
+INNER JOIN EventTypes e ON e.Id = pd.EventTypeId
+INNER JOIN PetTypes AS p ON p.Id = e.PetTypeId
 WHERE p.Species = @Species
 ORDER BY pd.StartTime ASC;
 GO
@@ -27,9 +27,9 @@ CREATE PROCEDURE GetPlayDatesByLocation
 AS
 SELECT l.[Name], p.Species, e.[Name], pd.StartTime, pd.EndTime, l.City, l.[State], l.PostalCode
 FROM PlayDates pd
-LEFT JOIN Locations l ON l.Id = pd.LocationId
-LEFT JOIN PetTypes p ON p.Id = l.PetTypeId
-LEFT JOIN EventTypes e ON e.Id = pd.EventTypeId
+INNER JOIN Locations l ON l.Id = pd.LocationId
+INNER JOIN PetTypes p ON p.Id = l.PetTypeId
+INNER JOIN EventTypes e ON e.Id = pd.EventTypeId
 WHERE l.PostalCode = @PostalCode
 ORDER BY pd.StartTime ASC;
 GO

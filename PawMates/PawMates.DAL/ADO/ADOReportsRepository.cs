@@ -27,6 +27,7 @@ namespace PawMates.DAL.ADO
                 using (SqlCommand command = new SqlCommand("GetPlayDatesByLocation", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@PostalCode", postalCode);
                     try
                     {
                         connection.Open();
@@ -61,6 +62,7 @@ namespace PawMates.DAL.ADO
                 using (SqlCommand command = new SqlCommand("GetPlayDatesBySpecies", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Species", species);
                     try
                     {
                         connection.Open();
@@ -102,9 +104,9 @@ namespace PawMates.DAL.ADO
                         while (reader.Read())
                         {
                             var item = new TopPetParentsListItem();
-                            item.FirstName = reader.GetString(0);
-                            item.LastName = reader.GetString(1);
-                            item.PlayDateCount = reader.GetInt32(2);
+                            item.PlayDateCount = reader.GetInt32(0);
+                            item.FirstName = reader.GetString(1);
+                            item.LastName = reader.GetString(2);
                             topPetParentsListItems.Add(item);
                         }
                     }

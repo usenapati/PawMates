@@ -34,6 +34,7 @@ GO
 CREATE TABLE EventTypes(
     Id INT PRIMARY KEY IDENTITY(1,1),
     RestrictionTypeId INT NULL,
+    PetTypeId INT NOT NULL,
     [Name] NVARCHAR(50) NOT NULL,
     [Description] NVARCHAR(255) NOT NULL,
     CONSTRAINT FK_EventTypes_RestrictionTypes
