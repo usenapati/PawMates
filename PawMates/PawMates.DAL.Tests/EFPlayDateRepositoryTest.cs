@@ -9,7 +9,7 @@ namespace PawMates.DAL.Tests
         EFPlayDatesRepository _playDateRepository;
         EFLocationRepository _locationRepository;
         EFParentRepository _petParentRepository;
-        EFRepository<Pet> _petRepository;
+        EFPetRepository _petRepository;
         EFRepository<EventType> _eventTypeRepository;
         EFRepository<RestrictionType> _restrictionTypeRepository;
         EFRepository<PetType> _petTypeRepository;
@@ -35,7 +35,7 @@ namespace PawMates.DAL.Tests
             _playDateRepository = new EFPlayDatesRepository(_context);
             _locationRepository = new EFLocationRepository(_context);
             _petParentRepository = new EFParentRepository(_context);
-            _petRepository = new EFRepository<Pet>(_context);
+            _petRepository = new EFPetRepository(_context);
             _eventTypeRepository = new EFRepository<EventType>(_context);
             _restrictionTypeRepository = new EFRepository<RestrictionType>(_context);
             _petTypeRepository = new EFRepository<PetType>(_context);
@@ -103,43 +103,215 @@ namespace PawMates.DAL.Tests
         [Test]
         public void AddPlayDate_Success()
         {
+            // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
+
+            // Act
+            _playDateRepository.Add(playDate);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(2, count);
+
+            // Get By ID
+            var actualPlayDate = _playDateRepository.GetById(playDate.Id);
+            Assert.AreEqual(playDate, actualPlayDate.Data);
 
         }
         
-        [Test]
-        public void AddPlayDate_Failure()
-        {
-
-        }
-
+        
         // Delete
         [Test]
         public void DeletePlayDate_Success()
         {
+             // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
 
+            // Act
+            _playDateRepository.Add(playDate);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(2, count);
+
+            // Get By ID
+            var actualPlayDate = _playDateRepository.GetById(playDate.Id);
+            Assert.AreEqual(playDate, actualPlayDate.Data);
+
+            // Act
+            var deleteResponse = _playDateRepository.Delete(playDate);
+            count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(1, count);
+            Assert.IsTrue(deleteResponse.Success);
+
+            var actualResponse = _playDateRepository.GetById(playDate.Id);
+            Assert.IsFalse(actualResponse.Success);
+            Assert.AreEqual("Play Date not found.", actualResponse.Message);
         }
 
         [Test]
         public void DeletePlayDate_Failure()
         {
+             // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
 
+            // Act
+            var response = _playDateRepository.Delete(playDate);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(1, count);
+            Assert.IsFalse(response.Success);
+            Assert.AreEqual("Play Date not found.", response.Message);
+        }
+
+        [Test]
+        public void DeletePlayDateWithPets_Success()
+        {
+             // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
+
+            // Act
+            _playDateRepository.Add(playDate);
+            _playDateRepository.AddPetToPlayDate(playDate.Id,1);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(2, count);
+
+            // Get By ID
+            var actualPlayDate = _playDateRepository.GetById(playDate.Id);
+            Assert.AreEqual(playDate, actualPlayDate.Data);
+
+            // Act
+            var deleteResponse = _playDateRepository.Delete(playDate);
+            count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(1, count);
+            Assert.IsTrue(deleteResponse.Success);
         }
 
         // Update
         [Test]
         public void UpdatePlayDate_Success()
         {
+            // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
 
+            // Act
+            _playDateRepository.Add(playDate);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(2, count);
+
+            // Get By ID
+            var actualPlayDate = _playDateRepository.GetById(playDate.Id);
+            Assert.AreEqual(playDate, actualPlayDate.Data);
+
+            // Arrange
+            playDate.StartTime = new DateTime(2023, 11, 8, 15, 0, 0);
+            playDate.EndTime = new DateTime(2023, 11, 8, 17, 0, 0);
+
+            var updateResponse = _playDateRepository.Update(playDate);
+            count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(2, count);
+            Assert.IsTrue(updateResponse.Success);
+
+            // Get By ID
+            actualPlayDate = _playDateRepository.GetById(playDate.Id);
+            Assert.AreEqual(playDate, actualPlayDate.Data);
         }
         
         [Test]
         public void UpdatePlayDate_Failure()
         {
+            // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
+            var updateResponse = _playDateRepository.Update(playDate);
+            var count = _playDateRepository.GetAll().Data.ToList().Count;
+
+            // Assert
+            Assert.AreEqual(1, count);
+            Assert.IsFalse(updateResponse.Success);
+            Assert.AreEqual("Play Date not found.", updateResponse.Message);
 
         }
 
         // GetPred[Test]
         public void GetPredicatePlayDate_Success()
+        {
+            // Arrange
+            var playDate = new PlayDate
+            {
+                PetParentId = 1,
+                LocationId = 1,
+                EventTypeId = 1,
+                StartTime = new DateTime(2023, 11, 1, 15, 0, 0),
+                EndTime = new DateTime(2023, 11, 1, 17, 0, 0),
+            };
+
+            // Act
+            _playDateRepository.Add(playDate);
+            var count = _playDateRepository.GetAll(p => p.LocationId == 1).Data.ToList().Count; 
+            
+            // Assert
+            Assert.AreEqual(1, count);
+
+            // Get One
+            var getResponse = _playDateRepository.GetOne(p => p.PetParentId == 1);
+            Assert.AreEqual(playDate, getResponse.Data);
+        }
+
+        // Validate
+        public void ValidatePlayDate_Failure()
         {
 
         }
@@ -159,6 +331,13 @@ namespace PawMates.DAL.Tests
             var getResponse = _playDateRepository.GetById(1);
             Assert.IsTrue(getResponse.Success);
             Assert.AreEqual(pet.Data, getResponse.Data.Pets.First());
+
+            addResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
+            Assert.IsTrue(addResponse.Success);
+
+            getResponse = _playDateRepository.GetById(1);
+            Assert.IsTrue(getResponse.Success);
+            Assert.AreEqual(1, getResponse.Data.Pets.Count);
         }
 
         [Test]
@@ -198,6 +377,10 @@ namespace PawMates.DAL.Tests
             var removeResponse = _playDateRepository.DeletePetFromPlayDate(1, pet.Data.Id);
             Assert.IsTrue(removeResponse.Success);
             Assert.AreEqual(0, getResponse.Data.Pets.Count);
+
+            removeResponse = _playDateRepository.DeletePetFromPlayDate(1, pet.Data.Id);
+            Assert.IsTrue(removeResponse.Success);
+            Assert.AreEqual(0, getResponse.Data.Pets.Count);
         }
 
         [Test]
@@ -212,7 +395,7 @@ namespace PawMates.DAL.Tests
             Assert.AreEqual("Play Date not found.", removeResponse.Message);
 
             pet.Data.Id = 2;
-            removeResponse = _playDateRepository.AddPetToPlayDate(1, pet.Data.Id);
+            removeResponse = _playDateRepository.DeletePetFromPlayDate(1, pet.Data.Id);
             Assert.IsFalse(removeResponse.Success);
             Assert.AreEqual("Pet 2 does not exist.", removeResponse.Message);
         }

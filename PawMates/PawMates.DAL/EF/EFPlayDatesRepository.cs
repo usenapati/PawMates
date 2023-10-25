@@ -13,12 +13,18 @@ namespace PawMates.DAL.EF
 
         public EFPlayDatesRepository(PawMatesContext context)
         {
-            this._context= context;
+            _context = context;
         }
 
         public Response<PlayDate> Add(PlayDate entity)
         {
             var response = new Response<PlayDate>() { Success = false };
+            var validateResponse = Validate(entity);
+            if (!validateResponse.Success)
+            {
+                response.Message = validateResponse.Message;
+                return response;
+            }
             try
             {
                 _context.PlayDates.Add(entity);
@@ -50,6 +56,13 @@ namespace PawMates.DAL.EF
                 if (getPet == null)
                 {
                     response.Message = $"Pet {petId} does not exist.";
+                    return response;
+                }
+                // Handle Duplicates
+                bool PetInPlayDate = getResponse.Data.Pets.Any(x => x.Id == petId);
+                if (PetInPlayDate)
+                {
+                    response.Success = true;
                     return response;
                 }
                 getResponse.Data.Pets.Add(getPet);
@@ -118,7 +131,7 @@ namespace PawMates.DAL.EF
                     {
                         DeletePetFromPlayDate(entity.Id, petId);
                     }
-                }                
+                }
 
                 _context.PlayDates.Remove(getResponse.Data);
                 _context.SaveChanges();
@@ -130,7 +143,7 @@ namespace PawMates.DAL.EF
             }
             return response;
         }
-    
+
 
         public Response<IEnumerable<PlayDate>> GetAll()
         {
@@ -212,6 +225,12 @@ namespace PawMates.DAL.EF
                     response.Message = getResponse.Message;
                     return response;
                 }
+                var validateResponse = Validate(entity);
+                if (!validateResponse.Success)
+                {
+                    response.Message = validateResponse.Message;
+                    return response;
+                }
                 _context.PlayDates.Update(entity);
                 _context.SaveChanges();
                 response.Success = true;
@@ -222,6 +241,36 @@ namespace PawMates.DAL.EF
                 response.Message = ex.Message;
             }
             return response;
+        }
+
+        private Response<PlayDate> Validate(PlayDate entity)
+        {
+            // Play Date is required
+            if (entity == null)
+            {
+                return new Response<PlayDate>() { Success = false, Message = "Play Date is required." };
+            }
+            // Pet Parent Host Id must be positive
+            if (entity.PetParentId <= 0)
+            {
+                return new Response<PlayDate>() { Success = false, Message = "Pet Parent Host Id must be positive." };
+            }
+            // Location Id must be positive
+            if (entity.LocationId <= 0)
+            {
+                return new Response<PlayDate>() { Success = false, Message = "Location Id must be positive." };
+            }
+            // Event Type Id must be positive
+            if (entity.EventTypeId <= 0)
+            {
+                return new Response<PlayDate>() { Success = false, Message = "Event Type Id must be positive." };
+            }
+            // Play Date End Time should be after Start Time
+            if (entity.EndTime <= entity.StartTime)
+            {
+                return new Response<PlayDate>() { Success = false, Message = "Play Date End Time should be after Start Time." };
+            }
+            return new Response<PlayDate>() { Success = true, Data = entity };
         }
     }
 }
