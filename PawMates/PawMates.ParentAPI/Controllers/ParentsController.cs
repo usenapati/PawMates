@@ -23,7 +23,8 @@ namespace PawMates.ParentAPI.Controllers
         {
             try
             {
-                
+                IEnumerable<PetParent> parents = _parentRepository.GetAll().Data;
+                return Ok(parents.Select(p => p.MapToDTO()).ToList());
             }
             catch (Exception ex)
             {
