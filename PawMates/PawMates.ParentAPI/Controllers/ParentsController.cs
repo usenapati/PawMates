@@ -118,7 +118,7 @@ namespace PawMates.ParentAPI.Controllers
                 {
                     return NotFound();
                 }
-                _parentRepository.Delete(parent.Id);
+                _parentRepository.Delete(parent);
                 return NoContent();
             }
             catch (Exception ex)
