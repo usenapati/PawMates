@@ -17,7 +17,8 @@ namespace PawMates.PetAPI
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            builder.Services.AddTransient<IRepository<Pet>, EFRepository<Pet>>();
+            //builder.Services.AddTransient<IRepository<Pet>, EFPetRepository>();
+            builder.Services.AddTransient<IRepository<Pet>, EFPetRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

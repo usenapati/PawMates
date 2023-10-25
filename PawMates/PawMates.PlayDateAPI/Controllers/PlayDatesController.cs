@@ -44,6 +44,8 @@ namespace PawMates.PlayDateAPI.Controllers
             }
             PlayDate playDate = getResult.Data;
             //Console.WriteLine("========******=========="+ playDate.Pets.ToList()[0].Name);
+            //Console.WriteLine("========******=========="+ playDate.Location.Name);
+            //Console.WriteLine("========******==========" + playDate.PetParent.FirstName);
             return Ok(playDate.MapToDto());
 
         }
