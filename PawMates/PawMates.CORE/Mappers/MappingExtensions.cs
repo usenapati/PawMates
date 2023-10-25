@@ -111,6 +111,29 @@ namespace PawMates.CORE.Mappers
             };
         }
 
+        public static PetParentDTO MapToDTO(this PetParent source)
+        {
+            return new PetParentDTO
+            {
+                Id = source.Id,
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                Email = source.Email,
+                PhoneNumber = source.PhoneNumber
+            };
+        }
+
+        public static PetParent MapToEntity(this PetParentDTO source)
+        {
+            return new PetParent
+            {
+                Id = source.Id,
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                Email = source.Email,
+                PhoneNumber = source.PhoneNumber
+            };
+        }
         public static EventTypeDTO MapToDto(this EventType source)
         {
             return new EventTypeDTO
