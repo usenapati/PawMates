@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -173,6 +174,31 @@ namespace PawMates.Integration.Tests
         {
             // Arrange
             var client = _factory.CreateClient();
+            var updateEventType = new EventTypeDTO
+            {
+                PetTypeId = 2,
+                Name = "Bark 'n' Splash Day",
+                Description = "A water-themed play date at a dog-friendly pool or a pet water park where dogs can splash, swim, and play fetch in the water. Perfect for cooling off on hot summer days.",
+            };
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(updateEventType), Encoding.UTF8, "application/json");
+
+            // Token Auth
+
+            // Act
+            var response = await client.PutAsync("/api/EventType/1", jsonContent);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+            Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
+
+            response = await client.GetAsync("/api/EventType/1");
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var returnedEventType = JsonConvert.DeserializeObject<EventTypeDTO>(responseContent);
+            Assert.IsNotNull(returnedEventType);
+            Assert.AreEqual(updateEventType.Name, returnedEventType.Name);
+            Assert.AreEqual(updateEventType.Description, returnedEventType.Description);
+            Assert.AreEqual(updateEventType.PetTypeId, returnedEventType.PetTypeId);
+
         }
 
         [Test]
@@ -180,6 +206,22 @@ namespace PawMates.Integration.Tests
         {
             // Arrange
             var client = _factory.CreateClient();
+            var updateEventType = new EventTypeDTO
+            {
+                PetTypeId = 2,
+                Name = new string('x', 51),
+                Description = "A water-themed play date at a dog-friendly pool or a pet water park where dogs can splash, swim, and play fetch in the water. Perfect for cooling off on hot summer days.",
+            };
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(updateEventType), Encoding.UTF8, "application/json");
+
+            // Token Auth
+
+            // Act
+            var response = await client.PutAsync("/api/EventType/1", jsonContent);
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
+
         }
 
         [Test]
@@ -187,6 +229,21 @@ namespace PawMates.Integration.Tests
         {
             // Arrange
             var client = _factory.CreateClient();
+            var updateEventType = new EventTypeDTO
+            {
+                PetTypeId = 2,
+                Name = "Bark 'n' Splash Day",
+                Description = "A water-themed play date at a dog-friendly pool or a pet water park where dogs can splash, swim, and play fetch in the water. Perfect for cooling off on hot summer days.",
+            };
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(updateEventType), Encoding.UTF8, "application/json");
+
+            // Token Auth
+
+            // Act
+            var response = await client.PutAsync("/api/EventType/0", jsonContent);
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
         // Delete Event Type
@@ -195,6 +252,12 @@ namespace PawMates.Integration.Tests
         {
             // Arrange
             var client = _factory.CreateClient();
+           
+            // Act
+            var response = await client.DeleteAsync("/api/EventType/1");
+
+            // Assert
+            response.EnsureSuccessStatusCode();
         }
 
         [Test]
@@ -202,6 +265,12 @@ namespace PawMates.Integration.Tests
         {
             // Arrange
             var client = _factory.CreateClient();
+            
+            // Act
+            var response = await client.DeleteAsync("/api/EventType/0");
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
