@@ -73,12 +73,13 @@ namespace PawMates.LocationAPI.Controllers
                 return NotFound();
             }
             var Location = getResult.Data;
-            Location.LocationParentId = value.ParentId;
+            Location.PetTypeId = value.PetTypeId;
             Location.Name = value.Name;
-            Location.Age = value.Age;
-            Location.Breed = value.Breed;
-            Location.LocationTypeId = value.LocationTypeId;
+            Location.Street1 = value.Street1;
+            Location.City = value.City;
+            Location.State = value.State;
             Location.PostalCode = value.PostalCode;
+            Location.PetAge = value.PetAge;
 
             _repo.Update(Location);
             return NoContent();
