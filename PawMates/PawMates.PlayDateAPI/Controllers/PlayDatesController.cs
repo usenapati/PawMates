@@ -43,9 +43,6 @@ namespace PawMates.PlayDateAPI.Controllers
                 return NotFound();
             }
             PlayDate playDate = getResult.Data;
-            //Console.WriteLine("========******=========="+ playDate.Pets.ToList()[0].Name);
-            //Console.WriteLine("========******=========="+ playDate.Location.Name);
-            //Console.WriteLine("========******==========" + playDate.PetParent.FirstName);
             return Ok(playDate.MapToDto());
 
         }
@@ -99,7 +96,7 @@ namespace PawMates.PlayDateAPI.Controllers
         // /api/playDates/{playDateId}/pets/{petId} - DELETE - # Remove the pet from the playDate
         [HttpDelete, Route("{playDateId}/pets/{petId}")]
         //[Authorize]
-        public async Task<IActionResult> RemovepetOnplayDate(int playDateId, int petId)
+        public async Task<IActionResult> RemovePetOnPlayDate(int playDateId, int petId)
         {
             var playDate = _repo.GetById(playDateId).Data;
             if (playDate == null)
