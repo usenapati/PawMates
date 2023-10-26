@@ -276,5 +276,32 @@ namespace PawMates.Integration.Tests
             Assert.AreEqual(expectedParent.PhoneNumber, returnedPetParent.PhoneNumber);
             Assert.AreEqual(expectedParent.Email, returnedPetParent.Email);            
         }
+
+        // Delete Pet
+        [Test]
+        public async Task DeletePet_ReturnsSuccess()
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.DeleteAsync("/api/pets/1");
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Test]
+        public async Task DeletePet_ReturnsNotFound()
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.DeleteAsync("/api/pets/0");
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+        }
     }
 }

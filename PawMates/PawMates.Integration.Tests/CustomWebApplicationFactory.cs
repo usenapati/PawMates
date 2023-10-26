@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PawMates.DAL;
+using PawMates.PlayDateAPI.ApiClients;
 
 namespace PawMates.Integration.Tests
 {
@@ -30,7 +31,8 @@ namespace PawMates.Integration.Tests
                 });
                 // Unload real service and load in mock 
                 // Play Date Services
-
+                //Add Mock PetAPI for async test
+                services.AddScoped<IPetsService, MockPetsService>();
             });
 
             base.ConfigureWebHost(builder);
