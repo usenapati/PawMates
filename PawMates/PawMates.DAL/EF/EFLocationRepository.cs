@@ -11,6 +11,80 @@ namespace PawMates.DAL.EF
             _context = context;
         }
 
+        public Response<Location> Add(Location entity)
+        {
+            var validateResponse = Validate(entity);
+            if (!validateResponse.Success)
+            {
+                return validateResponse;
+            }
+            return base.Add(entity);
+        }
+
+        public Response Update(Location entity)
+        {
+            var validateResponse = Validate(entity);
+            if (!validateResponse.Success)
+            {
+                return validateResponse;
+            }
+            return base.Update(entity);
+        }
+
+        private Response<Location> Validate(Location entity)
+        {
+            Response<Location> validateResponse = new Response<Location>() { Success = false };
+            // Location is Required
+            if (entity == null)
+            {
+                validateResponse.Message = "Location is Required.";
+                return validateResponse;
+            }
+            // Pet Type Id must be positive
+            if (entity.PetTypeId <= 0)
+            {
+                validateResponse.Message = "Pet Type Id must be positive.";
+                return validateResponse;
+            }
+            // Location Name is required
+            if (string.IsNullOrWhiteSpace(entity.Name))
+            {
+                validateResponse.Message = "Location Name is required.";
+                return validateResponse;
+            }
+            // Location Street Name is required
+            if (string.IsNullOrWhiteSpace(entity.Street1))
+            {
+                validateResponse.Message = "Location Street Name is required.";
+                return validateResponse;
+            }
+            // Location City is required
+            if (string.IsNullOrWhiteSpace(entity.City))
+            {
+                validateResponse.Message = "Location City is required.";
+                return validateResponse;
+            }
+            // Location State is required
+            if (string.IsNullOrWhiteSpace(entity.State))
+            {
+                validateResponse.Message = "Location State is required.";
+                return validateResponse;
+            }
+            // Location Postal Code is required
+            if (string.IsNullOrWhiteSpace(entity.PostalCode))
+            {
+                validateResponse.Message = "Location Postal Code is required.";
+                return validateResponse;
+            }
+            // Location Minimum Pet Age must be postive
+            if (entity.PetAge < 0)
+            {
+                validateResponse.Message = "Location Minimum Pet Age must be postive.";
+                return validateResponse;
+            }
+            return new Response<Location>() { Success = true, Data = entity };
+        }
+
         public Response<IEnumerable<Location>> GetByPetType(PetType petType)
         {
             var response = new Response<IEnumerable<Location>>() { Success = false };
