@@ -71,6 +71,11 @@ namespace PawMates.DAL.EF
         {
             try
             {
+                var validateResponse = Validate(parent);
+                if (!validateResponse.Success)
+                {
+                    return validateResponse;
+                }
                 _context.PetParents.Add(parent);
                 _context.SaveChanges();
             }
@@ -105,6 +110,11 @@ namespace PawMates.DAL.EF
         {
             try
             {
+                var validateResponse = Validate(parent);
+                if (!validateResponse.Success)
+                {
+                    return validateResponse;
+                }
                 var response = GetById(parent.Id);
                 if (!response.Success)
                 {
@@ -151,5 +161,34 @@ namespace PawMates.DAL.EF
             return new Response<PetParent>() { Data = parent, Success = true };
         }
 
+        private Response<PetParent> Validate(PetParent parent)
+        {
+            Response<PetParent> response = new Response<PetParent>(){Success = false };
+            // Parent is required
+            if (parent == null)
+            {
+                response.Message = "Parent is required.";
+                return response;
+            }
+            // Parent First Name is required
+            if (string.IsNullOrWhiteSpace(parent.FirstName))
+            {
+                response.Message = "Parent First Name is required.";
+                return response;
+            }
+            // Parent Last Name is required
+            if (string.IsNullOrWhiteSpace(parent.LastName))
+            {
+                response.Message = "Parent Last Name is required.";
+                return response;
+            }
+            // Parent Email is required
+            if (string.IsNullOrWhiteSpace(parent.Email))
+            {
+                response.Message = "Parent Email is required.";
+                return response;
+            }
+            return new Response<PetParent> { Success = true, Data = parent };
+        }
     }
 }
