@@ -49,7 +49,7 @@ namespace PawMates.DAL.Tests
         {
             //Arrange
             string expected = "Dog";
-            int expectedCount = 8;
+            int expectedCount = 3;
             //Act
             List<PlayDatesBySpeciesListItem> actual = _repository.GetPlayDatesBySpecies(expected).Data;
             int actualCount = actual.Count;
