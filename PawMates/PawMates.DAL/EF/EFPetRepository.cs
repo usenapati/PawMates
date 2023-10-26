@@ -12,12 +12,18 @@ namespace PawMates.DAL.EF
         private readonly PawMatesContext _context;
         public EFPetRepository(PawMatesContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public Response<Pet> Add(Pet entity)
         {
             var response = new Response<Pet>() { Success = false };
+            var validResponse = Validate(entity);
+            if (!validResponse.Success)
+            {
+                response.Message = validResponse.Message;
+                return response;
+            }
             try
             {
                 _context.Pets.Add(entity);
@@ -61,7 +67,7 @@ namespace PawMates.DAL.EF
             var response = new Response<IEnumerable<Pet>>() { Success = false };
             try
             {
-                response.Data = _context.Pets.Include(p => p.PetParent).Include(a => a.PetType).ToList();                
+                response.Data = _context.Pets.Include(p => p.PetParent).Include(a => a.PetType).ToList();
                 response.Success = true;
             }
             catch (Exception ex)
@@ -120,7 +126,7 @@ namespace PawMates.DAL.EF
             }
             catch (Exception ex)
             {
-                throw new DALException("Unable to get entity", ex);
+                throw new DALException("Unable to get Pet", ex);
             }
             return response;
         }
@@ -136,6 +142,12 @@ namespace PawMates.DAL.EF
                     response.Message = getResponse.Message;
                     return response;
                 }
+                var validResponse = Validate(entity);
+                if (!validResponse.Success)
+                {
+                    response.Message = validResponse.Message;
+                    return response;
+                }
                 _context.Pets.Update(entity);
                 _context.SaveChanges();
                 response.Success = true;
@@ -146,6 +158,51 @@ namespace PawMates.DAL.EF
                 response.Message = ex.Message;
             }
             return response;
+        }
+
+        private Response<Pet> Validate(Pet entity)
+        {
+            // Pet is required
+            if (entity == null)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet is required." };
+            }
+            // Pet Parent ID is required
+            if (entity.PetParentId <= 0)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Parent ID is required." };
+            }
+            // Pet Type ID is required
+            if (entity.PetTypeId <= 0)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Type ID is required." };
+            }
+            // Pet Name is required
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Name is required." };
+            }
+            // Pet Name is too long
+            if (entity.Name.Length > 50)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Name is too long." };
+            }
+            // Pet Breed Name is too long if not null
+            if (entity.Breed != null && entity.Breed.Length > 50)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Breed Name is too long." };
+            }
+            // Pet Age must be positive
+            if (entity.Age < 0)
+            {
+                return new Response<Pet> { Success = false, Message = "Pet Age must be positive." };
+            }
+            // Postal Code is too long if not null
+            if (entity.PostalCode != null && entity.PostalCode.Length > 10)
+            {
+                return new Response<Pet> { Success = false, Message = "Postal Code is too long." };
+            }
+            return new Response<Pet> { Success = true, Data = entity };
         }
     }
 }

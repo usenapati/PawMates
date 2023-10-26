@@ -23,4 +23,20 @@ public partial class PlayDate : IEntity
     public virtual PetParent PetParent { get; set; } = null!;
 
     public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
+
+    public override bool Equals(object? obj)
+    {
+        return obj is PlayDate date &&
+               Id == date.Id &&
+               PetParentId == date.PetParentId &&
+               LocationId == date.LocationId &&
+               EventTypeId == date.EventTypeId &&
+               StartTime == date.StartTime &&
+               EndTime == date.EndTime;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime);
+    }
 }

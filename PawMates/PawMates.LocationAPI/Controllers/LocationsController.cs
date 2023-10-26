@@ -13,7 +13,7 @@ namespace PawMates.LocationAPI.Controllers
         private readonly IRepository<Location> _repo;
         public LocationsController(IRepository<Location> repo)
         {
-            this._repo = repo;
+            _repo = repo;
         }
 
         // GET: api/<LocationsController>
