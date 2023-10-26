@@ -4,6 +4,36 @@
   },
   "Routes": [
     {
+      "UpstreamPathTemplate": "/gateway/login",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Auth/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7061
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/register",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/Auth/register",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7061
+        }
+      ]
+    },
+
+
+    {
       "UpstreamPathTemplate": "/gateway/eventtype",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/api/eventtype",
