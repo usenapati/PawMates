@@ -20,5 +20,9 @@ namespace PawMates.CORE.DTOs
         [Required]
         [MaxLength(10)]
         public string? PostalCode { get; set; }
+
+        [Required]
+        [MaxLength(255)]
+        public string? ImageUrl { get; set; }
     }
 }

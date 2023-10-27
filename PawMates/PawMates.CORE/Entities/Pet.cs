@@ -18,6 +18,8 @@ public partial class Pet : IEntity
 
     public string? PostalCode { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual PetParent PetParent { get; set; } = null!;
 
     public virtual PetType PetType { get; set; } = null!;
