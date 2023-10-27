@@ -13,7 +13,8 @@ CREATE TABLE PetParents(
     FirstName NVARCHAR(50) NOT NULL,
     LastName NVARCHAR(50) NOT NULL,
     Email NVARCHAR(50) NOT NULL,
-    PhoneNumber NVARCHAR(15) NULL
+    PhoneNumber NVARCHAR(15) NULL，
+    ImageUrl NVARCHAR(255) NULL,
 );
 GO
 CREATE TABLE Users(

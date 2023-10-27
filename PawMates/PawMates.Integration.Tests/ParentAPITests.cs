@@ -37,7 +37,8 @@ namespace PawMates.Integration.Tests
                     FirstName = "Chester",
                     LastName = "McTester",
                     Email = "cmac@chester.com",
-                    PhoneNumber = "123-456-7890"
+                    PhoneNumber = "123-456-7890",
+                    ImageUrl = ""
                 });
                 context.SaveChanges();
             }
@@ -81,7 +82,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "Chester",
                 LastName = "McTester",
                 Email = "cmac@chester.com",
-                PhoneNumber = "123-456-7890"
+                PhoneNumber = "123-456-7890",
+                ImageUrl = ""
             };
             //Act
             var response = await _client.GetAsync($"/api/parents/{id}");
@@ -119,7 +121,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "Sarah",
                 LastName = "McTester",
                 Email = "smac@chester.com",
-                PhoneNumber = "123-456-7890"
+                PhoneNumber = "123-456-7890",
+                ImageUrl = "string"
             };
             //Act
             var content = new StringContent(JsonConvert.SerializeObject(expected), Encoding.UTF8, "application/json");
@@ -141,7 +144,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "Sarah",
                 LastName = "McTester",
                 Email = "smac@chester.com",
-                PhoneNumber = "123-456-7890"
+                PhoneNumber = "123-456-7890",
+                ImageUrl = "string"
             };
             var expected = HttpStatusCode.NotFound;
             //Act
@@ -162,7 +166,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "New",
                 LastName = "Tester",
                 Email = "newt@tester.com",
-                PhoneNumber = "098-765-4321"
+                PhoneNumber = "098-765-4321",
+                ImageUrl = "string"
             };
             //Act
             var content = new StringContent(JsonConvert.SerializeObject(expected), Encoding.UTF8, "application/json");
@@ -188,7 +193,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "New",
                 LastName = "Tester",
                 Email = "string",
-                PhoneNumber = "string"
+                PhoneNumber = "string",
+                ImageUrl = "string"
             };
             var expected = HttpStatusCode.BadRequest;
             //Act
@@ -210,7 +216,8 @@ namespace PawMates.Integration.Tests
                 FirstName = "New",
                 LastName = "Tester",
                 Email = "newt@tester.com",
-                PhoneNumber = "string"
+                PhoneNumber = "string",
+                ImageUrl = "string"
             };
             var expected = HttpStatusCode.BadRequest;
             //Act
