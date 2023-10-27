@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
 using PawMates.CORE.Models;
 using PawMates.DAL.EF;
+using PawMates.PlayDateAPI.ApiClients;
 
 namespace PawMates.ParentAPI.Controllers
 {
@@ -12,10 +14,12 @@ namespace PawMates.ParentAPI.Controllers
     public class ParentsController : ControllerBase
     {
         private readonly IParentRepository _parentRepository;
+        private readonly IPetsService _petsService;
 
-        public ParentsController(IParentRepository parentRepository)
+        public ParentsController(IParentRepository parentRepository, IPetsService petsService)
         {
             _parentRepository = parentRepository;
+            _petsService = petsService;
         }
 
         // GET: api/<PetParentsController>
@@ -118,6 +122,101 @@ namespace PawMates.ParentAPI.Controllers
                     return NotFound();
                 }
                 _parentRepository.Delete(parent);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // GET /api/<ParentsController>/{parentId}/Pets
+        [HttpGet, Route("{parentId}/pets")]
+        public async Task<IActionResult> GetPets(int parentId)
+        {
+            try
+            {
+                var parent = _parentRepository.GetById(parentId);
+                if (!parent.Success)
+                {
+                    return BadRequest(parent.Message);
+                }
+                if (parent.Data == null)
+                {
+                    return NotFound();
+                }
+                var petList = await _petsService.GetPetsAsync();
+                var pets = petList.Where(p => p.ParentId == parentId);
+                if (pets.IsNullOrEmpty())
+                {
+                    return NotFound();
+                }
+                return Ok(pets);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // POST /api/<ParentsController>/{parentId}/Pets/{petId}
+        [HttpPost, Route("{parentId}/pets/{petId}")]
+        public async Task<IActionResult> PostPet(int parentId, int petId)
+        {
+            try
+            {
+                var parent = _parentRepository.GetById(parentId);
+                if (parent.Data == null)
+                {
+                    return NotFound();
+                }
+
+                PetDTO pet = await _petsService.GetPetAsync(petId);
+
+                if (pet == null)
+                {
+                    return NotFound();
+                }
+
+                var add = _parentRepository.AddPetToParent(parentId, petId);
+
+                if (!add.Success)
+                {
+                    return BadRequest(add.Message);
+                }
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // DELETE /api/<ParentsController>/{parentId}/Pets/{petId}
+        [HttpDelete, Route("{parentId}/pets/{petId}")]
+        public async Task<IActionResult> DeletePet(int parentId, int petId)
+        {
+            try
+            {
+                var parent = _parentRepository.GetById(parentId);
+                if (parent.Data == null)
+                {
+                    return NotFound();
+                }
+
+                PetDTO pet = await _petsService.GetPetAsync(petId);
+
+                if (pet == null)
+                {
+                    return NotFound();
+                }
+
+                var delete = _parentRepository.DeletePetFromParent(parentId, petId);
+
+                if (!delete.Success)
+                {
+                    return BadRequest(delete.Message);
+                }
                 return NoContent();
             }
             catch (Exception ex)

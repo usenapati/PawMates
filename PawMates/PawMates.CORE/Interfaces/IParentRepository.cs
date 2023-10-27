@@ -10,6 +10,8 @@ namespace PawMates.CORE.Interfaces
     public interface IParentRepository
     {
         Response<IEnumerable<Pet>> GetPets(PetParent petParent);
+        Response<Pet> AddPetToParent(int parentId, int petId);
+        Response<Pet> DeletePetFromParent(int parentId, int petId);
         Response<IEnumerable<PetParent>> GetAll();
         Response<PetParent> GetById(int id);
         Response<PetParent> Add(PetParent parent);
