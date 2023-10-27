@@ -89,22 +89,42 @@ namespace PawMates.DAL.Tests
         public void ShouldAddPet()
         {
             //Arrange
-            
+            int parentId = 1;
+            var expected = new Pet
+            {
+                Id = 2,
+                PetParentId = 1,
+                PetTypeId = 1,
+                Age = 3,
+                Name = "Wren",
+                Breed = "Tabby",
+                PostalCode = "90210",
+            };
             //Act
-            
+            var actual = _petParentRepository.AddPetToParent(parentId, expected.Id);
             //Assert
-            Assert.Pass();
+            Assert.IsTrue(actual.Success);
         }
 
         [Test]
         public void ShouldRemovePet()
         {
             //Arrange
-
+            int parentId = 1;
+            var expected = new Pet
+            {
+                Id = 1,
+                PetParentId = 1,
+                PetTypeId = 1,
+                Age = 3,
+                Name = "Wren",
+                Breed = null,
+                PostalCode = "90210",
+            };
             //Act
-
+            var actual = _petParentRepository.DeletePetFromParent(parentId, expected.Id);
             //Assert
-            Assert.Pass();
+            Assert.IsTrue(actual.Success);
         }
 
         [Test]
