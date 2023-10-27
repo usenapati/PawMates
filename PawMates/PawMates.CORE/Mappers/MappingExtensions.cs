@@ -15,7 +15,8 @@ namespace PawMates.CORE.Mappers
                 Name = source.Name,
                 Breed = source.Breed,
                 Age = source.Age,
-                PostalCode = source.PostalCode
+                PostalCode = source.PostalCode,
+                ImageUrl = source.ImageUrl,
             };
         }
         public static Pet MapToEntity(this PetDTO source)
@@ -28,7 +29,8 @@ namespace PawMates.CORE.Mappers
                 Name = source.Name,
                 Breed = source.Breed,
                 Age = source.Age,
-                PostalCode = source.PostalCode
+                PostalCode = source.PostalCode,
+                ImageUrl = source.ImageUrl,
 
             };
         }

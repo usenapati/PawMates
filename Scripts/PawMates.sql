@@ -68,7 +68,8 @@ CREATE TABLE Pets(
     [Name] NVARCHAR(50) NOT NULL,
     Breed NVARCHAR(50) NULL,
     Age INT NOT NULL,
-    PostalCode NVARCHAR(10),
+    PostalCode NVARCHAR(10) NULL,
+    ImageUrl NVARCHAR(255) NULL,
     CONSTRAINT FK_Pets_PetParents
 		  FOREIGN KEY (PetParentId)
 		  REFERENCES PetParents(Id),
