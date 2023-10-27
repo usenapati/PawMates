@@ -72,7 +72,7 @@ public partial class PawMatesContext : DbContext
 
             entity.HasOne(d => d.PetParent).WithMany(p => p.Pets)
                 .HasForeignKey(d => d.PetParentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Pets_PetParents");
 
             entity.HasOne(d => d.PetType).WithMany(p => p.Pets)

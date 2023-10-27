@@ -86,6 +86,28 @@ namespace PawMates.DAL.Tests
         }
 
         [Test]
+        public void ShouldAddPet()
+        {
+            //Arrange
+            
+            //Act
+            
+            //Assert
+            Assert.Pass();
+        }
+
+        [Test]
+        public void ShouldRemovePet()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Pass();
+        }
+
+        [Test]
         public void ShouldGetAll()
         {
             //Arrange
