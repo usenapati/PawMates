@@ -19,10 +19,39 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PlaydatesComponent } from './components/playdate/playdates/playdates.component';
+import { PlaydatesPlaydateComponent } from './components/playdate/playdates-playdate/playdates-playdate.component';
+import { PlaydatesDetailComponent } from './components/playdate/playdates-detail/playdates-detail.component';
+import { PlaydatesFormComponent } from './components/playdate/playdates-form/playdates-form.component';
+import { PetsComponent } from './components/pet/pets/pets.component';
+import { PetsPetComponent } from './components/pet/pets-pet/pets-pet.component';
+import { PetparentDetailComponent } from './components/petparent/petparent-detail/petparent-detail.component';
+import { PetparentPetComponent } from './components/petparent/petparent-pet/petparent-pet.component';
+import { PetparentPetDetailComponent } from './components/petparent/petparent-pet-detail/petparent-pet-detail.component';
+import { PetparentPetFormComponent } from './components/petparent/petparent-pet-form/petparent-pet-form.component';
+import { NavComponent } from './components/nav/nav.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    PlaydatesComponent,
+    PlaydatesPlaydateComponent,
+    PlaydatesDetailComponent,
+    PlaydatesFormComponent,
+    PetsComponent,
+    PetsPetComponent,
+    PetparentDetailComponent,
+    PetparentPetComponent,
+    PetparentPetDetailComponent,
+    PetparentPetFormComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
