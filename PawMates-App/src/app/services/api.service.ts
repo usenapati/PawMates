@@ -3,10 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 
-const baseUrl = 'https://localhost:7136';
-
-
-
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
   providedIn: 'root'
@@ -55,7 +51,7 @@ export class ApiService {
 
 
   public login(username: string, password: string) {
-    return this.http.post<{ token: any }>(baseUrl + '/gateway/login', {
+    return this.http.post<{ token: any }>(baseUrl + '/login', {
       username: username,
       password: password
     });
@@ -63,7 +59,7 @@ export class ApiService {
 
   public register(register: RegisterModel)
   {
-    
+
   }
 
 }
