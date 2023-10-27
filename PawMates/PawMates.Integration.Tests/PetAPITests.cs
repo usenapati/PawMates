@@ -52,6 +52,7 @@ namespace PawMates.Integration.Tests
                     Name = "Maruki",
                     Breed = "Tabby",
                     PostalCode = "11111",
+                    ImageUrl= "https://en.wikipedia.org/wiki/Tabby_cat#/media/File:Cat_November_2010-1a.jpg"
                 });
                 context.SaveChanges();
             }
@@ -112,6 +113,7 @@ namespace PawMates.Integration.Tests
               Name = "Maruki",
               Breed = "Tabby",
               PostalCode = "11111",
+              ImageUrl = "https://en.wikipedia.org/wiki/Tabby_cat#/media/File:Cat_November_2010-1a.jpg"
             };
 
             Assert.AreEqual(expectedPet.ParentId, pet.ParentId);
@@ -149,6 +151,7 @@ namespace PawMates.Integration.Tests
                 Name = "Whiskers",
                 Breed = "Ragdoll",
                 PostalCode = "22222",
+                ImageUrl = "https://en.wikipedia.org/wiki/Ragdoll#/media/File:Flame_point_Ragdoll.jpg"
             };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(newPet), Encoding.UTF8, "application/json");
 
@@ -183,7 +186,7 @@ namespace PawMates.Integration.Tests
                 Name = new string('a', 51),
                 Breed = "Ragdoll",
                 PostalCode = "27519",
-                
+                ImageUrl = "https://en.wikipedia.org/wiki/Ragdoll#/media/File:Flame_point_Ragdoll.jpg"
             };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(newPet), Encoding.UTF8, "application/json");
 
@@ -205,6 +208,7 @@ namespace PawMates.Integration.Tests
                 Name = "Whiskers",
                 Breed = "Ragdoll",
                 PostalCode = "22222",
+                ImageUrl = "https://en.wikipedia.org/wiki/Ragdoll#/media/File:Flame_point_Ragdoll.jpg"
             };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(updatePet), Encoding.UTF8, "application/json");
 
@@ -241,6 +245,7 @@ namespace PawMates.Integration.Tests
                 Name = new string('a', 51),
                 Breed = "Ragdoll",
                 PostalCode = "22222",
+                ImageUrl = "https://en.wikipedia.org/wiki/Ragdoll#/media/File:Flame_point_Ragdoll.jpg"
             };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(updatePet), Encoding.UTF8, "application/json");
 

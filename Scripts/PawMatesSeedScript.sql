@@ -66,21 +66,21 @@ INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode,
 INSERT INTO Locations(Id, PetTypeId, [Name], Street1, City, [State], PostalCode, PetAge) VALUES (6, 2, 'Crooked Tail Cat Cafe', '229 W. Fifth St', 'Winston-Salem', 'NC', '27101', 0);
 SET IDENTITY_INSERT Locations OFF
 SET IDENTITY_INSERT Pets ON
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (1, 1, 3, 'Sadie', 'Golden Retriever', 1, '27603');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (2, 2, 2, 'Charlie', null, 2, '28203');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (3, 2, 2, 'Oliver', null, 2, '28203');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (4, 3, 6, 'Daisy', 'Holland Lop', 3, '27701');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (5, 4, 3, 'Bud', 'Dachshund', 6, '28403');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (6, 4, 3, 'Tala', 'Dachshund', 1, '28403');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (7, 5, 4, 'Ollin', 'Parrot', 6, '27701');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (8, 6, 4, 'Dina', 'Parakeet', 2, '27101');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (9, 7, 5, 'Godzilla', 'Bearded Dragon', 4, '27101');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (10, 8, 2, 'Bella', 'Ragdoll', 2, '27406');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (11, 8, 2, 'Mr. Rogers', 'Ragdoll', 2, '27406');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (12, 8, 2, 'Bruce Wayne', 'Ragdoll', 2, '27406');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (13, 9, 5, 'Rex', 'Bearded Dragon', 6, '27701');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (14, 9, 5, 'Gizmo', 'Bearded Dragon', 7, '27701');
-INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode) VALUES (15, 10, 6, 'Nana', 'Holland Lop', 2, '27701');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (1, 1, 3, 'Sadie', 'Golden Retriever', 1, '27603', 'https://en.wikipedia.org/wiki/Golden_Retriever#/media/File:Golden_Retriever_Dukedestiny01_drvd.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (2, 2, 2, 'Charlie', null, 2, '28203', 'https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (3, 2, 2, 'Oliver', null, 2, '28203', 'https://cdn2.thecatapi.com/images/39r.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (4, 3, 6, 'Daisy', 'Holland Lop', 3, '27701', 'https://en.wikipedia.org/wiki/Holland_Lop#/media/File:BrokenBlueHollandLop.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (5, 4, 3, 'Bud', 'Dachshund', 6, '28403', 'https://en.wikipedia.org/wiki/Dachshund#/media/File:Jamnik_d%C5%82ugow%C5%82osy_standardowy_LM_671.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (6, 4, 3, 'Tala', 'Dachshund', 1, '28403', 'https://en.wikipedia.org/wiki/Dachshund#/media/File:MiniDachshund1_wb.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (7, 5, 4, 'Ollin', 'Parrot', 6, '27701', 'https://en.wikipedia.org/wiki/Australian_ringneck#/media/File:Barnardius_zonarius_semitorquatus_-2c.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (8, 6, 4, 'Dina', 'Parakeet', 2, '27101', 'https://en.wikipedia.org/wiki/Parakeet#/media/File:Blue_australian_parakeet.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (9, 7, 5, 'Godzilla', 'Bearded Dragon', 4, '27101', 'https://en.wikipedia.org/wiki/Pogona#/media/File:Bearded_Dragon_-_close-up.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (10, 8, 2, 'Bella', 'Ragdoll', 2, '27406', 'https://en.wikipedia.org/wiki/Ragdoll#/media/File:Ragdoll_from_Gatil_Ragbelas.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (11, 8, 2, 'Mr. Rogers', 'Ragdoll', 2, '27406', 'https://en.wikipedia.org/wiki/Ragdoll#/media/File:Pansy_cat.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (12, 8, 2, 'Bruce Wayne', 'Ragdoll', 2, '27406', 'https://en.wikipedia.org/wiki/Ragdoll#/media/File:A_breed_of_cat_with_a_distinct_colorpoint_coat_and_blue_eyes..jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (13, 9, 5, 'Rex', 'Bearded Dragon', 6, '27701', 'https://en.wikipedia.org/wiki/Pogona#/media/File:Zero-bearded-dragon.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (14, 9, 5, 'Gizmo', 'Bearded Dragon', 7, '27701', 'https://en.wikipedia.org/wiki/Pogona#/media/File:Juvenile_bearded_dragon.jpg');
+INSERT INTO Pets(Id, PetParentId, PetTypeId, [Name], Breed, Age, PostalCode, ImageUrl) VALUES (15, 10, 6, 'Nana', 'Holland Lop', 2, '27701', 'https://en.wikipedia.org/wiki/Holland_Lop#/media/File:Holland_Lop_Resting.jpg');
 SET IDENTITY_INSERT Pets OFF
 SET IDENTITY_INSERT PlayDates ON
 INSERT INTO PlayDates(Id, PetParentId, LocationId, EventTypeId, StartTime, EndTime) VALUES (1, 1, 4, 8, '2023-06-11 10:00:00', '2023-06-11 16:00:00');
