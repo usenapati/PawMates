@@ -121,7 +121,8 @@ namespace PawMates.CORE.Mappers
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 Email = source.Email,
-                PhoneNumber = source.PhoneNumber
+                PhoneNumber = source.PhoneNumber,
+                ImageUrl = source.ImageUrl,
             };
         }
 
@@ -133,7 +134,8 @@ namespace PawMates.CORE.Mappers
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 Email = source.Email,
-                PhoneNumber = source.PhoneNumber
+                PhoneNumber = source.PhoneNumber,
+                ImageUrl = source.ImageUrl,
             };
         }
         public static EventTypeDTO MapToDto(this EventType source)
