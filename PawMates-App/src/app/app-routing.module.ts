@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PetparentDetailComponent } from './components/petparent/petparent-detail/petparent-detail.component';
@@ -17,8 +19,9 @@ const routes: Routes = [
   {path: 'profile', component: PetparentDetailComponent, canActivate: [AuthGuard]  },
 
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
-
+  {path: 'pets/:id', component: PetDetailsComponent},
   {path: 'events', component: PlaydatesComponent, canActivate: [AuthGuard]  },
+
 ];
 
 @NgModule({
