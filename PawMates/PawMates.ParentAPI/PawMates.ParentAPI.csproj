@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PawMates.CORE\PawMates.CORE.csproj" />
     <ProjectReference Include="..\PawMates.DAL\PawMates.DAL.csproj" />
+    <ProjectReference Include="..\PawMates.PlayDateAPI\PawMates.PlayDateAPI.csproj" />
   </ItemGroup>
 
 </Project>
