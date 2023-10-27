@@ -1,1 +1,74 @@
-<p>nav works!</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" routerLink="">PawMates</a>
+    
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+        mdbCollapse
+        #basicNavbar="mdbCollapse"
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="pets">Find Pets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="events">Find Play Dates</a>
+          </li>
+          <!-- Avatar -->
+          <!-- TODO Hide and disable if not logged in -->
+      
+        </ul>
+        <!-- Left links -->
+        <!-- TODO Add Click Event and Update if logged in -->
+        <ul *ngIf="isLoggedin" class="navbar-nav">
+          <li mdbDropdown class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              mdbDropdownToggle
+              aria-expanded="false"
+            >
+              <img
+                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp"
+                class="rounded-circle"
+                height="22"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" routerLink="profile">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div *ngIf="!isLoggedin" class="d-flex align-items-center">
+            
+            <button type="button" class="btn btn-link px-3 me-2" routerLink="login">
+              Login
+            </button>
+            <button type="button" class="btn btn-primary me-3" routerLink="register">
+              Sign up for free
+            </button>
+          </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
