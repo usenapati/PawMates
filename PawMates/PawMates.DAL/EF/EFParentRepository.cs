@@ -34,6 +34,69 @@ namespace PawMates.DAL.EF
             return response;
         }
 
+        public Response<Pet> AddPetToParent(int parentId, int petId)
+        {
+            try
+            {
+                var parent = GetById(parentId).Data;
+                if (parent == null)
+                {
+                    return new Response<Pet>() { Message = "Parent could not found.\n", Success = false };
+                }
+
+                Pet? pet = _context.Pets.Find(petId);
+                if (pet == null)
+                {
+                    return new Response<Pet>() { Message = "Pet could not found.\n", Success = false };
+                }
+                // Handle Duplicates
+                var existingPet = parent.Pets.Any(x => x.Id == petId);
+                if (existingPet)
+                {
+                    return new Response<Pet>() { Message = "Pet already exists.\n", Success = false };
+                }
+                parent.Pets.Add(pet);
+                _context.SaveChanges();
+                return new Response<Pet>() { Data = pet, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new Response<Pet>() { Message = "Unable to add pet.\n" + ex.Message, Success = false };
+            }
+        }
+
+        public Response<Pet> DeletePetFromParent(int parentId, int petId)
+        {
+            try
+            {
+                var parent = GetById(parentId).Data;
+                if (parent == null)
+                {
+                    return new Response<Pet>() { Message = "Parent could not found.\n", Success = false };
+                }
+
+                var pet = _context.Pets.Find(petId);
+                if (pet == null)
+                {
+                    return new Response<Pet>() { Message = "Pet could not found.\n", Success = false };
+                }
+
+                var findPet = parent.Pets.Any(p => p.Id == petId);
+                if (!findPet)
+                {
+                    return new Response<Pet>() { Message = "Pet could not found.\n", Success = false };
+                }
+
+                parent.Pets.Remove(pet);
+                _context.SaveChanges();
+                return new Response<Pet>() { Data = pet, Success = true };
+            }
+            catch (Exception ex)
+            {
+                return new Response<Pet>() { Message = "Unable to remove pet.\n" + ex.Message, Success = false };
+            }
+        }
+
         public Response<IEnumerable<PetParent>> GetAll()
         {
             IEnumerable<PetParent> parents;
