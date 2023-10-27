@@ -16,6 +16,16 @@ namespace PawMates.Gateway
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyCors",
+                                       builder =>
+                                       {
+                                           builder.WithOrigins("http://localhost:3000", "http://localhost:4200")
+                                               .AllowAnyHeader()
+                                               .AllowAnyMethod();
+                                       });
+            });
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -52,6 +62,8 @@ namespace PawMates.Gateway
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("MyCors");
 
             app.UseHttpsRedirection();
 
