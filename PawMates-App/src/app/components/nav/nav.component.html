@@ -15,7 +15,7 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+            <a class="nav-link active" routerLink="">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" routerLink="pets">Find Pets</a>
@@ -29,8 +29,8 @@
         </ul>
         <!-- Left links -->
         <!-- TODO Add Click Event and Update if logged in -->
-        <ul class="navbar-nav">
-        <li mdbDropdown class="nav-item dropdown">
+        <ul *ngIf="isLoggedin" class="navbar-nav">
+          <li mdbDropdown class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle d-flex align-items-center"
               href="#"
@@ -52,12 +52,12 @@
                 <a class="dropdown-item" routerLink="profile">My profile</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" (click)="logout()">Logout</a>
               </li>
             </ul>
           </li>
         </ul>
-        <div class="d-flex align-items-center">
+        <div *ngIf="!isLoggedin" class="d-flex align-items-center">
             
             <button type="button" class="btn btn-link px-3 me-2" routerLink="login">
               Login

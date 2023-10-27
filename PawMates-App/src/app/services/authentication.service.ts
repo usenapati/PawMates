@@ -28,7 +28,6 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(): boolean {
-
     return !!this.getToken();
   }
 }

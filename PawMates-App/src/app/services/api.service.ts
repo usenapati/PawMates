@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
-import { RegisterModel } from '../model/registerModel-d';
+import { RegisterModel } from '../model/registerModel';
 
-const baseUrl = 'https://localhost:7024';
+const baseUrl = 'https://localhost:7136';
 
 @Injectable({
   providedIn: 'root'
