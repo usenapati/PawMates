@@ -15,7 +15,11 @@ namespace PawMates.CORE.DTOs
         public string Email { get; set; }
         [Required]
         [Phone]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
+
+        [Required]
+        [MaxLength(255)]
+        public string? ImageUrl { get; set; }
 
     }
 }

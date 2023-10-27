@@ -90,6 +90,7 @@ public partial class PawMatesContext : DbContext
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
+            entity.Property(e => e.ImageUrl).HasMaxLength(255);
         });
 
         modelBuilder.Entity<PetType>(entity =>
