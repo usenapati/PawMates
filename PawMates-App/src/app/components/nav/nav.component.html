@@ -3,7 +3,7 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">PawMates</a>
+      <a class="navbar-brand" routerLink="">PawMates</a>
     
       <!-- Collapsible wrapper -->
       <div
@@ -15,26 +15,54 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Find Pets</a>
+            <a class="nav-link active" routerLink="pets">Find Pets</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Find Play Dates</a>
+            <a class="nav-link active" routerLink="events">Find Play Dates</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Profile</a>
+          <!-- Avatar -->
+          <!-- TODO Hide and disable if not logged in -->
+      
+        </ul>
+        <!-- Left links -->
+        <!-- TODO Add Click Event and Update if logged in -->
+        <ul class="navbar-nav">
+        <li mdbDropdown class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              mdbDropdownToggle
+              aria-expanded="false"
+            >
+              <img
+                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp"
+                class="rounded-circle"
+                height="22"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" routerLink="profile">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
+            </ul>
           </li>
         </ul>
-        <!-- Button links -->
-        <!-- TODO Add Click Event and Update if logged in -->
         <div class="d-flex align-items-center">
             
-            <button type="button" class="btn btn-link px-3 me-2">
+            <button type="button" class="btn btn-link px-3 me-2" routerLink="login">
               Login
             </button>
-            <button type="button" class="btn btn-primary me-3">
+            <button type="button" class="btn btn-primary me-3" routerLink="register">
               Sign up for free
             </button>
           </div>
