@@ -155,6 +155,7 @@ namespace PawMates.Integration.Tests
         [Test]
         public async Task ShouldPostPetParent()
         {
+            //Arrange
             var expected = new PetParentDTO
             {
                 Id = 2,
@@ -180,6 +181,7 @@ namespace PawMates.Integration.Tests
         [Test]
         public async Task ShouldNotPostPetParentWithInvalidEmail()
         {
+            //Arrange
             var test = new PetParentDTO
             {
                 Id = 2,
@@ -201,6 +203,7 @@ namespace PawMates.Integration.Tests
         [Test]
         public async Task ShouldNotPostPetParentWithInvalidPhoneNumber()
         {
+            //Arrange
             var test = new PetParentDTO
             {
                 Id = 2,
@@ -222,6 +225,7 @@ namespace PawMates.Integration.Tests
         [Test]
         public async Task ShouldDeletePetParent()
         {
+            //Arrange
             int id = 1;
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken cancelToken = source.Token;
@@ -234,6 +238,59 @@ namespace PawMates.Integration.Tests
         [Test]
         public async Task ShouldNotDeletePetParentThatDoesNotExist()
         {
+            //Arrange
+            int id = 999;
+            var expected = HttpStatusCode.NotFound;
+            CancellationTokenSource source = new CancellationTokenSource();
+            CancellationToken cancelToken = source.Token;
+            //Act
+            var response = await _client.DeleteAsync($"/api/parents/{id}", cancelToken);
+            var actual = response.StatusCode;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public async Task ShouldAddPetToParent()
+        {
+            //Arrange
+           
+            //Act
+           
+            //Assert
+            
+        }
+
+        [Test]
+        public async Task ShouldNotAddPetToParent()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+
+        }
+
+        [Test]
+        public async Task ShouldDeletePetFromParent()
+        {
+            //Arrange
+            int id = 999;
+            var expected = HttpStatusCode.NotFound;
+            CancellationTokenSource source = new CancellationTokenSource();
+            CancellationToken cancelToken = source.Token;
+            //Act
+            var response = await _client.DeleteAsync($"/api/parents/{id}", cancelToken);
+            var actual = response.StatusCode;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public async Task ShouldNotDeletePetFromParent()
+        {
+            //Arrange
             int id = 999;
             var expected = HttpStatusCode.NotFound;
             CancellationTokenSource source = new CancellationTokenSource();
