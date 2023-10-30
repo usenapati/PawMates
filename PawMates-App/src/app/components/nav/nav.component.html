@@ -1,10 +1,17 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg" style="background-color: #7D7BE2">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a class="navbar-brand" routerLink="">PawMates</a>
-    
+      <!-- <a class="navbar-brand" routerLink="">PawMates</a> -->
+      <a class="navbar-brand" routerLink="">
+        <img
+          src="../../assets/Logo.png"
+          height="50"
+          alt="PawMates Logo"
+          loading="lazy"
+        />
+      </a>
       <!-- Collapsible wrapper -->
       <div
         class="collapse navbar-collapse"
@@ -59,10 +66,10 @@
         </ul>
         <div *ngIf="!isLoggedin" class="d-flex align-items-center">
             
-            <button type="button" class="btn btn-link px-3 me-2" routerLink="login">
+            <button type="button" class="btn btn-link px-3 me-2" id="login" routerLink="login">
               Login
             </button>
-            <button type="button" class="btn btn-primary me-3" routerLink="register">
+            <button type="button" class="btn btn-light me-3" routerLink="register">
               Sign up for free
             </button>
           </div>
