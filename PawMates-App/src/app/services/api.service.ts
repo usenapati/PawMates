@@ -45,7 +45,7 @@ export class ApiService {
     });
   }
 
-  public getPetParent(id: number) {
+  public getPetsParent(id: number) {
     return this.http.get<any>(baseUrl + `/pets/${id}/petparent`);
   }
 
