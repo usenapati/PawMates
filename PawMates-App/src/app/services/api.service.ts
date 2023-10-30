@@ -52,6 +52,7 @@ export class ApiService {
 
   public login(username: string, password: string) {
     return this.http.post<{ token: any }>(baseUrl + '/login', {
+      id: 0,
       username: username,
       password: password
     });
@@ -59,7 +60,14 @@ export class ApiService {
 
   public register(register: RegisterModel)
   {
-
+    // Create a Pet Parent
+    // Create User
+    // Login to new User
+    return this.http.post<{ token: any }>(baseUrl + '/login', {
+      id: 0,
+      username: register.userName,
+      password: register.password
+    });
   }
 
 }

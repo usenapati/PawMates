@@ -27,6 +27,7 @@ export class AuthenticationService {
   public clearToken(): void {
 
     this.jwtToken = null;
+    localStorage.removeItem('token');
   }
 
   public isAuthenticated(): boolean {
