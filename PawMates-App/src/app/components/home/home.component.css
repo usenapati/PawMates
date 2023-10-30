@@ -1,0 +1,26 @@
+img {
+    width: 350px;
+    height: 350px;
+}
+
+#button {
+    background-color: #7D7BE2;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+    height: 25vh;
+  }
+
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .bg-image-full {
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+  }
