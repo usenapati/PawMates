@@ -1,0 +1,11 @@
+.pet-cards-container{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+    grid-template-rows: repeat(3, 1fr);    /* 3 rows with equal height */
+
+}
+
+.list-items{
+    margin: 2%;
+}

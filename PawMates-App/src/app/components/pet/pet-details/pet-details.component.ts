@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PetDetailsComponent  implements OnInit {
   pet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''}
-
+  petParent : any = {firstName:'', lastName:'', email:'', phoneNumber:'', imageUrl:''};
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
 
@@ -20,6 +20,10 @@ export class PetDetailsComponent  implements OnInit {
       this.apiService.getPetById(+id).subscribe(pet => {
         this.pet = pet;
       });
+
+      this.apiService.getPetsParent(+id).subscribe(petParent =>{
+        this.petParent = petParent;
+      })
     }
   }
 }
