@@ -512,14 +512,14 @@
     {
       "UpstreamPathTemplate": "/gateway/parents",
       "UpstreamHttpMethod": [ "Post" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [],
-        "AllowedClaims": [],
-        "JwksOptions": {
-          "Authority": "https://localhost:7061"
-        }
-      },
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": [],
+      //  "AllowedClaims": [],
+      //  "JwksOptions": {
+      //    "Authority": "https://localhost:7061"
+      //  }
+      //},
       "DownstreamPathTemplate": "/api/parents",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PawMates.CORE.DTOs;
+using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
 using PawMates.CORE.Models;
@@ -45,8 +46,16 @@ namespace PawMates.AuthService.Controllers
                 return Unauthorized("Username already exists");
             }
             var user = value.MapToEntity();
+            try
+            {
+                _repo.Add(user);
+            }
+            catch (Exception ex)
+            {
 
-            _repo.Add(user);
+               throw new DALException("Could not register new User", ex);
+            }
+            
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
