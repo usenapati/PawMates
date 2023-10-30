@@ -24,6 +24,16 @@ export class PetDetailsComponent  implements OnInit {
       this.apiService.getPetsParent(+id).subscribe(petParent =>{
         this.petParent = petParent;
       })
+
+
+
     }
+  }
+
+  handleImageError(){
+
+    this.pet.imageUrl = "../../assets/for-pet-without-image.png";
+
+
   }
 }
