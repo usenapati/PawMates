@@ -10,4 +10,13 @@
 
 .pet-detail-info-image-container div{
     margin:  3em;
+    font-size: 1em;
+}
+
+
+.pet-detail-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
