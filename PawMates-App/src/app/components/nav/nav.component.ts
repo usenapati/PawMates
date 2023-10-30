@@ -17,6 +17,7 @@ export class NavComponent implements OnInit {
   logout() {
     this.authService.clearToken();
     this.router.navigate(['/login']);
+    this.isLoggedin = this.authService.isAuthenticated();
   }
 
 }

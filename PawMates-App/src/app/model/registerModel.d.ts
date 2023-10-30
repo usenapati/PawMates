@@ -4,5 +4,6 @@ export interface RegisterModel {
     lastName: string,
     email: string,
     phoneNumber: string,
+    profileImageURL: string,
     password: string, // Encrypt this
 }
