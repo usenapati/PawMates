@@ -29,7 +29,6 @@ export class RegisterComponent {
   ngOnInit(): void {
     // if user is already logged in, navigate to home page
     if (this.authService.isAuthenticated()) {
-      // TODO Update Navbar after Logging In
       this.router.navigate(['/']);
     }
   }
@@ -38,7 +37,6 @@ export class RegisterComponent {
     this.apiService.register(this.registerModel).subscribe(response => {
       this.authService.setToken(response.token);
       // Route to Create Pet (Need to make sure user cannot exit without having a pet)
-      // TODO Update Navbar after Logging In
       this.router.navigate(['/']);
       
 
