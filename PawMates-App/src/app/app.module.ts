@@ -36,6 +36,7 @@ import { PetparentPetDetailComponent } from './components/petparent/petparent-pe
 import { PetparentPetFormComponent } from './components/petparent/petparent-pet-form/petparent-pet-form.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
+import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
 
 
 
@@ -56,7 +57,8 @@ import { PetDetailsComponent } from './components/pet/pet-details/pet-details.co
     PetparentPetDetailComponent,
     PetparentPetFormComponent,
     NavComponent,
-    PetDetailsComponent
+    PetDetailsComponent,
+    PetFormComponent
   ],
   imports: [
     BrowserModule,

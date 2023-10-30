@@ -11,7 +11,7 @@
             </p>
         </div>
         <div class="pet-detail-image-container" >
-             <img class="pet-detail-image rounded-circle" src={{pet.imageUrl}}>
+             <img  class="pet-detail-image rounded-circle" src={{pet.imageUrl}} (error)="handleImageError()">
         </div>
     </div>
 </li>
