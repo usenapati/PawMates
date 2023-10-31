@@ -87,7 +87,7 @@ namespace PawMates.AuthService.Controllers
             var token = new JwtSecurityToken(
                 issuer: "https://localhost:7061",
                 audience: "https://localhost:7061",
-                claims: new List<Claim>(),
+                claims: new List<Claim>() { new Claim("userId", userLogin.Id.ToString()) },
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);

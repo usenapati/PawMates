@@ -24,8 +24,8 @@ export class PetparentDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    //const id = 6;
+    //const id = this.route.snapshot.paramMap.get('id');
+    const id = 6;
     if (id) {
       this.apiService.getParentById(+id)
       .subscribe({

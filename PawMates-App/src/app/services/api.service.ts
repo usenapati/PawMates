@@ -52,7 +52,7 @@ export class ApiService {
 
 
   public login(username: string, password: string) {
-    return this.http.post<{ token: any, parent: Parent }>(baseUrl + '/login', {
+    return this.http.post<{ token: any }>(baseUrl + '/login', {
       id: 0,
       username: username,
       password: password
