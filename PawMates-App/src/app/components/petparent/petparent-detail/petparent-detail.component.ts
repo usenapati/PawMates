@@ -24,8 +24,7 @@ export class PetparentDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get('id');
-    const id = 6;
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.apiService.getParentById(+id)
       .subscribe({
@@ -54,5 +53,9 @@ export class PetparentDetailComponent implements OnInit {
         this.router.navigate(['profile']);
       }
     });
+  }
+
+  handleImageError(){
+    this.parent.imageUrl = "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp";
   }
 }
