@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -88,6 +88,7 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     MdbValidationModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,

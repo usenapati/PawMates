@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
-import { Observable, ObservableInput, concat, concatMap, forkJoin, map, pipe, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
@@ -77,23 +77,7 @@ export class ApiService {
       phoneNumber: register.phoneNumber,
       imageUrl: register.profileImageURL
     };
-    // Create a Pet Parent and save Pet Parent ID
-    // this.http.post<any>(baseUrl + '/parents', petParent).subscribe(response => {
-    //   petParentId = response.id;
-    // });
 
-    // this.http.post<{ token: any }>(baseUrl + '/register', {
-    //   id: 0,
-    //   petParentId: petParentId,
-    //   username: register.userName,
-    //   password: register.password
-    // });
-
-    // // Login to new User
-    // return this.http.post<{ token: any }>(baseUrl + '/login', {
-    //   username: register.userName,
-    //   password: register.password
-    // });
     return this.addPetParent(petParent).pipe(
       switchMap(parent => {
         return this.http.post<{ token: any }>(baseUrl + '/register', {
