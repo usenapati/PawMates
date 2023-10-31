@@ -16,7 +16,7 @@ const routes: Routes = [
 
   {path: 'register', component: RegisterComponent },
   {path: 'login', component: LoginComponent },
-  {path: 'profile', component: PetparentDetailComponent  },
+  {path: 'profile', component: PetparentDetailComponent, canActivate: [AuthGuard] },
 
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
   {path: 'pets/:id', component: PetDetailsComponent},

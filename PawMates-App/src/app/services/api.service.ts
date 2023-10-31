@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
+import { Parent } from '../model/parent';
 import { Observable, ObservableInput, concat, concatMap, forkJoin, map, pipe, switchMap } from 'rxjs';
 
 const baseUrl = 'https://localhost:7136/gateway';
@@ -59,7 +60,7 @@ export class ApiService {
 
 
   public login(username: string, password: string) {
-    return this.http.post<{ token: any }>(baseUrl + '/login', {
+    return this.http.post<{ token: any, parent: Parent }>(baseUrl + '/login', {
       id: 0,
       username: username,
       password: password
@@ -112,4 +113,17 @@ export class ApiService {
     );
   }
 
+  public getParentById(id: number) {
+    return this.http.get<Parent>(`${baseUrl}/parents/${id}`);
+  }
+
+  public updateParent(id: number, parent: Parent) {
+    return this.http.put<Parent>(`${baseUrl}/parents/${id}`, parent, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  public getPetsByParent(parentId: number) {
+    return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
+  }
 }

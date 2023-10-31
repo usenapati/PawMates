@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
@@ -21,6 +23,10 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -37,6 +43,7 @@ import { PetparentPetFormComponent } from './components/petparent/petparent-pet-
 import { NavComponent } from './components/nav/nav.component';
 import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
 import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
+import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 
 
 
@@ -58,7 +65,8 @@ import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
     PetparentPetFormComponent,
     NavComponent,
     PetDetailsComponent,
-    PetFormComponent
+    PetFormComponent,
+    DateTimePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +89,10 @@ import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
+    FontAwesomeModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

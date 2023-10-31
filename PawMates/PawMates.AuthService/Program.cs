@@ -6,6 +6,7 @@ using PawMates.DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PawMates.AuthService.ApiClients;
 
 namespace PawMates.AuthService
 {
@@ -19,6 +20,9 @@ namespace PawMates.AuthService
             builder.Services.AddDbContext<PawMatesContext>(options =>
              options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
+
+            builder.Services.AddScoped<IPetParentsService, PetParentsService>();
+            builder.Services.AddHttpClient();
 
             builder.Services.AddTransient<IRepository<User>, EFRepository<User>>();
             builder.Services.AddControllers();
