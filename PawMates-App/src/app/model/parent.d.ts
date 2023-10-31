@@ -4,5 +4,5 @@ export interface Parent {
     lastName: string,
     email: string,
     phoneNumber: string,
-    profileImageURL: string
+    imageUrl?: string
 }
