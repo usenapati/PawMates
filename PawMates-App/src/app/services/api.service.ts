@@ -71,19 +71,19 @@ export class ApiService {
   }
 
   public getParentById(id: number) {
-    id = this.authService.getDecodedToken().parentId;
+    //id = this.authService.getDecodedToken().parentId;
     return this.http.get<Parent>(`${baseUrl}/parents/${id}`);
   }
 
   public updateParent(id: number, parent: Parent) {
-    id = this.authService.getDecodedToken().parentId;
+    //id = this.authService.getDecodedToken().parentId;
     return this.http.put<Parent>(`${baseUrl}/parents/${id}`, parent, {
       headers: this.getAuthHeaders(),
     });
   }
 
   public getPetsByParent(parentId: number) {
-    parentId = this.authService.getDecodedToken().parentId;
+    //parentId = this.authService.getDecodedToken().parentId;
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
   }
 }

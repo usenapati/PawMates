@@ -37,7 +37,7 @@
         <!-- Right links -->
         <!-- TODO Add Click Event and Update if logged in -->
         <ul *ngIf="isLoggedin" class="navbar-nav">
-          <li mdbDropdown class="nav-item dropdown">
+          <li mdbDropdown class="nav-item dropdown dropstart">
             <a
               class="nav-link dropdown-toggle d-flex align-items-center"
               href="#"
@@ -45,18 +45,19 @@
               role="button"
               mdbDropdownToggle
               aria-expanded="false"
+              style="margin-right: 30px;"
             >
             <!-- Replace imageUrl with this -->
             <!-- src="{{ parent.imageUrl }}" -->
               <img
                 src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" 
                 class="rounded-circle"
-                height="22"
+                height="30"
                 alt=""
                 loading="lazy"
               />
             </a>
-            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <ul mdbDropdownMenu class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
               <li>
                 <a class="dropdown-item" routerLink="profile">My profile</a>
               </li>
