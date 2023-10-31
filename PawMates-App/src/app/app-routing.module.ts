@@ -12,7 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent }, // Change it to a separate component
-  
+
 
   {path: 'register', component: RegisterComponent },
   {path: 'login', component: LoginComponent },
