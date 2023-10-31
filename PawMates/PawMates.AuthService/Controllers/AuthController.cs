@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using PawMates.AuthService.ApiClients;
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
@@ -15,9 +16,11 @@ namespace PawMates.AuthService.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IRepository<User> _repo;
-        public AuthController(IRepository<User> repo)
+        private readonly IPetParentsService _petParentsService;
+        public AuthController(IRepository<User> repo, IPetParentsService petParentsService)
         {
             this._repo = repo;
+            this._petParentsService = petParentsService;
         }
 
         // GET api/<ContactsController>/5
@@ -51,14 +54,19 @@ namespace PawMates.AuthService.Controllers
         }
 
         [HttpPost, Route("login")]
-        public IActionResult Login(UserDTO value)
+        public async Task<IActionResult> Login(UserDTO value)
         {
             if (value == null)
             {
                 return BadRequest("Invalid request");
             }
             //
-            User userLogin = _repo.GetAll().Data.FirstOrDefault(x => x.Username == value.Username);
+            var getUsersResult = _repo.GetAll();
+            if (!getUsersResult.Success)
+            {
+                return NotFound();
+            }
+            User userLogin = getUsersResult.Data.FirstOrDefault(x => x.Username == value.Username);
             if (userLogin == null)
             {
                 return Unauthorized("No matching user");
@@ -67,6 +75,13 @@ namespace PawMates.AuthService.Controllers
             {
                 return Unauthorized("Username and password do not match");
             }
+
+            PetParentDTO petParent = null;
+            if (userLogin.PetParentId != null)
+            {
+                 petParent = await _petParentsService.GetPetParentAsync((int)userLogin.PetParentId);
+            }
+             
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KeyForSignInSecret@1234"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
@@ -76,7 +91,7 @@ namespace PawMates.AuthService.Controllers
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(new { Token = tokenString });
+            return Ok(new { Token = tokenString, User = userLogin.MapToDto(), PetParent = petParent });
         }
 
     }
