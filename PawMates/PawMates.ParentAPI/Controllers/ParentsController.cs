@@ -71,8 +71,14 @@ namespace PawMates.ParentAPI.Controllers
             }
             try
             {
-                _parentRepository.Add(parent.MapToEntity());
-                return CreatedAtAction(nameof(Get), new { id = parent.Id }, parent);
+                PetParent existingPetParent = _parentRepository.GetAll().Data.FirstOrDefault(x => x.Email == parent.Email);
+                if (existingPetParent != null)
+                {
+                    return BadRequest("Pet Parent with given email already exists");
+                }
+                var petParent = _parentRepository.Add(parent.MapToEntity());
+                
+                return CreatedAtAction(nameof(Get), new { id = petParent.Data.Id }, petParent.Data.MapToDTO());
             }
             catch (Exception ex)
             {

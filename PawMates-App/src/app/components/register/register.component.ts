@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerModel : RegisterModel;
 
 
@@ -42,7 +42,7 @@ export class RegisterComponent {
 
     }, error => {
       console.error('Register failed');
-      this.router.navigate(['/register']);
+      
     });
     
   }
