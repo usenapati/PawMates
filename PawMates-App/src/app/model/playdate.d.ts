@@ -6,5 +6,4 @@ export interface PlayDate {
     eventId: number,
     startTime: Date,
     endTime: Date
-
 }

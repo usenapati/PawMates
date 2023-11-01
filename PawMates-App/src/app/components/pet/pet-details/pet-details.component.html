@@ -11,6 +11,7 @@
                                     <div class="card-body text-center">
                                         <img class="rounded-circle" src={{pet.imageUrl}} (error)="handleImageError()" alt="Pet Picture">
                                       <h5 class="my-3">{{ pet.name }}</h5>
+                                      <button [routerLink]="['parents', pet.parentId]" type="button" class="btn btn-primary ms-2" id="button">Send a Wag!</button>
                                     </div>
                                   </div>
                                 </div>
@@ -68,8 +69,7 @@
                                           <p class="mb-0">Parent</p>
                                         </div>
                                         <div class="col-sm-9" style="display: flex;">
-                                          <p class="text-muted mb-0">{{petParent.firstName}} {{petParent.lastName}}&nbsp;</p>
-                                          <button [routerLink]="['parents', pet.parentId]" type="button" class="btn btn-primary ms-2" id="button">View Details</button>
+                                          <p class="text-muted mb-0">{{petParent.firstName}} {{petParent.lastName}}</p>
                                         </div>
                                       </div>
                                   </div>

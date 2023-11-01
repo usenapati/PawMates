@@ -7,7 +7,8 @@ export class UnknownBreedPipe implements PipeTransform {
 
   transform(value: any | undefined | null): string {
     if (value === undefined || value === null ) {
-      return 'Breed Unknown';
+      value = 'Breed Unknown'
+      return value;
     }
     return value;
   }

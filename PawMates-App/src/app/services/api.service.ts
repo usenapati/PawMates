@@ -4,6 +4,8 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
 import { switchMap } from 'rxjs';
+import { EventType } from '../model/eventtype';
+import { Location } from '../model/location';
 
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
@@ -12,7 +14,6 @@ const baseUrl = 'https://localhost:7136/gateway';
 export class ApiService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
-
 
   private getAuthHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -115,5 +116,23 @@ export class ApiService {
   public getPetsByParent(parentId: number) {
     //parentId = this.authService.getDecodedToken().parentId;
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
+  }
+
+  // Events
+  public getEvents() {
+    return this.http.get<EventType[]>(baseUrl  + '/eventtype');
+  }
+
+  public getEventById(id: number) {
+    return this.http.get<EventType>(`${baseUrl}/eventtype/${id}`);
+  }
+
+  //Locations
+  public getLocations() {
+    return this.http.get<Location[]>(baseUrl  + '/locations');
+  }
+
+  public getLocationById(id: number) {
+    return this.http.get<Location>(`${baseUrl}/locations/${id}`);
   }
 }

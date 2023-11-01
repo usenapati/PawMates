@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PlaydatesDetailComponent } from './components/playdate/playdates-detail/playdates-detail.component';
 import { PlaydatesFormComponent } from './components/playdate/playdates-form/playdates-form.component';
 import { PetparentProfileComponent } from './components/petparent/petparent-profile/petparent-profile/petparent-profile.component';
+import { PetparentPetDetailComponent } from './components/petparent/petparent-pet-detail/petparent-pet-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent }, // Change it to a separate component
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'profile', component: PetparentDetailComponent },
   {path: 'pets/:id/parents/:id', component: PetparentProfileComponent },
+  {path: 'profile/pets/:id/edit', component: PetparentPetDetailComponent },
 
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
   {path: 'pets/:id', component: PetDetailsComponent},

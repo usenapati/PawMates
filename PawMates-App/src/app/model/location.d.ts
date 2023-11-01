@@ -1,8 +1,10 @@
 export interface Location {
-    id: number,
+    id?: number,
+    petTypeId: number,
     name: string,
-    streetAddress: string, 
+    street1: string,
     city: string,
     state: string,
-    postalCode: string
+    postalCode: string,
+    petAge?: number
 }
