@@ -276,12 +276,8 @@
 
         }
       },
-      "AddClaimsToRequest": {
-        "Claims": [
-          {
-            "Name": "PetParentId"
-          }
-        ]
+      "AddHeadersToRequest": {
+        "Authorization": "Authorization"
       }
     },
     {
