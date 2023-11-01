@@ -16,7 +16,16 @@
     margin-right: 10px;
 }
 
+#topCard {
+    margin-left: 108px; 
+    margin-right: 108px;
+    margin-bottom: 25px; 
+    background-color: #490A3D;
+}
 
+.card-title {
+    color: white;
+}
 
 body {
     margin-top: 20px;

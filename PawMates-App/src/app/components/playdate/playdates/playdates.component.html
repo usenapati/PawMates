@@ -1,6 +1,11 @@
 <section>
-    <div class="container py-5 h-100">
-      <div *ngFor="let playDate of playDates" class="row d-flex justify-content-center align-items-center h-100">
+    <div class="container py-5 h-100" style="margin-bottom: -70px;"> 
+        <div class="card border-0" id="topCard">
+            <div class="card-body">
+                <h2 class="card-title">Upcoming Events</h2>
+            </div>
+        </div>
+      <div *ngFor="let playDate of futureEvents()" class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
           <div class="card mb-5" style="border-radius: 15px;">
             <div class="card-body p-4">
@@ -22,11 +27,50 @@
                   <span class="ms-3 me-4">|</span></p>
                 <a *ngFor="let pet of playDate.pets">
                   <img src="{{ pet.imageUrl }}" alt="avatar"
-                    class="img-fluid rounded-circle me-3" width="35">
+                    class="img-fluid rounded-circle me-3" width="35"
+                    [routerLink]="['/pets', pet.id]">
                 </a>
                 <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
                   <i class="fas fa-plus"></i>
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="card border-0" id="topCard">
+            <div class="card-body">
+                <h2 class="card-title">Past Events</h2>
+            </div>
+        </div>
+      <div *ngFor="let playDate of pastEvents()" class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card mb-5" style="border-radius: 15px;">
+            <div class="card-body p-4">
+                    <div class="event-list-content fix">
+                        <ul style="padding-bottom: 10px;">
+                            <li style="padding-right: 10px;">{{ playDate.locationName }}</li>
+                            <li>{{ playDate.startTime | formatDate }} {{ playDate.startTime | formatTime }} - {{ playDate.endTime | formatTime }}</li>
+                        </ul>
+                        <h3>{{ playDate.eventName }}</h3>
+                        <p>{{ playDate.eventDescription }}</p>
+                        <button type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button>
+                        <!-- <div class="crical"> </div> -->
+                    </div>
+              <hr class="my-4">
+              <div class="d-flex justify-content-start align-items-center">
+                <!-- <button type="button" class="btn btn-primary" id="accent">Join PlayDate</button> -->
+                <p class="mb-0 text-uppercase" style="padding-left: 25px;"><span
+                    class="text-muted small">Participants</span>
+                  <span class="ms-3 me-4">|</span></p>
+                <a *ngFor="let pet of playDate.pets">
+                  <img src="{{ pet.imageUrl }}" alt="avatar"
+                    class="img-fluid rounded-circle me-3" width="35"
+                    [routerLink]="['/pets', pet.id]">
+                </a>
               </div>
             </div>
           </div>
