@@ -1,4 +1,5 @@
-<div class="input-section">
+<!-- <div class="input-section">
+   ParentId:  {{parentId}}
     <input [(ngModel)]="newPet.name" placeholder="Name...">
     <input [(ngModel)]="newPet.petTypeId" placeholder="petTypeId:...">
     <input [(ngModel)]="newPet.breed" placeholder="Breed...">
@@ -7,4 +8,136 @@
     <input [(ngModel)]="newPet.imageUrl" placeholder="Image Url...">
     <button (click)="addPet()">Add</button>
 
-</div>
+</div> -->
+
+
+<form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+    <div class="col">
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form1"
+            class="form-control"
+            formControlName="name"
+            required
+          />
+          <label mdbLabel class="form-label" for="form1">Name</label>
+          <mdb-error *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+            >Name is required</mdb-error
+          >
+          <mdb-success
+            *ngIf="name?.valid && (name?.dirty || name?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form2"
+            class="form-control"
+            formControlName="petTypeId"
+            required
+          />
+          <label mdbLabel class="form-label" for="form2">Pet Type </label>
+          <mdb-error *ngIf="petTypeId?.invalid && (petTypeId?.dirty || petTypeId?.touched)"
+            >petTypeId is required</mdb-error
+          >
+          <mdb-success *ngIf="petTypeId?.valid && (petTypeId?.dirty || petTypeId?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form2"
+            class="form-control"
+            formControlName="breed"
+            required
+          />
+          <label mdbLabel class="form-label" for="form2">Breed</label>
+          <mdb-error *ngIf="breed?.invalid && (breed?.dirty || breed?.touched)"
+            >Breed is required</mdb-error
+          >
+          <mdb-success *ngIf="breed?.valid && (breed?.dirty || breed?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form2"
+            class="form-control"
+            formControlName="age"
+            required
+          />
+          <label mdbLabel class="form-label" for="form2">Age</label>
+          <mdb-error *ngIf="age?.invalid && (age?.dirty || age?.touched)"
+            >age is required</mdb-error
+          >
+          <mdb-success *ngIf="age?.valid && (age?.dirty || age?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form2"
+            class="form-control"
+            formControlName="postalCode"
+            required
+          />
+          <label mdbLabel class="form-label" for="form2">postalCode</label>
+          <mdb-error *ngIf="postalCode?.invalid && (postalCode?.dirty || postalCode?.touched)"
+            >postalCode is required</mdb-error
+          >
+          <mdb-success *ngIf="postalCode?.valid && (postalCode?.dirty || postalCode?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+
+      <div class="col-md-6">
+        <mdb-form-control>
+          <input
+            mdbValidate
+            mdbInput
+            type="text"
+            id="form2"
+            class="form-control"
+            formControlName="imageUrl"
+            required
+          />
+          <label mdbLabel class="form-label" for="form2">imageUrl</label>
+          <mdb-error *ngIf="imageUrl?.invalid && (imageUrl?.dirty || imageUrl?.touched)"
+            >imageUrl is required</mdb-error
+          >
+          <mdb-success *ngIf="imageUrl?.valid && (imageUrl?.dirty || imageUrl?.touched)"
+            ></mdb-success
+          >
+        </mdb-form-control>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4">Add Pet</button>
+  </form>
