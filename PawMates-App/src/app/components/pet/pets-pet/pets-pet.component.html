@@ -1,8 +1,8 @@
-    <span class="card pet-card">
+<span class="card pet-card border-0">
         <img src={{pet.imageUrl}} id="pet" class="card-img-top pet-card-image" alt={{pet.name}}/>
         <div class="card-body">
           <h5 class="card-title">{{pet.name}}</h5>
-          <p class="card-text">{{pet.breed}}</p>
-          <a [routerLink]="['/pets', pet.id]" class="btn btn-primary">Pet Details</a>
+          <p class="card-text">{{pet.breed | unknownBreed }}</p>
+          <a [routerLink]="['/pets', pet.id]" class="btn btn-primary" id="button">Check out {{ pet.name }}</a>
         </div>
-    </span>
+</span>

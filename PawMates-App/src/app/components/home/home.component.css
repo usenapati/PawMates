@@ -9,6 +9,12 @@ img {
     color: white;
 }
 
+#button:hover {
+  background-color: white;
+  border-color: #490A3D;
+  color: #490A3D;
+}
+
 header {
     margin: 0;
     padding: 0;
