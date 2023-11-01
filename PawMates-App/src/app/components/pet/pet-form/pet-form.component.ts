@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Parent } from 'src/app/model/parent';
 
 @Component({
   selector: 'app-pet-form',
@@ -9,6 +10,13 @@ import { ApiService } from 'src/app/services/api.service';
 export class PetFormComponent implements OnInit {
   @Input() parent: any;
   newPet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''}
+  petParent : Parent ={
+    id: 0,
+    firstName :'',
+    lastName : '',
+    email: '',
+    phoneNumber: ''
+  } ;
   constructor( private apiService: ApiService) { }
   ngOnInit(): void {
     this.newPet.parentId = this.parent.Id;
