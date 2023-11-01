@@ -24,8 +24,8 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -43,7 +43,6 @@ import { PetparentPetFormComponent } from './components/petparent/petparent-pet-
 import { NavComponent } from './components/nav/nav.component';
 import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
 import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
-import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 import { UnknownBreedPipe } from './pipes/unknown-breed.pipe';
 import { PetparentProfileComponent } from './components/petparent/petparent-profile/petparent-profile/petparent-profile.component';
 
@@ -68,7 +67,6 @@ import { PetparentProfileComponent } from './components/petparent/petparent-prof
     NavComponent,
     PetDetailsComponent,
     PetFormComponent,
-    DateTimePickerComponent,
     UnknownBreedPipe,
     PetparentProfileComponent,
   ],
@@ -96,7 +94,8 @@ import { PetparentProfileComponent } from './components/petparent/petparent-prof
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
-    FontAwesomeModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
