@@ -23,13 +23,17 @@ export class PlaydatesFormComponent implements OnInit{
   hostPetDropdownSettings: any = {};
 
   // Location
+  locations: Location[] = [];
   selectedLocation: any;
+  location: Location; // Set up at submit()
   newLocation: Location;
-  locationOptions: any[] = []; // Location Model
+  locationOptions: {id: number | undefined, name: string}[] = []; // Location Model
   isNewLocation: boolean = false;
 
   // Event
+  events: EventType[] = [];
   selectedEvent: any;
+  event: EventType;
   newEvent: EventType;
   eventOptions: any[] = []; // Location Model
   isNewEvent: boolean = false;
@@ -40,9 +44,22 @@ export class PlaydatesFormComponent implements OnInit{
   selectedLocalPets: any[] = [];
   localPetDropdownSettings: any = {};
 
+  startTime: Date = new Date();
+  endTime: Date = new Date();
+
   constructor(private authService: AuthenticationService, private apiService: ApiService, private router: Router) {
     this.host = { fullName: '', id: 0}
 
+    this.location = {
+      id: 0,
+      name: '',
+      street1: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      petTypeId: 0,
+
+    };
     this.newLocation = {
       id: 0,
       name: '',
@@ -53,6 +70,12 @@ export class PlaydatesFormComponent implements OnInit{
       petTypeId: 0,
 
     };
+    this.event = {
+      id: 0,
+      name: '',
+      description: '',
+      restrictionTypeId: 0,
+    }
     this.newEvent = {
       id: 0,
       name: '',
@@ -104,19 +127,37 @@ export class PlaydatesFormComponent implements OnInit{
     };
 
     // Get Locations
-    this.locationOptions = [
-      { id: 1, name: "Create New Location"},
-      { id: 2, name: "Test"},
-    ];
-    // Get Events
-    this.eventOptions = [
-      { id: 1, name: "Create New Event"},
-      { id: 2, name: "Test"},
-    ];
+    this.apiService.getLocations().subscribe(locations => {
+      this.locations = locations;
+      this.locationOptions = this.locations.map((l : Location) => ({id: l.id, name: l.name}));
+      this.locationOptions.push({ id: 0, name: "Create New Location"});
 
+    });
+    
+    // Get Events
+    this.apiService.getEvents().subscribe(events => {
+      this.events = events;
+      this.eventOptions = this.events.map((e : EventType) => ({id: e.id, name: e.name}));
+      this.eventOptions.push({ id: 0, name: "Create New Event"});
+    });
+    
+  
     // Get Pet Types for Location
     // Get Restriction for Event
     
+}
+
+onSubmit() {
+  // Host ID
+  // Location ID
+    // If new - Create Location and get new ID
+  // Event ID
+    // If new - Create Event and get new ID
+  // Validate Location and Event Pet Restriction match
+  // Pets IDs
+  // Start and End Time
+  // Validate that start is not after end and no more than 24 hrs long
+
 }
 
 onItemSelect(item: any) {
@@ -139,6 +180,7 @@ onEventSelect(event: any) {
     this.isNewEvent = true;
   } else {
     this.isNewEvent = false;
+    
   }
 }
 }

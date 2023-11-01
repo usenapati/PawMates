@@ -15,3 +15,8 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+.submit-button {
+    background-color: #490A3D;
+    color: white
+}
