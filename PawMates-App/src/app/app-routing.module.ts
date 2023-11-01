@@ -11,6 +11,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { PlaydatesDetailComponent } from './components/playdate/playdates-detail/playdates-detail.component';
 import { PlaydatesFormComponent } from './components/playdate/playdates-form/playdates-form.component';
+import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent }, // Change it to a separate component
@@ -21,8 +22,9 @@ const routes: Routes = [
   {path: 'profile', component: PetparentDetailComponent },
 
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
+  {path: 'pets/create', component: PetFormComponent},
   {path: 'pets/:id', component: PetDetailsComponent},
-  
+
   {path: 'playdates', component: PlaydatesComponent, canActivate: [AuthGuard]  },
   {path: 'playdates/:id', component: PlaydatesDetailComponent, canActivate: [AuthGuard]  },
   {path: 'events', component: PlaydatesFormComponent, canActivate: [AuthGuard]  },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
+
 @Component({
   selector: 'app-pet-details',
   templateUrl: './pet-details.component.html',
