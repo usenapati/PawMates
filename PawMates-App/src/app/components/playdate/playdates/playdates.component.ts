@@ -31,6 +31,7 @@ export class PlaydatesComponent implements OnInit {
   };
   locations: Location[] = [];
   playDate: PlayDate = {
+    id: 0,
     petParentId: 0,
     pets: [],
     locationId: 0,

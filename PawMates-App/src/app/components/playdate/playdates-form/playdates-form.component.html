@@ -16,7 +16,7 @@
                  <!-- First Name input -->
                 <mdb-form-control>
                     <div class="form-outline mb-4">
-                        <input mdbInput id="fullName" class="form-control"
+                        <input mdbInput disabled="true" id="fullName" class="form-control"
                             placeholder="Host Full Name"
                             [(ngModel)]="host.fullName" />
                         <label mdbLabel class="form-label" for="fullName" >Host Name</label>
@@ -26,9 +26,9 @@
                     <ng-multiselect-dropdown
                         mdbInput
                         [placeholder]="'Host\'s Pet(s)'"
-                        [settings]="dropdownSettings"
-                        [data]="dropdownList"
-                        [(ngModel)]="selectedItems"
+                        [settings]="hostPetDropdownSettings"
+                        [data]="hostPetList"
+                        [(ngModel)]="selectedHostPets"
                         (onSelect)="onItemSelect($event)"
                         (onSelectAll)="onSelectAll($event)"
                         id="hostPet"
@@ -67,7 +67,7 @@
                     <div class="form-outline mb-4">
                         <input mdbInput id="locationAddress" class="form-control"
                             placeholder="Street Address"
-                            [(ngModel)]="newLocation.streetAddress" />
+                            [(ngModel)]="newLocation.street1" />
                         <label mdbLabel class="form-label" for="locationAddress" >Address</label>
                     </div>
                 </mdb-form-control>
@@ -154,9 +154,9 @@
             <div class="row mb-4">
                     <ng-multiselect-dropdown
                             [placeholder]="'Select Local Pets'"
-                            [settings]="dropdownSettings"
-                            [data]="dropdownList"
-                            [(ngModel)]="selectedItems"
+                            [settings]="localPetDropdownSettings"
+                            [data]="localPetList"
+                            [(ngModel)]="selectedLocalPets"
                             (onSelect)="onItemSelect($event)"
                             (onSelectAll)="onSelectAll($event)"
                     ></ng-multiselect-dropdown>

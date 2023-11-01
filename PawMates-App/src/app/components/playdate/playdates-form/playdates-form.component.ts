@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from 'src/app/model/location';
-import { EventType } from 'src/app/model/event';
+import { EventType } from 'src/app/model/eventtype';
+import { Pet } from 'src/app/model/pet';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-playdates-form',
@@ -12,8 +14,14 @@ import { EventType } from 'src/app/model/event';
   styleUrls: ['./playdates-form.component.css']
 })
 export class PlaydatesFormComponent implements OnInit{
-  myForm: FormGroup;
-  host: {fullName: string, id: number}
+
+  host: {fullName: string, id: number};
+  // Host Pets
+  hostPets: Pet[] = [];
+  hostPetList: any[] = [];
+  selectedHostPets: any[] = [];
+  hostPetDropdownSettings: any = {};
+
   // Location
   selectedLocation: any;
   newLocation: Location;
@@ -26,61 +34,89 @@ export class PlaydatesFormComponent implements OnInit{
   eventOptions: any[] = []; // Location Model
   isNewEvent: boolean = false;
 
-  // Host Pets
-  dropdownList : any[] = [];
-  selectedItems: any[] = [];
-  dropdownSettings: any = {};
-
   // Local Pets
+  localPets: Pet[] = [];
+  localPetList: any[] = [];
+  selectedLocalPets: any[] = [];
+  localPetDropdownSettings: any = {};
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService, private apiService: ApiService, private router: Router) {
+  constructor(private authService: AuthenticationService, private apiService: ApiService, private router: Router) {
     this.host = { fullName: '', id: 0}
-    this.myForm = this.fb.group({
-      city: [this.selectedItems]
-  });
+
     this.newLocation = {
       id: 0,
       name: '',
-      streetAddress: '',
+      street1: '',
       city: '',
       state: '',
-      postalCode: ''
+      postalCode: '',
+      petTypeId: 0,
+
     };
     this.newEvent = {
       id: 0,
       name: '',
       description: '',
-      petTypeId: 0,
-      restrictionId: 0
+      restrictionTypeId: 0,
     }
   }
 
   ngOnInit() {
-    this.dropdownList  = [
-        { item_id: 1, item_text: 'New Delhi' },
-        { item_id: 2, item_text: 'Mumbai' },
-        { item_id: 3, item_text: 'Bangalore' },
-        { item_id: 4, item_text: 'Pune' },
-        { item_id: 5, item_text: 'Chennai' },
-        { item_id: 6, item_text: 'Navsari' }
-    ];
+    // Get Host Name from Token
+    this.host.id = this.authService.getDecodedToken().PetParentId;
+    if (this.host.id) {
+      this.apiService.getParentById(+this.host.id)
+      .subscribe({
+        next: (response) => {
+          this.host.fullName = response.firstName + ' ' + response.lastName;
+        }
+      });
+
+      // Host Pets and Get Pets excluding host pets
+      forkJoin({
+        hostPets: this.apiService.getPetsByParent(+this.host.id),
+        allPets: this.apiService.getPets()
+      }).subscribe(result => {
+        this.hostPets = result.hostPets;
+        this.hostPetList = this.hostPets.map(p => ({pet_id: p.id, pet_name: p.name}));
+        this.localPets = result.allPets.filter((pet : Pet) => pet.parentId != this.host.id);
+        this.localPetList = this.localPets.map(p => ({pet_id: p.id, pet_name: p.name}));
+      });
+     
+    };
+
+    this.hostPetDropdownSettings = {
+      singleSelection: false,
+      idField: 'pet_id',
+      textField: 'pet_name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+    };
+
+    this.localPetDropdownSettings = {
+      singleSelection: false,
+      idField: 'pet_id',
+      textField: 'pet_name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+    };
+
+    // Get Locations
     this.locationOptions = [
       { id: 1, name: "Create New Location"},
       { id: 2, name: "Test"},
     ];
+    // Get Events
     this.eventOptions = [
       { id: 1, name: "Create New Event"},
       { id: 2, name: "Test"},
     ];
-    //this.selectedItems = [{ item_id: 4, item_text: 'Pune' }, { item_id: 6, item_text: 'Navsari' }];
-    this.dropdownSettings = {
-        singleSelection: false,
-        idField: 'item_id',
-        textField: 'item_text',
-        selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 5,
-    };
+
+    // Get Pet Types for Location
+    // Get Restriction for Event
+    
 }
 
 onItemSelect(item: any) {
