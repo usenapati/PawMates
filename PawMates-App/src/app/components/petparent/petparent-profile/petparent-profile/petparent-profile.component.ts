@@ -25,7 +25,7 @@ export class PetparentProfileComponent implements OnInit{
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.apiService.getParentByPetId(+id)
+      this.apiService.getParentById(+id)
       .subscribe({
         next: (response) => {
           this.parent = response;
