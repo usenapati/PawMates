@@ -6,17 +6,19 @@
             <div class="tab-content py-3 px-3 px-sm-0 wow fadeInDown  animated" data-animation="fadeInDown animated" data-delay=".2s" id="nav-tabContent" style="visibility: visible; animation-name: fadeInDown;">
                 <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="nav-home-tab">
                     <!-- row loop -->
-                    <div  class="row mb-30">
+                    <h2>Events</h2>
+                    <!-- *ngFor="let playDate of playDates" -->
+                    <div class="row mb-30">
                         <div class="col-lg-10">
                             <div class="event-list-content fix">
                                 <ul data-animation="fadeInUp animated" data-delay=".2s" style="animation-delay: 0.2s;" class="">
-                                    <!-- <li>{{ location.street1 }} {{ location.city }} {{ location.state }} {{ location.postalCode }}</li> -->
-                                    <li>9.30 - 10.30 AM</li>
+                                    <li>Location: {{ playDate.locationName }}</li>
+                                    <li>{{ playDate.startTime }} - {{ playDate.endTime }}</li>
                                 </ul>
-                                <h2>{{ event.name }}</h2>
-                                <p>{{ event.description }}</p>
-                                <a href="#" class="btn mt-20 mr-10"><i class="far fa-ticket-alt"></i>Join PlayDate</a>
-                                <a href="#" class="btn mt-20">Read More</a>
+                                <h3>Event: {{ playDate.eventName }}</h3>
+                                <p>Description: {{ playDate.eventDescription }}</p>
+                                <button type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button>
+                                <button type="button" class="btn btn-primary" id="accent">Join PlayDate</button>
                                 <div class="crical"> </div>
                             </div>
                         </div>
