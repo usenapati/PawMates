@@ -68,6 +68,13 @@ export class PetparentDetailComponent implements OnInit {
   }
 
   deletePet() {
-    this.apiService.deletePetById(this.pet.id);
+    this.apiService.deletePetById(this.pet.id)
+    .subscribe({
+      next: (response) => {
+        console.log('Deleting....');
+        this.router.navigate(['profile']);
+        location.reload();
+      }
+    });
   }
 }
