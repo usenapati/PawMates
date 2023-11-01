@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,13 @@ export class AuthenticationService {
 
     return !!this.getToken();
 
+  }
+
+  public getDecodedToken(): any {
+    const token = this.getToken();
+    if(!token){
+      return null;
+    }
+    return jwtDecode(token);
   }
 }

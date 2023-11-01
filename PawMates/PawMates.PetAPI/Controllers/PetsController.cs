@@ -84,8 +84,10 @@ namespace PawMates.PetAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var userId = this.User.Claims.Where(x => x.Type == "userId").Select(x => x.Value).FirstOrDefault();
-            if (userId != null)
+            var petParentId = User.Claims.Where(x => x.Type == "PetParentId").Select(x => x.Value).FirstOrDefault();
+            
+            
+            if (petParentId != null)
             {
                 return Forbid();
             }

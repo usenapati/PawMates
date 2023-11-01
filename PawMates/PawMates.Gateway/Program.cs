@@ -66,9 +66,7 @@ namespace PawMates.Gateway
             app.UseCors("MyCors");
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
 
             await app.UseOcelot();
