@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pet } from 'src/app/model/pet';
 import { PlayDate } from 'src/app/model/playdate';
 import { PlayDateDTO } from 'src/app/model/playdatedto';
 import { ApiService } from 'src/app/services/api.service';

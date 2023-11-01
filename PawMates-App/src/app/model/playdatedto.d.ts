@@ -1,3 +1,5 @@
+import { Pet } from "./pet";
+
 export interface PlayDateDTO {
     hostName: string,
     locationName: string,
@@ -6,5 +8,5 @@ export interface PlayDateDTO {
     startTime: Date,
     endTime: Date,
     numberOfPets: number,
-    pets: number[]
+    pets: Pet[]
 }
