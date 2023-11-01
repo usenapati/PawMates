@@ -150,7 +150,11 @@ namespace PawMates.DAL.EF
             var response = new Response<IEnumerable<PlayDate>>() { Success = false };
             try
             {
-                response.Data = _context.PlayDates.Include(a => a.Pets).Include(p => p.Location).ToList();
+                response.Data = _context.PlayDates.Include(a => a.Pets)
+                                                  .Include(p => p.Location)
+                                                  .Include(p => p.PetParent)
+                                                  .Include(p => p.EventType)
+                                                  .ToList();
                 response.Success = true;
             }
             catch (Exception ex)
@@ -181,8 +185,12 @@ namespace PawMates.DAL.EF
             var response = new Response<PlayDate>() { Success = false };
             try
             {
-                var PlayDate = _context.PlayDates.Include(a => a.Pets).Include(p => p.Location).Include(p => p.PetParent).FirstOrDefault(a => a.Id == id);
-                //var PlayDate = _context.PlayDates.FirstOrDefault(a => a.PlayDateId == PlayDateId);
+                var PlayDate = _context.PlayDates.Include(a => a.Pets)
+                                                 .Include(p => p.Location)
+                                                 .Include(p => p.PetParent)
+                                                 .Include(p => p.EventType)
+                                                 .FirstOrDefault(a => a.Id == id);
+                
                 if (PlayDate == null)
                 {
                     response.Message = "Play Date not found.";

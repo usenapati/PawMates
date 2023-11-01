@@ -30,7 +30,7 @@ namespace PawMates.PlayDateAPI.Controllers
             }
             var PlayDates = _repo.GetAll().Data.ToList();
 
-            return Ok(PlayDates.Select(a => a.MapToDto()).ToList());
+            return Ok(PlayDates.Select(a => a.MapToDto2()).ToList());
         }
 
         // GET api/<PlayDatesController>/5
@@ -42,8 +42,9 @@ namespace PawMates.PlayDateAPI.Controllers
             {
                 return NotFound();
             }
-            PlayDate playDate = getResult.Data;
-            return Ok(playDate.MapToDto());
+            PlayDate playDate = getResult.Data;             
+
+            return Ok(playDate.MapToDto2());
 
         }
 
@@ -70,12 +71,6 @@ namespace PawMates.PlayDateAPI.Controllers
             {
                 return BadRequest($"playDate {playDateId} is not exist.");
             }
-
-            //if (playDate.Pets.Count >= 3)
-            //{
-            //    ModelState.AddModelError("pets", "No more than 3 pets per playDate.");
-            //    return BadRequest(ModelState);
-            //}
 
             PetDTO pet = await _petsService.GetPetAsync(petId);
 
