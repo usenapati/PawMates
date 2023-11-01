@@ -93,7 +93,6 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
     FontAwesomeModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

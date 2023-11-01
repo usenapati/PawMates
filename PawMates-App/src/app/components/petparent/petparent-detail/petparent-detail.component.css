@@ -8,3 +8,10 @@
     object-fit: cover;
     object-position: 100% 0;
 }
+#accent {
+    background-color: #490A3D;
+}
+#accentoutline, a {
+    border-color: #490A3D;
+    color: #490A3D;
+}

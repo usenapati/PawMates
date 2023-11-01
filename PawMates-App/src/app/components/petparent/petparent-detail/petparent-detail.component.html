@@ -18,9 +18,9 @@
                 <img src="{{ parent.imageUrl }}" alt="Profile Picture" id="pfp"  class="img-fluid rounded-circle">
               <h5 class="my-3">{{ parent.firstName }} {{ parent.lastName }}</h5>
               <div class="d-flex justify-content-center mb-2">
-                <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-primary">Edit</button>
-                <button *ngIf="isEditing" (click)="editParent()" type="button" type="submit" class="btn btn-outline-primary ms-1">Save</button>
-                <button *ngIf="!isEditing" routerLink="addPet" type="button" class="btn btn-outline-primary ms-1">Add Pet</button>
+                <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-primary" id="accent">Edit</button>
+                <button *ngIf="isEditing" (click)="editParent()" type="button" type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Save</button>
+                <button *ngIf="!isEditing" routerLink="addPet" type="button" class="btn btn-outline-primary ms-1" id="accentoutline">Add Pet</button>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@
                     additional content. This content is a little bit longer.
                   </p> -->
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button [routerLink]="['/pets', pet.id]" type="button" class="btn btn-primary ms-2">View Details</button>
+                    <button [routerLink]="['/pets', pet.id]" type="button" class="btn btn-primary ms-2" id="accent">View Details</button>
                     <button type="button" class="btn btn-outline-success ms-2">Edit</button>
                     <button type="button" class="btn btn-outline-danger ms-2">Delete</button>
                   </div>
