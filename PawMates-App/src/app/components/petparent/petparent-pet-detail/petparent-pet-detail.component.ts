@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-petparent-pet-detail',
   templateUrl: './petparent-pet-detail.component.html',
   styleUrls: ['./petparent-pet-detail.component.css']
 })
-export class PetparentPetDetailComponent {
+export class PetparentPetDetailComponent implements OnInit {
+  pet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''}
+  petParent : any = {firstName:'', lastName:'', email:'', phoneNumber:'', imageUrl:''};
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.apiService.getPetById(+id).subscribe(pet => {
+        this.pet = pet;
+      });
+
+      this.apiService.getPetsParent(+id).subscribe(petParent =>{
+        this.petParent = petParent;
+      })
+    }
+  }
+
+  editPet() {
+    this.apiService.updatePet(this.pet.id, this.pet)
+    .subscribe({
+      next: (response) => {
+        console.log('Editing....');
+        this.router.navigate(['profile']);
+        location.reload();
+      }
+    });
+  }
+
+  handleImageError(){
+    this.pet.imageUrl = "../../assets/for-pet-without-image.png";
+  }
 }
