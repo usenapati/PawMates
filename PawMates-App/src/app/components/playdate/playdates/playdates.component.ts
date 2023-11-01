@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventType } from 'src/app/model/eventtype';
-import { Location } from 'src/app/model/location';
-import { Pet } from 'src/app/model/pet';
 import { PlayDate } from 'src/app/model/playdate';
+import { PlayDateDTO } from 'src/app/model/playdatedto';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,62 +10,33 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./playdates.component.css']
 })
 export class PlaydatesComponent implements OnInit {
-  event: EventType = {
-    id: 0,
-    restrictionTypeId: 0,
-    name: '',
-    description: ''
-  };
-  events: EventType[] = [];
-  location: Location = {
-    id: 0,
-    petTypeId: 0,
-    name: '',
-    street1: '',
-    city: '',
-    state: '',
-    postalCode: '',
-    petAge: 0
-  };
-  locations: Location[] = [];
-  playDate: PlayDate = {
-    id: 0,
-    petParentId: 0,
-    pets: [],
-    locationId: 0,
-    eventId: 0,
+  playDate: PlayDateDTO = {
+    hostName: '',
+    locationName: '',
+    eventName: '',
+    eventDescription: '',
     startTime: new Date,
-    endTime: new Date
+    endTime: new Date,
+    numberOfPets: 0,
+    pets: []
   };
-  playDates: PlayDate[] = [];
+  playDates: PlayDateDTO[] = [];
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      this.apiService.getEventById(+id)
+      this.apiService.getPlayDateById(+id)
       .subscribe({
         next: (response) => {
-          this.event = response;
+          this.playDate = response;
         }});
 
-      this.apiService.getEvents()
+      this.apiService.getPlayDates()
       .subscribe({
-        next: (events: EventType[]) => {
-          this.events = events;
-      }});
-
-      this.apiService.getLocationById(+id)
-      .subscribe({
-        next: (response) => {
-          this.location = response;
-        }});
-
-      this.apiService.getLocations()
-      .subscribe({
-        next: (locations: Location[]) => {
-          this.locations = locations;
+        next: (playDates: PlayDateDTO[]) => {
+          this.playDates = playDates;
       }});
     }
   }

@@ -6,6 +6,8 @@ import { Parent } from '../model/parent';
 import { switchMap } from 'rxjs';
 import { EventType } from '../model/eventtype';
 import { Location } from '../model/location';
+import { PlayDate } from '../model/playdate';
+import { PlayDateDTO } from '../model/playdatedto';
 
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
@@ -118,21 +120,13 @@ export class ApiService {
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
   }
 
-  // Events
-  public getEvents() {
-    return this.http.get<EventType[]>(baseUrl  + '/eventtype');
+  // PlayDates
+  public getPlayDates() {
+    return this.http.get<PlayDateDTO[]>(baseUrl  + '/playdates');
   }
 
-  public getEventById(id: number) {
-    return this.http.get<EventType>(`${baseUrl}/eventtype/${id}`);
+  public getPlayDateById(id: number) {
+    return this.http.get<PlayDateDTO>(`${baseUrl}/playdates/${id}`);
   }
 
-  //Locations
-  public getLocations() {
-    return this.http.get<Location[]>(baseUrl  + '/locations');
-  }
-
-  public getLocationById(id: number) {
-    return this.http.get<Location>(`${baseUrl}/locations/${id}`);
-  }
 }
