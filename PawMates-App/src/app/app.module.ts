@@ -46,6 +46,8 @@ import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
 import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 import { UnknownBreedPipe } from './pipes/unknown-breed.pipe';
 import { PetparentProfileComponent } from './components/petparent/petparent-profile/petparent-profile/petparent-profile.component';
+import { FormatDatePipe } from './pipes/format-date.pipe';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 
 
@@ -71,6 +73,8 @@ import { PetparentProfileComponent } from './components/petparent/petparent-prof
     DateTimePickerComponent,
     UnknownBreedPipe,
     PetparentProfileComponent,
+    FormatDatePipe,
+    FormatTimePipe,
   ],
   imports: [
     BrowserModule,

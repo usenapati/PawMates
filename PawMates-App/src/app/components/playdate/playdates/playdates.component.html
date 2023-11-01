@@ -7,19 +7,18 @@
                 <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="nav-home-tab">
                     <!-- row loop -->
                     <h2>Events</h2>
-                    <!-- *ngFor="let playDate of playDates" -->
-                    <div class="row mb-30">
+                    <div *ngFor="let playDate of playDates" class="row mb-30">
                         <div class="col-lg-10">
                             <div class="event-list-content fix">
                                 <ul data-animation="fadeInUp animated" data-delay=".2s" style="animation-delay: 0.2s;" class="">
-                                    <li>Location: {{ playDate.locationName }}</li>
-                                    <li>{{ playDate.startTime }} - {{ playDate.endTime }}</li>
+                                    <li>{{ playDate.locationName }}</li>
+                                    <li>{{ playDate.startTime | formatDate }} {{ playDate.startTime | formatTime }} - {{ playDate.endTime | formatTime }}</li>
                                 </ul>
-                                <h3>Event: {{ playDate.eventName }}</h3>
-                                <p>Description: {{ playDate.eventDescription }}</p>
-                                <button type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button>
+                                <h3>{{ playDate.eventName }}</h3>
+                                <p>{{ playDate.eventDescription }}</p>
+                                <!-- <button type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button> -->
                                 <button type="button" class="btn btn-primary" id="accent">Join PlayDate</button>
-                                <div class="crical"> </div>
+                                <!-- <div class="crical"> </div> -->
                             </div>
                         </div>
                     </div>

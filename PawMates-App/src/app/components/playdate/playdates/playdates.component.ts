@@ -24,20 +24,10 @@ export class PlaydatesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-
-    if (id) {
-      this.apiService.getPlayDateById(+id)
-      .subscribe({
-        next: (response) => {
-          this.playDate = response;
-        }});
-
       this.apiService.getPlayDates()
       .subscribe({
         next: (playDates: PlayDateDTO[]) => {
           this.playDates = playDates;
       }});
-    }
   }
 }
