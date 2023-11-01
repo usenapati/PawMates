@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Parent } from 'src/app/model/parent';
 import { Pet } from 'src/app/model/pet';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-petparent-detail',
-  templateUrl: './petparent-detail.component.html',
-  styleUrls: ['./petparent-detail.component.css']
+  selector: 'app-petparent-profile',
+  templateUrl: './petparent-profile.component.html',
+  styleUrls: ['./petparent-profile.component.scss']
 })
-export class PetparentDetailComponent implements OnInit {
+export class PetparentProfileComponent implements OnInit{
   pets: Pet[] = [];
   parent: Parent = {
     id: 0,
@@ -19,15 +19,13 @@ export class PetparentDetailComponent implements OnInit {
     phoneNumber: '',
     imageUrl: ''
   };
-  isEditing = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get('id');
-    const id = 8;
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.apiService.getParentById(+id)
+      this.apiService.getParentByPetId(+id)
       .subscribe({
         next: (response) => {
           this.parent = response;
@@ -40,20 +38,5 @@ export class PetparentDetailComponent implements OnInit {
           this.pets = pets;
       }})
     }
-  }
-
-  edit() {
-    this.isEditing = true;
-  }
-  
-  editParent() {
-    this.apiService.updateParent(this.parent.id, this.parent)
-    .subscribe({
-      next: (response) => {
-        console.log('Editing....');
-        this.router.navigate(['profile']);
-        location.reload();
-      }
-    });
   }
 }

@@ -25,7 +25,7 @@ export class LoginComponent{
       this.authService.setToken(response.token);
       // navigate to home page
       this.router.navigate(['/']);
-
+      location.reload();
 
     }, error => {
       console.error('Login failed');

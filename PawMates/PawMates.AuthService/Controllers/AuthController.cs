@@ -55,15 +55,13 @@ namespace PawMates.AuthService.Controllers
             }
             catch (Exception ex)
             {
-
-               throw new DALException("Could not register new User", ex);
+                throw new DALException("Could not register new User", ex);
             }
-            
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
         [HttpPost, Route("login")]
-        public async Task<IActionResult> Login(UserDTO value)
+        public IActionResult Login(UserDTO value)
         {
             if (value == null)
             {
@@ -85,22 +83,21 @@ namespace PawMates.AuthService.Controllers
                 return Unauthorized("Username and password do not match");
             }
 
-            PetParentDTO petParent = null;
+            string petParentId = "";
             if (userLogin.PetParentId != null)
             {
-                 petParent = await _petParentsService.GetPetParentAsync((int)userLogin.PetParentId);
+                petParentId = ((int)userLogin.PetParentId).ToString();
             }
-             
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KeyForSignInSecret@1234"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
                 issuer: "https://localhost:7061",
                 audience: "https://localhost:7061",
-                claims: new List<Claim>(),
+                claims: new List<Claim>() { new Claim("PetParentId", petParentId) },
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(new { Token = tokenString, User = userLogin.MapToDto(), PetParent = petParent });
+            return Ok(new { Token = tokenString });
         }
 
     }

@@ -1,12 +1,12 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg" style="background-color: #7D7BE2">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
       <!-- <a class="navbar-brand" routerLink="">PawMates</a> -->
       <a class="navbar-brand" routerLink="">
         <img
-          src="../../assets/Logo.png"
+          src="../../assets/LogoWhite.png"
           height="50"
           alt="PawMates Logo"
           loading="lazy"
@@ -37,10 +37,10 @@
           <!-- TODO Hide and disable if not logged in -->
       
         </ul>
-        <!-- Left links -->
+        <!-- Right links -->
         <!-- TODO Add Click Event and Update if logged in -->
         <ul *ngIf="isLoggedin" class="navbar-nav">
-          <li mdbDropdown class="nav-item dropdown">
+          <li mdbDropdown class="nav-item dropdown dropstart">
             <a
               class="nav-link dropdown-toggle d-flex align-items-center"
               href="#"
@@ -48,16 +48,19 @@
               role="button"
               mdbDropdownToggle
               aria-expanded="false"
+              style="margin-right: 30px;"
             >
+            <!-- Replace imageUrl with this -->
+            <!-- src="{{ parent.imageUrl }}" -->
               <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp"
+                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" 
                 class="rounded-circle"
-                height="22"
+                height="30"
                 alt=""
                 loading="lazy"
               />
             </a>
-            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <ul mdbDropdownMenu class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
               <li>
                 <a class="dropdown-item" routerLink="profile">My profile</a>
               </li>

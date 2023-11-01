@@ -44,6 +44,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
 import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
 import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
+import { UnknownBreedPipe } from './pipes/unknown-breed.pipe';
+import { PetparentProfileComponent } from './components/petparent/petparent-profile/petparent-profile/petparent-profile.component';
 
 
 
@@ -66,7 +68,9 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     NavComponent,
     PetDetailsComponent,
     PetFormComponent,
-    DateTimePickerComponent
+    DateTimePickerComponent,
+    UnknownBreedPipe,
+    PetparentProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,6 @@ import { DateTimePickerComponent } from './components/date-time-picker/date-time
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
     FontAwesomeModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
