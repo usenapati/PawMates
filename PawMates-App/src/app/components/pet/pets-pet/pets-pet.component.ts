@@ -11,4 +11,8 @@ export class PetsPetComponent implements OnInit  {
 
   constructor() { }
   ngOnInit(): void { }
+
+  handleImageError(){
+    this.pet.imageUrl = "../../assets/for-pet-without-image.png";
+  }
 }
