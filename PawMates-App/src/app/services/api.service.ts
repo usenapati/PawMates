@@ -92,7 +92,7 @@ export class ApiService {
             return this.http.post<{ token: any }>(baseUrl + '/login', {
                 username: register.userName,
                 password: register.password
-              }); 
+              });
           })
         );
       })
@@ -127,6 +127,10 @@ export class ApiService {
 
   public getPlayDateById(id: number) {
     return this.http.get<PlayDateDTO>(`${baseUrl}/playdates/${id}`);
+  }
+
+  public getPetTypes() {
+    return this.http.get<any[]>(baseUrl  + '/petTypes');
   }
 
 }

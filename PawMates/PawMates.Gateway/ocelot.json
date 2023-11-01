@@ -571,6 +571,174 @@
           "Port": 7197
         }
       ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/pettypes",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/pettypes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7097
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/pettypes/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/pettypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7097
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/pettypes",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/pettypes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7097
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/pettypes/{id}",
+      "UpstreamHttpMethod": [ "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/pettypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7097
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/pettypes/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/pettypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7097
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/restrictiontypes",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/restrictiontypes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/restrictiontypes/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/restrictiontypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/restrictiontypes",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/restrictiontypes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/restrictiontypes/{id}",
+      "UpstreamHttpMethod": [ "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/restrictiontypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/restrictiontypes/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [],
+        "AllowedClaims": [],
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+        }
+      },
+      "DownstreamPathTemplate": "/api/restrictiontypes/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ]
     }
   ]
 }
