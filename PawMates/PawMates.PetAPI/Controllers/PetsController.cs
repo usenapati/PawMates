@@ -28,7 +28,7 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             var pets = _repo.GetAll().Data.ToList();
-            
+
 
             return Ok(pets.Select(a => a.MapToDto()).ToList());
         }
@@ -43,7 +43,7 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             Pet pet = getResult.Data;
-  
+
             return Ok(pet.MapToDto());
 
         }
@@ -56,14 +56,14 @@ namespace PawMates.PetAPI.Controllers
             if (!existResult.Success || existResult.Data == null)
             {
                 return BadRequest($"Pet {id} is not exist.");
-            }          
+            }
 
             return Ok(existResult.Data.PetParent.MapToDTO());
         }
 
         // POST api/<PetsController>
         [HttpPost]
-       // [Authorize]
+        // [Authorize]
         public IActionResult Post([FromBody] PetDTO value)
         {
             if (!ModelState.IsValid)
@@ -71,7 +71,7 @@ namespace PawMates.PetAPI.Controllers
                 return BadRequest(ModelState);
             }
             var pet = value.MapToEntity();
-            _repo.Add(pet);            
+            _repo.Add(pet);
             return CreatedAtAction(nameof(GetById), new { id = pet.Id }, pet.MapToDto());
         }
 
@@ -83,10 +83,7 @@ namespace PawMates.PetAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var petParentId = User.Claims.Where(x => x.Type == "PetParentId").Select(x => x.Value).FirstOrDefault();
-            
-            
             if (petParentId != null)
             {
                 return Forbid();

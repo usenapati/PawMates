@@ -7,8 +7,8 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthenticationService {
 
   private jwtToken: string | null = null;
-  constructor() { }
 
+  constructor() { }
 
   public setToken(token: string): void {
     this.jwtToken = token;
@@ -39,7 +39,7 @@ export class AuthenticationService {
 
   public getDecodedToken(): any {
     const token = this.getToken();
-    if(!token){
+    if (!token) {
       return null;
     }
     return jwtDecode(token);

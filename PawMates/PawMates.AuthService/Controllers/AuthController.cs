@@ -55,10 +55,8 @@ namespace PawMates.AuthService.Controllers
             }
             catch (Exception ex)
             {
-
-               throw new DALException("Could not register new User", ex);
+                throw new DALException("Could not register new User", ex);
             }
-            
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
@@ -88,15 +86,14 @@ namespace PawMates.AuthService.Controllers
             string petParentId = "";
             if (userLogin.PetParentId != null)
             {
-                 petParentId = ((int)userLogin.PetParentId).ToString();
+                petParentId = ((int)userLogin.PetParentId).ToString();
             }
-             
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KeyForSignInSecret@1234"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(
                 issuer: "https://localhost:7061",
                 audience: "https://localhost:7061",
-                claims: new List<Claim>() { new Claim("PetParentId", petParentId)},
+                claims: new List<Claim>() { new Claim("PetParentId", petParentId) },
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signinCredentials);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
