@@ -1,5 +1,6 @@
 using PawMates.CORE.DTOs;
 using PawMates.CORE.Models;
+using System.ComponentModel;
 
 namespace PawMates.CORE.Mappers
 {
@@ -48,6 +49,24 @@ namespace PawMates.CORE.Mappers
                 
             };
         }
+        // For output to front-end
+        public static PlayDateDTO2 MapToDto2(this PlayDate source)
+        {
+            return new PlayDateDTO2
+            {
+                Id = source.Id,
+                HostName = source.PetParent.FirstName + " " + source.PetParent.LastName,
+                LocationName = source.Location.Name,
+                EventName = source.EventType.Name,
+                EventDescription = source.EventType.Description,
+                StartTime = source.StartTime,
+                EndTime = source.EndTime,
+                NumberOfPets = source.Pets.Count,
+                Pets = source.Pets.Select(p => p.MapToDto()).ToList()
+            };            
+        }
+      
+
         public static PlayDate MapToEntity(this PlayDateDTO source)
         {
             return new PlayDate
