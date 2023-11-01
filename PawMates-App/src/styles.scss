@@ -11,6 +11,14 @@
 @import '@fortawesome/fontawesome-free/scss/brands.scss';
  
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/regular.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+ 
+@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+@import "@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
