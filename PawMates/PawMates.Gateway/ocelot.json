@@ -258,24 +258,31 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/pets/{id}",
+      "UpstreamPathTemplate": "/gateway/pets/{everything}",
       "UpstreamHttpMethod": [ "Put" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [],
-        "AllowedClaims": ["userId"],
-        "JwksOptions": {
-          "Authority": "https://localhost:7061"
-        }
-      },
-      "DownstreamPathTemplate": "/api/pets/{id}",
+      "DownstreamPathTemplate": "/api/pets/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 7254
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+
+        "JwksOptions": {
+          "Authority": "https://localhost:7061"
+
+        }
+      },
+      "AddClaimsToRequest": {
+        "Claims": [
+          {
+            "Name": "PetParentId"
+          }
+        ]
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/pets/{id}",
@@ -571,4 +578,3 @@
     }
   ]
 }
-

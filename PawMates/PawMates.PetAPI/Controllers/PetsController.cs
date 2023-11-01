@@ -28,7 +28,7 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             var pets = _repo.GetAll().Data.ToList();
-            //Console.WriteLine("===============*****=================" + pets[0].PetParent.FirstName);
+
 
             return Ok(pets.Select(a => a.MapToDto()).ToList());
         }
@@ -43,8 +43,7 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             Pet pet = getResult.Data;
-            //Console.WriteLine("===============*****=================" + pet.PetType.Species);
-            //Console.WriteLine("===============*****================="+ pet.PetParent);
+
             return Ok(pet.MapToDto());
 
         }
@@ -58,15 +57,13 @@ namespace PawMates.PetAPI.Controllers
             {
                 return BadRequest($"Pet {id} is not exist.");
             }
-            //PetParent petParent = existResult.Data.PetParent;
-            
 
             return Ok(existResult.Data.PetParent.MapToDTO());
         }
 
         // POST api/<PetsController>
         [HttpPost]
-       // [Authorize]
+        // [Authorize]
         public IActionResult Post([FromBody] PetDTO value)
         {
             if (!ModelState.IsValid)
@@ -74,7 +71,7 @@ namespace PawMates.PetAPI.Controllers
                 return BadRequest(ModelState);
             }
             var pet = value.MapToEntity();
-            _repo.Add(pet);            
+            _repo.Add(pet);
             return CreatedAtAction(nameof(GetById), new { id = pet.Id }, pet.MapToDto());
         }
 
@@ -86,13 +83,13 @@ namespace PawMates.PetAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var userId = this.User.Claims.Where(x => x.Type == "userId").Select(x => x.Value).FirstOrDefault();
-            if (userId != null)
+            var petParentId = User.Claims.Where(x => x.Type == "PetParentId").Select(x => x.Value).FirstOrDefault();
+            if (petParentId != null)
             {
                 return Forbid();
             }
+
             var getResult = _repo.GetById(id);
-            
             if (!getResult.Success || getResult.Data == null)
             {
                 return NotFound();
