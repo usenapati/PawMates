@@ -1,0 +1,39 @@
+.pet-detail-container{
+    margin: 2% 5%;
+}
+
+.pet-detail-info-image-container{
+    display: flex;
+    justify-content: center;
+
+}
+
+.pet-detail-info-image-container div{
+    margin:  3em;
+    font-size: 1em;
+}
+
+
+.pet-detail-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+#button {
+    background-color: #490A3D;
+    border-color: #490A3D;
+    color: white;
+}
+
+#button:hover {
+  background-color: white;
+  border-color: #490A3D;
+  color: #490A3D;
+}

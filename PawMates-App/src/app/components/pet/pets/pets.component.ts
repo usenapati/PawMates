@@ -9,12 +9,12 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PetsComponent implements OnInit {
   pets: any[] = [];
-  constructor(private route: ActivatedRoute, private apiService: ApiService){ }
+  constructor(private route: ActivatedRoute, private apiService: ApiService){
+   }
 
   ngOnInit(): void {
       this.apiService.getPets().subscribe(pets => {
         this.pets = pets;
       });
-
   }
 }

@@ -1,3 +1,9 @@
 #login {
-    color: black;
+    color: white;
+}
+#login:hover {
+    color: #313639;
+}
+nav {
+    background-color: #490A3D;
 }

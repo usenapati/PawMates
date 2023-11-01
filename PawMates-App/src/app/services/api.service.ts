@@ -4,6 +4,10 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
 import { switchMap } from 'rxjs';
+import { EventType } from '../model/eventtype';
+import { Location } from '../model/location';
+import { PlayDate } from '../model/playdate';
+import { PlayDateDTO } from '../model/playdatedto';
 
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
@@ -12,7 +16,6 @@ const baseUrl = 'https://localhost:7136/gateway';
 export class ApiService {
 
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
-
 
   private getAuthHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -108,8 +111,22 @@ export class ApiService {
     });
   }
 
+  public getParentByPetId(id: number) {
+    return this.http.get<Parent>(`${baseUrl}/pets/${id}/petparent`);
+  }
+
   public getPetsByParent(parentId: number) {
     //parentId = this.authService.getDecodedToken().parentId;
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
   }
+
+  // PlayDates
+  public getPlayDates() {
+    return this.http.get<PlayDateDTO[]>(baseUrl  + '/playdates');
+  }
+
+  public getPlayDateById(id: number) {
+    return this.http.get<PlayDateDTO>(`${baseUrl}/playdates/${id}`);
+  }
+
 }

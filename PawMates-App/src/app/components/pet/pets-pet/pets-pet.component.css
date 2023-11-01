@@ -7,3 +7,14 @@
     height: 350px;
     object-fit: cover;
 }
+#button {
+    background-color: white;
+    border-color: #490A3D;
+    color: #490A3D;
+}
+
+#button:hover {
+    background-color: #490A3D;
+    border-color: #490A3D;
+    color: white;
+}
