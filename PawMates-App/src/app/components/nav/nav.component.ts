@@ -20,7 +20,12 @@ export class NavComponent implements OnInit {
   isLoggedin: boolean = false;
   constructor(private authService: AuthenticationService, private router: Router) { }
   ngOnInit(): void {
-    this.isLoggedin = this.authService.isAuthenticated();
+    this.router.events.subscribe(event => {
+      if (event.constructor.name === "NavigationEnd") {
+        this.isLoggedin = this.authService.isAuthenticated();
+      }
+    })
+    
   }
 
   logout() {

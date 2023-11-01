@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
+import { switchMap } from 'rxjs';
 
 const baseUrl = 'https://localhost:7136/gateway';
 @Injectable({
@@ -19,7 +20,7 @@ export class ApiService {
     });
   }
 
-
+  // Pets
   public getPets() {
     return this.http.get<any[]>(baseUrl  + '/pets');
   }
@@ -50,6 +51,13 @@ export class ApiService {
     return this.http.get<any>(baseUrl + `/pets/${id}/petparent`);
   }
 
+  // Pet Parent
+  public addPetParent(PetParent: any) {
+    return this.http.post<any>(baseUrl + '/parents', PetParent, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   public login(username: string, password: string) {
     return this.http.post<{ token: any }>(baseUrl + '/login', {
       id: 0,
@@ -60,14 +68,32 @@ export class ApiService {
 
   public register(register: RegisterModel)
   {
-    // Create a Pet Parent
-    // Create User
-    // Login to new User
-    return this.http.post<{ token: any }>(baseUrl + '/login', {
-      id: 0,
-      username: register.userName,
-      password: register.password
-    });
+    var petParentId = 0;
+    var petParent = {
+      firstName: register.firstName,
+      lastName: register.lastName,
+      email: register.email,
+      phoneNumber: register.phoneNumber,
+      imageUrl: register.profileImageURL
+    };
+
+    return this.addPetParent(petParent).pipe(
+      switchMap(parent => {
+        return this.http.post<{ token: any }>(baseUrl + '/register', {
+            id: 0,
+            petParentId: parent.id,
+            username: register.userName,
+            password: register.password
+        }).pipe(
+          switchMap(registeredUser => {
+            return this.http.post<{ token: any }>(baseUrl + '/login', {
+                username: register.userName,
+                password: register.password
+              }); 
+          })
+        );
+      })
+    );
   }
 
   public getParentById(id: number) {

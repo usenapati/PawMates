@@ -32,4 +32,17 @@ export class LoginComponent{
       this.router.navigate(['/login']);
     });
   }
+
+  loginDemoUser(){
+    this.apiService.login("bsmith72", "X)EcRaUmE}=tWgq").subscribe(response => {
+      this.authService.setToken(response.token);
+      // navigate to home page
+      this.router.navigate(['/']);
+
+
+    }, error => {
+      console.error('Login failed');
+      this.router.navigate(['/login']);
+    });
+  }
 }
