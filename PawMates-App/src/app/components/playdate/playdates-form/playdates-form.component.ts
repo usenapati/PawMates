@@ -79,7 +79,7 @@ export class PlaydatesFormComponent implements OnInit{
         textField: 'item_text',
         selectAllText: 'Select All',
         unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 3,
+        itemsShowLimit: 5,
     };
 }
 
