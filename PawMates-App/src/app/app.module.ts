@@ -94,7 +94,6 @@ import { PetparentProfileComponent } from './components/petparent/petparent-prof
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
-    FontAwesomeModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
   ],
