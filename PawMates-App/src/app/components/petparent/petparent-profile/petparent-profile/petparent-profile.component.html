@@ -1,1 +1,96 @@
-<p>petparent-profile works!</p>
+<section style="background-color: #eee;">
+    <div class="container py-5">
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="{{ parent.imageUrl }}" alt="Profile Picture" id="pfp"  class="img-fluid rounded-circle">
+              <h5 class="my-3">{{ parent.firstName }} {{ parent.lastName }}</h5>
+              <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary" id="accent">Message</button>
+                <!-- <button type="button" type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Save</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Parent Information -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Full Name</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{ parent.firstName }} {{ parent.lastName }}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Email</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{ parent.email }}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Phone</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{ parent.phoneNumber }}</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Address</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">About Me</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">A short description about me!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+       
+        <!-- Pet Information -->
+        <h3>My Pets</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div *ngFor="let pet of pets"
+                    routerLink="/profile/{{ pet.id }}"
+                    routerLinkActive="active"
+                    class="card h-100">
+                <img id="pet" src="{{ pet.imageUrl }}" class="card-img-top" alt="Pet photo"/>
+                <div class="card-body card text-center">
+                  <h5 class="card-title">{{ pet.name }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ pet.breed }} Age: {{ pet.age }}</h6>
+                  <!-- <p class="card-text">
+                    This is a longer card with supporting text below as a natural lead-in to
+                    additional content. This content is a little bit longer.
+                  </p> -->
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button [routerLink]="['/pets', pet.id]" type="button" class="btn btn-primary ms-2" id="accent">View Details</button>
+                    <button type="button" class="btn btn-outline-success ms-2">Edit</button>
+                    <button type="button" class="btn btn-outline-danger ms-2">Delete</button>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>

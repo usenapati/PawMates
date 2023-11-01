@@ -108,6 +108,10 @@ export class ApiService {
     });
   }
 
+  public getParentByPetId(id: number) {
+    return this.http.get<Parent>(`${baseUrl}/pets/${id}/petparent`);
+  }
+
   public getPetsByParent(parentId: number) {
     //parentId = this.authService.getDecodedToken().parentId;
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
