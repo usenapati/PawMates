@@ -84,7 +84,7 @@ namespace PawMates.PetAPI.Controllers
                 return BadRequest(ModelState);
             }
             var petParentId = User.Claims.Where(x => x.Type == "PetParentId").Select(x => x.Value).FirstOrDefault();
-            if (petParentId != null)
+            if (petParentId == null)
             {
                 return Forbid();
             }
@@ -95,7 +95,13 @@ namespace PawMates.PetAPI.Controllers
                 return NotFound();
             }
             var pet = getResult.Data;
-            pet.PetParentId = value.ParentId;
+
+            if(pet.PetParentId != int.Parse(petParentId))
+            {
+                return Forbid();
+            }
+
+            //pet.PetParentId = value.ParentId;
             pet.Name = value.Name;
             pet.Age = value.Age;
             pet.Breed = value.Breed;
