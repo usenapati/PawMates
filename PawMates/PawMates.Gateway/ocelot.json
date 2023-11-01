@@ -275,6 +275,13 @@
           "Authority": "https://localhost:7061"
 
         }
+      },
+      "AddClaimsToRequest": {
+        "Claims": [
+          {
+            "Name": "PetParentId"
+          }
+        ]
       }
     },
     {
