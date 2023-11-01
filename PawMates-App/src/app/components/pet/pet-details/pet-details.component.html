@@ -1,17 +1,81 @@
-<div class="pet-detail-container">
-    <h2>Pet Details</h2>
-    <div class="pet-detail-info-image-container">
-        <div class="pet-detail-info-container">
-            <p>Name: {{ pet.name }} </p>
-            <p>Breed: {{ pet.breed}}</p>
-            <p>Age: {{pet.age }}</p>
-            <p >Postal code: {{pet.postalCode}}</p>
-            <p>
-                Parent Name: {{petParent.firstName}} , {{petParent.lastName}}
-            </p>
-        </div>
-        <div class="pet-detail-image-container" >
-             <img  class="pet-detail-image rounded-circle" src={{pet.imageUrl}} (error)="handleImageError()">
-        </div>
-    </div>
-</div>
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="card card-style1 border-0">
+                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                        <div class="row align-items-center">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                  <div class="card mb-4 border-0">
+                                    <div class="card-body text-center">
+                                        <img class="rounded-circle" src={{pet.imageUrl}} (error)="handleImageError()" alt="Pet Picture">
+                                      <h5 class="my-3">{{ pet.name }}</h5>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            <div  class="col-lg-8">
+                                <div class="card mb-4">
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <p class="mb-0">Name</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ pet.name }}</p>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <p class="mb-0">Breed</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ pet.breed | unknownBreed}}</p>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <p class="mb-0">Age</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{pet.age }}</p>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <p class="mb-0">Address</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{pet.postalCode}}</p>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <p class="mb-0">About Me</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                        <p class="text-muted mb-0">A short description about me!</p>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                          <p class="mb-0">Parent</p>
+                                        </div>
+                                        <div class="col-sm-9" style="display: flex;">
+                                          <p class="text-muted mb-0">{{petParent.firstName}} {{petParent.lastName}}&nbsp;</p>
+                                          <button [routerLink]="['parents', pet.parentId]" type="button" class="btn btn-primary ms-2" id="button">View Details</button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

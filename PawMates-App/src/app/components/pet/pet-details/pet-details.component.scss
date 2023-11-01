@@ -20,3 +20,20 @@
     justify-content: center;
 
 }
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+#button {
+    background-color: #490A3D;
+    border-color: #490A3D;
+    color: white;
+}
+
+#button:hover {
+  background-color: white;
+  border-color: #490A3D;
+  color: #490A3D;
+}
