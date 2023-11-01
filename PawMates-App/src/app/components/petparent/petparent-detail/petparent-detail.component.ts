@@ -19,6 +19,16 @@ export class PetparentDetailComponent implements OnInit {
     phoneNumber: '',
     imageUrl: ''
   };
+  pet: Pet = {
+    id: 0,
+    parentId : 0,
+    petTypeId: 0, 
+    name: '', 
+    breed: '', 
+    age: 0, 
+    postalCode: '', 
+    imageUrl: ''
+  };
   isEditing = false;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
@@ -55,5 +65,9 @@ export class PetparentDetailComponent implements OnInit {
         location.reload();
       }
     });
+  }
+
+  deletePet() {
+    this.apiService.deletePetById(this.pet.id);
   }
 }

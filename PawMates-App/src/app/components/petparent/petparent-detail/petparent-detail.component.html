@@ -125,8 +125,7 @@
                     additional content. This content is a little bit longer.
                   </p> -->
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button [routerLink]="['/pets', pet.id]" type="button" class="btn btn-primary ms-2" id="accent">View Details</button>
-                    <button type="button" class="btn btn-outline-success ms-2">Edit</button>
+                    <button [routerLink]="['pets', pet.id, 'edit']" type="button" class="btn btn-primary ms-2" id="accent">Edit</button>
                     <button type="button" class="btn btn-outline-danger ms-2">Delete</button>
                   </div>
                   
