@@ -37,7 +37,6 @@ export class PetFormComponent implements OnInit {
     this.parentId = this.authService.getDecodedToken().PetParentId;
     this.apiService.getPetTypes().subscribe(petTypes =>{
       this.petTypes = petTypes;
-      console.log(JSON.stringify(petTypes[0]) )
     });
    }
 
@@ -70,7 +69,6 @@ export class PetFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.petTypeId.value)
     this.validationForm.markAllAsTouched();
     if (this.validationForm.valid){
       let petObj: PetDTO  = {
@@ -83,7 +81,6 @@ export class PetFormComponent implements OnInit {
         imageUrl: this.imageUrl.value,
         description: this.description.value
       };
-      console.log(petObj);
       this.apiService.addPet(petObj).subscribe(p => {
       });
       this.validationForm.reset();
