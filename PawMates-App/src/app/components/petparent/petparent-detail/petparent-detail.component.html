@@ -10,7 +10,7 @@
           </nav>
         </div>
       </div>
-  
+
       <div class="row">
         <div class="col-lg-4">
           <div class="card mb-4">
@@ -20,7 +20,7 @@
               <div class="d-flex justify-content-center mb-2">
                 <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-primary" id="accent">Edit</button>
                 <button *ngIf="isEditing" (click)="editParent()" type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Save</button>
-                <button *ngIf="!isEditing" routerLink="addPet" type="button" class="btn btn-outline-primary ms-1" id="accentoutline">Add Pet</button>
+                <button *ngIf="!isEditing" [routerLink]="['pets/add']" type="button" class="btn btn-outline-primary ms-1" id="accentoutline">Add Pet</button>
               </div>
             </div>
           </div>
@@ -84,24 +84,24 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName" 
+                        <input type="text" class="form-control" id="firstName"
                         name="firstName" [(ngModel)]="parent.firstName">
                     </div>
                     <div class="col-sm-6">
                         <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" 
+                        <input type="text" class="form-control" id="lastName"
                         name="lastName" [(ngModel)]="parent.lastName">
                     </div>
                   </div>
                   <div class="row" style="margin-top: 25px;">
                     <div class="col-sm-6">
                       <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" 
+                        <input type="text" class="form-control" id="email"
                         name="email" [(ngModel)]="parent.email">
                     </div>
                     <div class="col-sm-6">
                       <label for="phone">Phone</label>
-                        <input type="text" class="form-control" id="phone" 
+                        <input type="text" class="form-control" id="phone"
                         name="phone" [(ngModel)]="parent.phoneNumber">
                     </div>
                     <div class="col-sm-12" style="margin-top: 25px;">
@@ -132,7 +132,7 @@
                     <button [routerLink]="['pets', pet.id, 'edit']" type="button" class="btn btn-primary ms-2" id="accent">Edit</button>
                     <button type="submit" (click)="deletePet()" class="btn btn-outline-danger ms-2">Delete</button>
                   </div>
-                  
+
               </div>
             </div>
           </div>

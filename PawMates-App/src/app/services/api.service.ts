@@ -92,7 +92,7 @@ export class ApiService {
             return this.http.post<{ token: any }>(baseUrl + '/login', {
                 username: register.userName,
                 password: register.password
-              }); 
+              });
           })
         );
       })
@@ -127,6 +127,27 @@ export class ApiService {
 
   public getPlayDateById(id: number) {
     return this.http.get<PlayDateDTO>(`${baseUrl}/playdates/${id}`);
+  }
+  // Events
+  public getEvents() {
+    return this.http.get<EventType[]>(baseUrl  + '/eventtype');
+  }
+
+  public getEventById(id: number) {
+    return this.http.get<EventType>(`${baseUrl}/eventtype/${id}`);
+  }
+
+  //Locations
+  public getLocations() {
+    return this.http.get<Location[]>(baseUrl  + '/locations');
+  }
+
+  public getLocationById(id: number) {
+    return this.http.get<Location>(`${baseUrl}/locations/${id}`);
+  }
+
+  public getPetTypes() {
+    return this.http.get<any[]>(baseUrl  + '/petTypes');
   }
 
 }

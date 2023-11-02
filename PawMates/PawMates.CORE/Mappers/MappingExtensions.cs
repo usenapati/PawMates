@@ -184,5 +184,41 @@ namespace PawMates.CORE.Mappers
                 Description= source.Description,
             };
         }
+
+        public static PetTypeDTO MapToDto(this PetType source)
+        {
+            return new PetTypeDTO
+            {
+                Id = source.Id,
+                Species = source.Species
+            };
+        }
+
+        public static PetType MapToEntity(this PetTypeDTO source)
+        {
+            return new PetType
+            {
+                Id = source.Id,
+                Species = source.Species
+            };
+        }
+
+        public static RestrictionTypeDTO MapToDto(this RestrictionType source)
+        {
+            return new RestrictionTypeDTO
+            {
+                Id = source.Id,
+                Name = source.Name
+            };
+        }
+
+        public static RestrictionType MapToEntity(this RestrictionTypeDTO source)
+        {
+            return new RestrictionType
+            {
+                Id = source.Id,
+                Name = source.Name
+            };
+        }
     }
 }
