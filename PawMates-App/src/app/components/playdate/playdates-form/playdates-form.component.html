@@ -40,9 +40,8 @@
                 <mdb-form-control>
                     <div class="form-outline mb-4">
                     <select mdbInput class="form-control" 
-                            name="selectLocation" 
+                            name="selectLocation.name" 
                             id="locations" 
-
                             (ngModelChange)="onLocationSelect($event)"
                             [(ngModel)]="selectedLocation">
                         <option *ngFor="let op of locationOptions" [value]="op.name">>
@@ -163,7 +162,7 @@
             </div>
             <!-- Create PlayDate Button -->
             <div>
-                <button mdbRipple type="button" class="btn submit-button btn-block">Create Play Date</button>
+                <button mdbRipple type="button" (click)="onSubmit()" class="btn submit-button btn-block">Create Play Date</button>
             </div>
         </div>
       </div>
