@@ -61,6 +61,29 @@ export class ApiService {
     });
   }
 
+  public getParentById(id: number) {
+    return this.http.get<Parent>(`${baseUrl}/parents/${id}`);
+  }
+
+  public updateParent(id: number, parent: Parent) {
+    return this.http.put<Parent>(`${baseUrl}/parents/${id}`, parent, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+
+  public getParents() {
+    return this.http.get<Parent[]>(baseUrl  + '/parents');
+  }
+
+  public getParentByPetId(id: number) {
+    return this.http.get<Parent>(`${baseUrl}/pets/${id}/petparent`);
+  }
+
+  public getPetsByParent(parentId: number) {
+    return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
+  }
+
+  // Login and Register
   public login(username: string, password: string) {
     return this.http.post<{ token: any }>(baseUrl + '/login', {
       id: 0,
@@ -99,27 +122,7 @@ export class ApiService {
     );
   }
 
-  public getParentById(id: number) {
-    return this.http.get<Parent>(`${baseUrl}/parents/${id}`);
-  }
-
-  public updateParent(id: number, parent: Parent) {
-    return this.http.put<Parent>(`${baseUrl}/parents/${id}`, parent, {
-      headers: this.getAuthHeaders(),
-    });
-  }
-
-  public getParents() {
-    return this.http.get<Parent[]>(baseUrl  + '/parents');
-  }
-
-  public getParentByPetId(id: number) {
-    return this.http.get<Parent>(`${baseUrl}/pets/${id}/petparent`);
-  }
-
-  public getPetsByParent(parentId: number) {
-    return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
-  }
+  
 
   // PlayDates
   public getPlayDates() {
@@ -151,6 +154,12 @@ export class ApiService {
     return this.http.get<EventType>(`${baseUrl}/eventtype/${id}`);
   }
 
+  public addEvent(Event: any) {
+    return this.http.post<any>(baseUrl + '/eventtype', Event, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   //Locations
   public getLocations() {
     return this.http.get<Location[]>(baseUrl  + '/locations');
@@ -158,6 +167,12 @@ export class ApiService {
 
   public getLocationById(id: number) {
     return this.http.get<Location>(`${baseUrl}/locations/${id}`);
+  }
+
+  public addLocation(Location: any) {
+    return this.http.post<any>(baseUrl + '/locations', Location, {
+      headers: this.getAuthHeaders()
+    });
   }
 
   public getPetTypes() {
