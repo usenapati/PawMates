@@ -22,12 +22,12 @@ export class PetFormComponent implements OnInit {
   constructor(private authService: AuthenticationService, private apiService: ApiService) {
     this.validationForm = new FormGroup({
       petTypeId: new FormControl(1, { validators: Validators.required, updateOn: 'submit' }),
-      name : new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      breed :  new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      age: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      postalCode: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      imageUrl: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      description: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
+      name : new FormControl(null, { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), updateOn: 'submit' }),
+      breed :  new FormControl(null, { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), updateOn: 'submit' }),
+      age: new FormControl(null, { validators: Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0), Validators.max(100)]), updateOn: 'submit' }),
+      postalCode: new FormControl(null, { validators: Validators.compose([Validators.required, Validators.maxLength(10)]), updateOn: 'submit' }),
+      imageUrl: new FormControl(null, { validators: Validators.compose([Validators.required, Validators.maxLength(255)]), updateOn: 'submit' }),
+      description: new FormControl(null, { validators: Validators.compose([Validators.required, Validators.maxLength(255)]), updateOn: 'submit' }),
     });
 
   }
