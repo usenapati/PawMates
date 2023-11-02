@@ -1,9 +1,13 @@
 export interface RegisterModel {
     userName: string,
+    password: string,
     firstName: string,
     lastName: string,
     email: string,
     phoneNumber: string,
     profileImageURL: string,
-    password: string, // Encrypt this
+    description: string,
+    city: string,
+    state: string,
+    postalCode: string
 }

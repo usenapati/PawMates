@@ -100,7 +100,11 @@ export class ApiService {
       lastName: register.lastName,
       email: register.email,
       phoneNumber: register.phoneNumber,
-      imageUrl: register.profileImageURL
+      imageUrl: register.profileImageURL,
+      description: register.description,
+      city: register.city,
+      state: register.state,
+      postalCode: register.postalCode
     };
 
     return this.addPetParent(petParent).pipe(
