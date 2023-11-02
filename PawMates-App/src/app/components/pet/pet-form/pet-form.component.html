@@ -1,4 +1,17 @@
-<form class="pet-form" [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+<!-- <div class="input-section">
+   ParentId:  {{parentId}}
+    <input [(ngModel)]="newPet.name" placeholder="Name...">
+    <input [(ngModel)]="newPet.petTypeId" placeholder="petTypeId:...">
+    <input [(ngModel)]="newPet.breed" placeholder="Breed...">
+    <input [(ngModel)]="newPet.age" placeholder="Age...">
+    <input [(ngModel)]="newPet.postalCode" placeholder="Postal Code...">
+    <input [(ngModel)]="newPet.imageUrl" placeholder="Image Url...">
+    <button (click)="addPet()">Add</button>
+
+</div> -->
+
+
+<form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
     <div class="col">
       <div class="col-md-6">
         <mdb-form-control>
@@ -40,16 +53,6 @@
             ></mdb-success
           >
         </mdb-form-control>
-      </div>
-
-      <div >
-        <label>Pet Type  </label>
-        <select name="task-form-project" id="task-form-project" onChange={(e) => setProjectId(Number(e.target.value))} >
-            <option value={0}>Inbox</option>
-            {projects && Object.values(projects).map(project => (
-                <option value={`${project.id}`} selected={project.id == task.project_id}>{project.project_name}</option>
-            ))}
-        </select>
       </div>
 
       <div class="col-md-6">
