@@ -15,28 +15,30 @@ export class PetFormComponent implements OnInit {
 
 //   @Input() parent: any;
 //   newPet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:'', description: ''}
-
+  petTypeId2! : number;
   parentId : string = "";
   petTypes : any[] = [];
   validationForm: FormGroup;
   constructor(private authService: AuthenticationService, private apiService: ApiService) {
     this.validationForm = new FormGroup({
-      petTypeId: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
+      petTypeId: new FormControl(1, { validators: Validators.required, updateOn: 'submit' }),
       name : new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
       breed :  new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
       age: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
       postalCode: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
-      imageUrl: new FormControl(null, { validators: Validators.required, updateOn: 'submit' })
+      imageUrl: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
+      description: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
     });
-    this.apiService.getPetTypes().subscribe(petTypes =>{
-      this.petTypes = petTypes;
-    });
+
   }
 
   ngOnInit(): void {
 
     this.parentId = this.authService.getDecodedToken().PetParentId;
-
+    this.apiService.getPetTypes().subscribe(petTypes =>{
+      this.petTypes = petTypes;
+      console.log(JSON.stringify(petTypes[0]) )
+    });
    }
 
    get name(): AbstractControl {
@@ -63,7 +65,12 @@ export class PetFormComponent implements OnInit {
     return this.validationForm.get('imageUrl')!;
   }
 
+  get description(): AbstractControl {
+    return this.validationForm.get('description')!;
+  }
+
   onSubmit(): void {
+    console.log(this.petTypeId.value)
     this.validationForm.markAllAsTouched();
     if (this.validationForm.valid){
       let petObj: PetDTO  = {
@@ -73,8 +80,10 @@ export class PetFormComponent implements OnInit {
         breed: this.breed.value,
         age: parseInt(this.age.value),
         postalCode: this.postalCode.value,
-        imageUrl: this.imageUrl.value
+        imageUrl: this.imageUrl.value,
+        description: this.description.value
       };
+      console.log(petObj);
       this.apiService.addPet(petObj).subscribe(p => {
       });
       this.validationForm.reset();
