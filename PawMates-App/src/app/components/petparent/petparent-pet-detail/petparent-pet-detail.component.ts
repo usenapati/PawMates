@@ -33,7 +33,6 @@ export class PetparentPetDetailComponent implements OnInit {
       next: (response) => {
         console.log('Editing....');
         this.router.navigate(['profile']);
-        location.reload();
       }
     });
   }

@@ -12,6 +12,7 @@ namespace PawMates.CORE.DTOs
     public class PlayDateDTO2
     {
         public int Id { get; set; }
+        public int HostId { get; set; }
         public string HostName { get; set; }
         public string LocationName { get; set; }
         public string Address { get; set; }

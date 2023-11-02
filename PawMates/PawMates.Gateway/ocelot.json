@@ -258,9 +258,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/pets/{everything}",
+      "UpstreamPathTemplate": "/gateway/pets/{id}",
       "UpstreamHttpMethod": [ "Put" ],
-      "DownstreamPathTemplate": "/api/pets/{everything}",
+      "DownstreamPathTemplate": "/api/pets/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -270,7 +270,8 @@
       ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-
+        "AllowedScopes": [],
+        "AllowedClaims": [],
         "JwksOptions": {
           "Authority": "https://localhost:7061"
 
@@ -291,6 +292,7 @@
           "Authority": "https://localhost:7061"
         }
       },
+
       "DownstreamPathTemplate": "/api/pets/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -515,14 +517,6 @@
     {
       "UpstreamPathTemplate": "/gateway/parents",
       "UpstreamHttpMethod": [ "Post" ],
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bearer",
-      //  "AllowedScopes": [],
-      //  "AllowedClaims": [],
-      //  "JwksOptions": {
-      //    "Authority": "https://localhost:7061"
-      //  }
-      //},
       "DownstreamPathTemplate": "/api/parents",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
