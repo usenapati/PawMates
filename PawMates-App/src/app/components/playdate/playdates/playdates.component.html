@@ -11,12 +11,12 @@
             <div class="card-body p-4">
                     <div class="event-list-content fix">
                         <ul style="padding-bottom: 10px;">
-                            <li style="padding-right: 10px;">{{ playDate.locationName }}</li>
-                            <li>{{ playDate.startTime | formatDate }} {{ playDate.startTime | formatTime }} - {{ playDate.endTime | formatTime }}</li>
+                          <li style="padding-right: 752px;">{{ playDate.startTime | formatDate }}</li>
+                          <li>{{ playDate.city }}, {{playDate.state}} {{playDate.postalCode}}</li>
                         </ul>
                         <h3>{{ playDate.eventName }}</h3>
                         <p>{{ playDate.eventDescription }}</p>
-                        <button type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button>
+                        <button [routerLink]="[playDate.id]" type="button" class="btn btn-outline-primary ms-1" id="accentoutline">Read More</button>
                         <!-- <div class="crical"> </div> -->
                     </div>
               <hr class="my-4">

@@ -12,8 +12,13 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PlaydatesComponent implements OnInit {
   playDate: PlayDateDTO = {
+    id: 0,
     hostName: '',
     locationName: '',
+    address: '',
+    city: '',
+    state: '',
+    postalCode: '',
     eventName: '',
     eventDescription: '',
     startTime: new Date,
