@@ -23,17 +23,18 @@
                     </div>
                 </mdb-form-control>
                 <!-- Pet Select input -->
-                    <ng-multiselect-dropdown
-                        mdbInput
-                        [placeholder]="'Host\'s Pet(s)'"
-                        [settings]="hostPetDropdownSettings"
-                        [data]="hostPetList"
-                        [(ngModel)]="selectedHostPets"
-                        (onSelect)="onItemSelect($event)"
-                        (onSelectAll)="onSelectAll($event)"
-                        id="hostPet"
-                    >
-                    </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                    mdbInput
+                    [placeholder]="'Host\'s Pet(s)'"
+                    [settings]="hostPetDropdownSettings"
+                    [data]="hostPetList"
+                    [(ngModel)]="selectedHostPets"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    id="hostPet"
+                    class="custom-color"
+                >
+                </ng-multiselect-dropdown>
             </div>
             <!-- Location Select input -->
             <div>
@@ -153,11 +154,13 @@
             <div class="row mb-4">
                     <ng-multiselect-dropdown
                             [placeholder]="'Select Local Pets'"
+                            class="multiselect-dropdown"
                             [settings]="localPetDropdownSettings"
                             [data]="localPetList"
                             [(ngModel)]="selectedLocalPets"
                             (onSelect)="onItemSelect($event)"
                             (onSelectAll)="onSelectAll($event)"
+                            class="custom-color"
                     ></ng-multiselect-dropdown>
             </div>
             <!-- Create PlayDate Button -->
