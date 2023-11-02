@@ -11,7 +11,7 @@
                                     <div class="card-body text-center">
                                         <img class="rounded-circle" src={{pet.imageUrl}} (error)="handleImageError()" alt="Pet Picture">
                                       <h5 class="my-3">{{ pet.name }}</h5>
-                                      <button [routerLink]="['parents', pet.parentId]" type="button" class="btn btn-primary ms-2" id="button">Send a Wag!</button>
+                                      <button [routerLink]="['parents', pet.parentId]" type="button" class="btn btn-primary ms-2" id="button">View Parent</button>
                                     </div>
                                   </div>
                                 </div>

@@ -17,6 +17,7 @@ export class ApiService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   private getAuthHeaders(): HttpHeaders {
+    console.log(this.authService.getToken());
     return new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     });
@@ -143,7 +144,7 @@ export class ApiService {
   }
 
   public addPetToPlayDate(playDateId: number, petId: number) {
-    return this.http.post<any>(`${baseUrl}/playdates/${playDateId}/pets/${petId}`, {
+    return this.http.post<any>(`${baseUrl}/playdates/${playDateId}/pets/${petId}`, null, {
       headers: this.getAuthHeaders()
     });
   }
