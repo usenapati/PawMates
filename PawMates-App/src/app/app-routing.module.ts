@@ -21,15 +21,15 @@ const routes: Routes = [
 
   {path: 'register', component: RegisterComponent },
   {path: 'login', component: LoginComponent },
-  {path: 'profile', component: PetparentDetailComponent },
-  {path: 'pets/:id/parents/:id', component: PetparentProfileComponent },
-  {path: 'playdates/host/:id', component: PetparentProfileComponent },
+  {path: 'profile', component: PetparentDetailComponent, canActivate: [AuthGuard] },
+  {path: 'pets/:id/parents/:id', component: PetparentProfileComponent, canActivate: [AuthGuard] },
+  {path: 'playdates/host/:id', component: PetparentProfileComponent, canActivate: [AuthGuard] },
   {path: 'profile/pets/add', component: PetFormComponent, canActivate: [AuthGuard]},
-  {path: 'profile/pets/:id/edit', component: PetparentPetDetailComponent },
+  {path: 'profile/pets/:id/edit', component: PetparentPetDetailComponent, canActivate: [AuthGuard]},
 
 
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
-  {path: 'pets/:id', component: PetDetailsComponent},
+  {path: 'pets/:id', component: PetDetailsComponent, canActivate: [AuthGuard]},
 
   {path: 'playdates', component: PlaydatesComponent, canActivate: [AuthGuard]  },
   {path: 'playdates/:id', component: PlaydatesDetailComponent, canActivate: [AuthGuard]  },
