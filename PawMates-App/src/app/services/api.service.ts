@@ -4,9 +4,8 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
 import { switchMap } from 'rxjs';
-import { EventType } from '../model/eventtype';
+import { EventType } from '../model/eventType';
 import { Location } from '../model/location';
-import { PlayDate } from '../model/playdate';
 import { PlayDateDTO } from '../model/playdatedto';
 
 const baseUrl = 'https://localhost:7136/gateway';
@@ -180,7 +179,11 @@ export class ApiService {
   }
 
   public getPetTypes() {
-    return this.http.get<any[]>(baseUrl  + '/petTypes');
+    return this.http.get<any[]>(baseUrl  + '/pettypes');
+  }
+
+  public getRestrictionTypes() {
+    return this.http.get<any[]>(baseUrl  + '/restrictiontypes');
   }
 
 }

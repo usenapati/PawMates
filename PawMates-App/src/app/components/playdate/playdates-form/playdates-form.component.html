@@ -115,7 +115,7 @@
                 </mdb-form-control>
             </div>
             <!-- Event Form -->
-            <div *ngIf="isNewEvent" class="input-group">
+            <div *ngIf="isNewEvent" class="row">
                 <mdb-form-control>
                     <div class="form-outline mb-4">
                         <input mdbInput id="eventName" class="form-control"
@@ -128,11 +128,26 @@
                     <div class="form-outline mb-4">
                         <textarea  mdbInput id="eventDescription" class="form-control"
                             placeholder="Event Description"
-                            [(ngModel)]="newEvent.description" rows="3"></textarea>
+                            [(ngModel)]="newEvent.description" rows="2"></textarea>
                         <label mdbLabel class="form-label" for="eventDescription" >Description</label>
                     </div>
                 </mdb-form-control>
                 <!-- Pet Type Select -->
+                <mdb-form-control>
+                    <div class="form-outline mb-4">
+                    <select mdbInput class="form-control" 
+                            name="selectPetType" 
+                            id="petTypes" 
+
+                            (ngModelChange)="onPetTypeSelect($event)"
+                            [(ngModel)]="selectedPetType">
+                        <option *ngFor="let op of petTypeOptions" [value]="op.name">>
+                        {{op.name}}
+                        </option> 
+                    </select>
+                    <label mdbLabel class="form-label" for="petTypes">Pet Type</label>
+                    </div>
+                </mdb-form-control>
                 <!-- Restriction Select -->
             </div>
             <!-- Start and End Date Time Picker -->
