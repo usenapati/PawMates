@@ -109,6 +109,10 @@ export class ApiService {
     });
   }
 
+  public getParents() {
+    return this.http.get<Parent[]>(baseUrl  + '/parents');
+  }
+
   public getParentByPetId(id: number) {
     return this.http.get<Parent>(`${baseUrl}/pets/${id}/petparent`);
   }

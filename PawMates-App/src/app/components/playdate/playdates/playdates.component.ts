@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Parent } from 'src/app/model/parent';
 import { Pet } from 'src/app/model/pet';
 import { PlayDate } from 'src/app/model/playdate';
 import { PlayDateDTO } from 'src/app/model/playdatedto';
@@ -13,6 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class PlaydatesComponent implements OnInit {
   playDate: PlayDateDTO = {
     id: 0,
+    hostId: 0,
     hostName: '',
     locationName: '',
     address: '',
