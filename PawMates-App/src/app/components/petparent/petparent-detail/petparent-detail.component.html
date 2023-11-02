@@ -61,7 +61,7 @@
                     <p class="mb-0">Address</p>
                   </div>
                   <div class="col-sm-9">
-                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                    <p class="text-muted mb-0">{{ parent.city}}, {{parent.state}} {{parent.postalCode}}</p>
                   </div>
                 </div>
                 <hr>
@@ -70,7 +70,7 @@
                     <p class="mb-0">About Me</p>
                   </div>
                   <div class="col-sm-9">
-                    <p class="text-muted mb-0">A short description about me!</p>
+                    <p class="text-muted mb-0">{{parent.description}}</p>
                   </div>
                 </div>
               </div>
@@ -93,6 +93,7 @@
                         name="lastName" [(ngModel)]="parent.lastName">
                     </div>
                   </div>
+
                   <div class="row" style="margin-top: 25px;">
                     <div class="col-sm-6">
                       <label for="email">Email</label>
@@ -104,12 +105,34 @@
                         <input type="text" class="form-control" id="phone"
                         name="phone" [(ngModel)]="parent.phoneNumber">
                     </div>
-                    <div class="col-sm-12" style="margin-top: 25px;">
+                  </div>
+
+                  <div class="row" style="margin-top: 25px;">
+                    <div class="col-sm-6">
+                      <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" 
+                        name="city" [(ngModel)]="parent.city">
+                    </div>
+                    <div class="col-sm-3">
+                      <label for="city">State</label>
+                        <input type="text" class="form-control" id="state" 
+                        name="state" [(ngModel)]="parent.state">
+                    </div>
+                    <div class="col-sm-3">
+                      <label for="city">Postal Code</label>
+                        <input type="text" class="form-control" id="postalCode" 
+                        name="postalCode" [(ngModel)]="parent.postalCode">
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 25px;">
+                    <div class="col-sm-12">
                       <label for="phone">About Me</label>
                         <input type="text" class="form-control" id="about" 
                         name="about" [(ngModel)]="parent.description">
                     </div>
                   </div>
+                  
               </div>
             </div>
           </div>

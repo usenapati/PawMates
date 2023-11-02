@@ -16,7 +16,10 @@ export class NavComponent implements OnInit {
     email: '',
     phoneNumber: '',
     imageUrl: '', 
-    description: ''
+    description: '',
+    city: '',
+    state: '',
+    postalCode: ''
   };
   isLoggedin: boolean = false;
   constructor(private authService: AuthenticationService, private router: Router) { }
@@ -26,7 +29,6 @@ export class NavComponent implements OnInit {
         this.isLoggedin = this.authService.isAuthenticated();
       }
     })
-    
   }
 
   logout() {
@@ -34,5 +36,4 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/login']);
     this.isLoggedin = this.authService.isAuthenticated();
   }
-
 }
