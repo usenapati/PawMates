@@ -13,15 +13,8 @@ import { PetDTO } from 'src/app/model/petDTO';
 })
 export class PetFormComponent implements OnInit {
 
-  // petParent : Parent ={
-  //   id: 0,
-  //   firstName :'',
-  //   lastName : '',
-  //   email: '',
-  //   phoneNumber: ''
-  // } ;
   parentId : string = "";
-
+  petTypes : any[] = [];
   validationForm: FormGroup;
   constructor(private authService: AuthenticationService, private apiService: ApiService) {
     this.validationForm = new FormGroup({
@@ -31,6 +24,9 @@ export class PetFormComponent implements OnInit {
       age: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
       postalCode: new FormControl(null, { validators: Validators.required, updateOn: 'submit' }),
       imageUrl: new FormControl(null, { validators: Validators.required, updateOn: 'submit' })
+    });
+    this.apiService.getPetTypes().subscribe(petTypes =>{
+      this.petTypes = petTypes;
     });
   }
   ngOnInit(): void {
@@ -82,18 +78,4 @@ export class PetFormComponent implements OnInit {
     }
   }
 
-  // addPet(){
-  //   if (this.newPet.name.trim() && this.newPet.petTypeId.trim() && this.newPet.breed && this.newPet.age ) {
-  //     let petTypeId: number = parseInt(this.newPet.petTypeId);
-  //     let age: number = parseInt(this.newPet.age);
-  //     let petObj: any = {
-  //       ...this.newPet,
-  //       petTypeId: petTypeId,
-  //       age: age
-  //     }
-  //     this.apiService.addPet(petObj)
-
-  //     this.newPet = {  parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''};
-  //   };
-  // }
 }

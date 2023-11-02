@@ -92,7 +92,7 @@ export class ApiService {
             return this.http.post<{ token: any }>(baseUrl + '/login', {
                 username: register.userName,
                 password: register.password
-              }); 
+              });
           })
         );
       })
@@ -144,6 +144,10 @@ export class ApiService {
 
   public getLocationById(id: number) {
     return this.http.get<Location>(`${baseUrl}/locations/${id}`);
+  }
+
+  public getPetTypes() {
+    return this.http.get<any[]>(baseUrl  + '/petTypes');
   }
 
 }

@@ -23,10 +23,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'profile', component: PetparentDetailComponent },
   {path: 'pets/:id/parents/:id', component: PetparentProfileComponent },
+  {path: 'profile/pets/add', component: PetFormComponent, canActivate: [AuthGuard]},
   {path: 'profile/pets/:id/edit', component: PetparentPetDetailComponent },
 
+
   {path: 'pets', component: PetsComponent, canActivate: [AuthGuard] },
-  {path: 'pets/create', component: PetFormComponent},
   {path: 'pets/:id', component: PetDetailsComponent},
 
   {path: 'playdates', component: PlaydatesComponent, canActivate: [AuthGuard]  },
