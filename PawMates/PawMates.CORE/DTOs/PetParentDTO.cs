@@ -20,6 +20,9 @@ namespace PawMates.CORE.DTOs
         [Required]
         [MaxLength(255)]
         public string? ImageUrl { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string? Description { get; set; }
 
     }
 }

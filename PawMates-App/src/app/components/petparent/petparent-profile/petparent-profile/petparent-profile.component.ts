@@ -17,7 +17,8 @@ export class PetparentProfileComponent implements OnInit{
     lastName: '',
     email: '',
     phoneNumber: '',
-    imageUrl: ''
+    imageUrl: '',
+    description: ''
   };
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }

@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PetFormComponent implements OnInit {
   @Input() parent: any;
-  newPet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''}
+  newPet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:'', description: ''}
   constructor( private apiService: ApiService) { }
   ngOnInit(): void {
     this.newPet.parentId = this.parent.Id;

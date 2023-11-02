@@ -18,6 +18,7 @@ namespace PawMates.CORE.Mappers
                 Age = source.Age,
                 PostalCode = source.PostalCode,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
             };
         }
         public static Pet MapToEntity(this PetDTO source)
@@ -32,6 +33,7 @@ namespace PawMates.CORE.Mappers
                 Age = source.Age,
                 PostalCode = source.PostalCode,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
 
             };
         }
@@ -142,6 +144,7 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
             };
         }
 
@@ -155,6 +158,7 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
             };
         }
         public static EventTypeDTO MapToDto(this EventType source)

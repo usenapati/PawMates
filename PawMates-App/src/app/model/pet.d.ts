@@ -6,5 +6,6 @@ export interface Pet {
     breed: string, 
     age: number, 
     postalCode: string, 
-    imageUrl: string
+    imageUrl: string,
+    description: string
 }
