@@ -15,7 +15,10 @@ CREATE TABLE PetParents(
     Email NVARCHAR(50) NOT NULL,
     PhoneNumber NVARCHAR(15) NULL,
     ImageUrl NVARCHAR(255) NULL,
-    [Description] NVARCHAR(255) NULL
+    [Description] NVARCHAR(255) NULL,
+    City NVARCHAR(50) NOT NULL,
+    [State] NVARCHAR(50) NOT NULL,
+    PostalCode NVARCHAR(15) NOT NULL
 );
 GO
 CREATE TABLE Users(

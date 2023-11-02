@@ -149,7 +149,10 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
-                Description = source.Description
+                Description = source.Description,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode
             };
         }
 
@@ -163,7 +166,10 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
-                Description = source.Description
+                Description = source.Description,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode
             };
         }
         public static EventTypeDTO MapToDto(this EventType source)
