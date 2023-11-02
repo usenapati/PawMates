@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Parent } from 'src/app/model/parent';
 import { Pet } from 'src/app/model/pet';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-petparent-detail',
@@ -18,7 +19,10 @@ export class PetparentDetailComponent implements OnInit {
     email: '',
     phoneNumber: '',
     imageUrl: '',
-    description: ''
+    description: '',
+    city: '',
+    state: '',
+    postalCode: ''
   };
   pet: Pet = {
     id: 0,
@@ -33,11 +37,10 @@ export class PetparentDetailComponent implements OnInit {
   };
   isEditing = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthenticationService, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get('id');
-    const id = 8;
+    const id = this.authService.getDecodedToken().PetParentId;
     if (id) {
       this.apiService.getParentById(+id)
       .subscribe({
