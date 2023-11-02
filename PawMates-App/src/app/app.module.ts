@@ -45,6 +45,8 @@ import { PetDetailsComponent } from './components/pet/pet-details/pet-details.co
 import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
 import { UnknownBreedPipe } from './pipes/unknown-breed.pipe';
 import { PetparentProfileComponent } from './components/petparent/petparent-profile/petparent-profile/petparent-profile.component';
+import { FormatDatePipe } from './pipes/format-date.pipe';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 
 
@@ -69,6 +71,8 @@ import { PetparentProfileComponent } from './components/petparent/petparent-prof
     PetFormComponent,
     UnknownBreedPipe,
     PetparentProfileComponent,
+    FormatDatePipe,
+    FormatTimePipe,
   ],
   imports: [
     BrowserModule,

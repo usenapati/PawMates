@@ -108,6 +108,7 @@ namespace PawMates.PetAPI.Controllers
             pet.PetTypeId = value.PetTypeId;
             pet.PostalCode = value.PostalCode;
             pet.ImageUrl = value.ImageUrl;
+            pet.Description = value.Description;
 
             _repo.Update(pet);
             return NoContent();

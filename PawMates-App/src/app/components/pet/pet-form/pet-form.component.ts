@@ -13,6 +13,9 @@ import { PetDTO } from 'src/app/model/petDTO';
 })
 export class PetFormComponent implements OnInit {
 
+//   @Input() parent: any;
+//   newPet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:'', description: ''}
+
   parentId : string = "";
   petTypes : any[] = [];
   validationForm: FormGroup;
@@ -29,6 +32,7 @@ export class PetFormComponent implements OnInit {
       this.petTypes = petTypes;
     });
   }
+
   ngOnInit(): void {
 
     this.parentId = this.authService.getDecodedToken().PetParentId;

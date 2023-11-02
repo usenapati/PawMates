@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pet } from 'src/app/model/pet';
 import { PlayDate } from 'src/app/model/playdate';
 import { PlayDateDTO } from 'src/app/model/playdatedto';
 import { ApiService } from 'src/app/services/api.service';
@@ -24,20 +25,40 @@ export class PlaydatesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-
-    if (id) {
-      this.apiService.getPlayDateById(+id)
-      .subscribe({
-        next: (response) => {
-          this.playDate = response;
-        }});
-
       this.apiService.getPlayDates()
       .subscribe({
         next: (playDates: PlayDateDTO[]) => {
           this.playDates = playDates;
       }});
-    }
+  }
+  //most recent events first
+  public sortPlayDatesByDateDesc() {
+    let sorted = this.playDates.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
+    return sorted;
+  }
+  //oldest events first
+  public sortPlayDatesByDateAsc() {
+    let sorted = this.playDates.sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime());
+    return sorted;
+  }
+
+  public futureEvents() {
+    let today = new Date().getTime();
+    let futureEvents = this.sortPlayDatesByDateDesc().filter(
+      p => {
+        let time = new Date(p.startTime).getTime();
+        return (time > today);
+      });
+    return futureEvents;
+  }
+
+  public pastEvents() {
+    let today = new Date().getTime();
+    let pastEvents = this.sortPlayDatesByDateAsc().filter(
+      p => {
+        let time = new Date(p.startTime).getTime();
+        return (time < today);
+      });
+    return pastEvents;
   }
 }

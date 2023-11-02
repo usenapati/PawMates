@@ -20,6 +20,8 @@ public partial class Pet : IEntity
 
     public string? ImageUrl { get; set; }
 
+    public string? Description { get; set; }
+
     public virtual PetParent PetParent { get; set; } = null!;
 
     public virtual PetType PetType { get; set; } = null!;

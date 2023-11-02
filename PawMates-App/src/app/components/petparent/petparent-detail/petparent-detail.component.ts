@@ -17,7 +17,8 @@ export class PetparentDetailComponent implements OnInit {
     lastName: '',
     email: '',
     phoneNumber: '',
-    imageUrl: ''
+    imageUrl: '',
+    description: ''
   };
   pet: Pet = {
     id: 0,
@@ -27,7 +28,8 @@ export class PetparentDetailComponent implements OnInit {
     breed: '', 
     age: 0, 
     postalCode: '', 
-    imageUrl: ''
+    imageUrl: '',
+    description: ''
   };
   isEditing = false;
 

@@ -8,8 +8,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./petparent-pet-detail.component.css']
 })
 export class PetparentPetDetailComponent implements OnInit {
-  pet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:''}
-  petParent : any = {firstName:'', lastName:'', email:'', phoneNumber:'', imageUrl:''};
+  pet : any = { parentId : '', petTypeId: '', name: '', breed: '', age: '', postalCode:'', imageUrl:'', description: ''}
+  petParent : any = {firstName:'', lastName:'', email:'', phoneNumber:'', imageUrl:'', description: ''};
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) { }
 
 

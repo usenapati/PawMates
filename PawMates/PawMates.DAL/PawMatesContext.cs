@@ -70,6 +70,7 @@ public partial class PawMatesContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.PostalCode).HasMaxLength(10);
             entity.Property(e=> e.ImageUrl).HasMaxLength(255);
+            entity.Property(e => e.Description).HasMaxLength(255);
 
             entity.HasOne(d => d.PetParent).WithMany(p => p.Pets)
                 .HasForeignKey(d => d.PetParentId)
@@ -91,6 +92,7 @@ public partial class PawMatesContext : DbContext
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
             entity.Property(e => e.ImageUrl).HasMaxLength(255);
+            entity.Property(e => e.Description).HasMaxLength(255);
         });
 
         modelBuilder.Entity<PetType>(entity =>

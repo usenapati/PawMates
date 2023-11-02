@@ -15,7 +15,8 @@ export class NavComponent implements OnInit {
     lastName: '',
     email: '',
     phoneNumber: '',
-    imageUrl: ''
+    imageUrl: '', 
+    description: ''
   };
   isLoggedin: boolean = false;
   constructor(private authService: AuthenticationService, private router: Router) { }
