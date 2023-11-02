@@ -16,7 +16,7 @@
   
           <div class="d-flex align-items-center pt-4 px-5 ms-xl-4">
   
-            <form style="width: 23rem;">
+            <form style="width: 36rem;">
   
               <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mb-4">
@@ -47,6 +47,7 @@
                     </mdb-form-control>
                 </div>
                 <!-- Email input -->
+                <div class="input-group">
                 <mdb-form-control>
                     <div class="form-outline mb-4">
                         <input mdbInput type="email" id="email" class="form-control"
@@ -64,6 +65,7 @@
                         <label mdbLabel class="form-label" for="phoneNumber" >Phone Number</label>
                     </div>
                 </mdb-form-control>
+            </div>
                 <!-- Profile Image URL -->
                 <mdb-form-control>
                     <div class="form-outline mb-4">
@@ -73,6 +75,49 @@
                         <label mdbLabel class="form-label" for="imageUrl" >Profile Image URL</label>
                     </div>
                 </mdb-form-control>
+                <!-- Description Text Area -->
+                <mdb-form-control >
+                    <div class="form-outline mb-4">
+                        <textarea mdbInput id="description" class="form-control"
+                            placeholder="Enter your Profile Description" [(ngModel)]="registerModel.description" 
+                            name="description" rows="3"></textarea>
+                        <label mdbLabel class="form-label" for="imageUrl" >About Me</label>
+                    </div>
+                </mdb-form-control>
+                <div class="row mb-4">
+                    <!-- City -->
+                    <mdb-form-control class="col-md-4">
+                        <div class="form-outline">
+                            <input mdbInput id="city" class="form-control"
+                                placeholder="Enter your City" 
+                                [(ngModel)]="registerModel.city" 
+                                name="city"/>
+                            <label mdbLabel class="form-label" for="city" >City</label>
+                        </div>
+                    </mdb-form-control>
+                    <!-- State -->
+                <mdb-form-control class="col-md-4">
+                    <div class="form-outline ">
+                        <input mdbInput id="state" class="form-control"
+                            placeholder="Enter your State" 
+                            [(ngModel)]="registerModel.state" 
+                            name="state"/>
+                        <label mdbLabel class="form-label" for="state" >State</label>
+                    </div>
+                </mdb-form-control>
+                <!-- Postal Code -->
+                <mdb-form-control  class="col-md-4">
+                    <div class="form-outline">
+                        <input mdbInput id="postalCode" class="form-control"
+                            placeholder="Enter your Postal Code" 
+                            [(ngModel)]="registerModel.postalCode" 
+                            name="postalCode"/>
+                        <label mdbLabel class="form-label" for="postalCode" >Postal Code</label>
+                    </div>
+                </mdb-form-control>
+                </div>
+                
+
                 <!-- Username input -->
                 <mdb-form-control>
                     <div class="form-outline mb-4">
@@ -82,7 +127,7 @@
                         <label mdbLabel class="form-label" for="username" >Username</label>
                     </div>
                 </mdb-form-control>
-                    <!-- Password input -->
+                <!-- Password input -->
                 <mdb-form-control>
                     <div class="form-outline mb-4">
                         <input mdbInput type="password" id="password" class="form-control"

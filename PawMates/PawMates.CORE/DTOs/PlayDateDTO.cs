@@ -25,11 +25,28 @@ namespace PawMates.CORE.DTOs
         {
             var results = new List<ValidationResult>();
 
+            if (PetParentId <= 0)
+            {
+                results.Add(new ValidationResult("Must have valid Pet Parent ID"));
+            }
+
+            if (LocationId <= 0)
+            {
+                results.Add(new ValidationResult("Must have valid Location ID"));
+            }
+
+            if (EventTypeId <= 0)
+            {
+                results.Add(new ValidationResult("Must have valid Event Type ID"));
+            }
+
             if (StartTime >= EndTime)
             {
                 results.Add(new ValidationResult("End Time can not come before Start Time.", new[] { nameof(EndTime) }));
 
             }
+
+            // Start and End Time range shouldn't exceed 24 hours
 
             if (HostPets.Length <= 0)
             {
