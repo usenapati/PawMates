@@ -198,6 +198,7 @@ onSubmit() {
   // Post the Play Date
   this.apiService.addPlayDate(this.playDate).subscribe(response => {
     console.log(response);
+    this.router.navigate(['playdates/' + response.id]);
   });
   // TODO Make sure the host cannot make a play date that conflict with their own playdates
 
