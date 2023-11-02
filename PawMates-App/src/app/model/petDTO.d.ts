@@ -5,5 +5,6 @@ export interface PetDTO {
     breed: string,
     age: number,
     postalCode: string,
-    imageUrl: string
+    imageUrl: string,
+    description: string
 }
