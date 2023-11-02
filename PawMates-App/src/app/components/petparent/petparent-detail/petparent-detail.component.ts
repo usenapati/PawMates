@@ -27,11 +27,11 @@ export class PetparentDetailComponent implements OnInit {
   pet: Pet = {
     id: 0,
     parentId : 0,
-    petTypeId: 0, 
-    name: '', 
-    breed: '', 
-    age: 0, 
-    postalCode: '', 
+    petTypeId: 0,
+    name: '',
+    breed: '',
+    age: 0,
+    postalCode: '',
     imageUrl: '',
     description: ''
   };
@@ -60,7 +60,7 @@ export class PetparentDetailComponent implements OnInit {
   edit() {
     this.isEditing = true;
   }
-  
+
   editParent() {
     this.apiService.updateParent(this.parent.id, this.parent)
     .subscribe({
@@ -72,8 +72,8 @@ export class PetparentDetailComponent implements OnInit {
     });
   }
 
-  deletePet() {
-    this.apiService.deletePetById(this.pet.id)
+  deletePet(pet: any) {
+    this.apiService.deletePetById(pet.id)
     .subscribe({
       next: (response) => {
         console.log('Deleting....');
@@ -82,4 +82,9 @@ export class PetparentDetailComponent implements OnInit {
       }
     });
   }
+
+  handleImageError(pet :any){
+    pet.imageUrl = "../../assets/for-pet-without-image.png";
+  }
+
 }
