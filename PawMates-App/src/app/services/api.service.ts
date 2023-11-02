@@ -129,6 +129,19 @@ export class ApiService {
   public getPlayDateById(id: number) {
     return this.http.get<PlayDateDTO>(`${baseUrl}/playdates/${id}`);
   }
+
+  public addPlayDate(PlayDate: any) {
+    return this.http.post<any>(baseUrl + '/playdates', PlayDate, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  public addPetToPlayDate(playDateId: number, petId: number) {
+    return this.http.post<any>(`${baseUrl}/playdates/${playDateId}/pets/${petId}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   // Events
   public getEvents() {
     return this.http.get<EventType[]>(baseUrl  + '/eventtype');

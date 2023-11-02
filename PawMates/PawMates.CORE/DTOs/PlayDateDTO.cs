@@ -16,6 +16,10 @@ namespace PawMates.CORE.DTOs
         public DateTime StartTime { get; set; }
         [Required]
         public DateTime EndTime { get; set; }
+        [Required]
+        public int[] HostPets { get; set; }
+        [Required]
+        public int[] InvitedPets { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -25,6 +29,11 @@ namespace PawMates.CORE.DTOs
             {
                 results.Add(new ValidationResult("End Time can not come before Start Time.", new[] { nameof(EndTime) }));
 
+            }
+
+            if (HostPets.Length <= 0)
+            {
+                results.Add(new ValidationResult("Must have at least one pet from Host"));
             }
 
             return results;

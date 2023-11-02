@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Location } from 'src/app/model/location';
-import { EventType } from 'src/app/model/eventtype';
-import { Pet } from 'src/app/model/pet';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { forkJoin } from 'rxjs';
+import { Pet } from 'src/app/model/pet';
+import { Location } from 'src/app/model/location';
+import { EventType } from 'src/app/model/eventtype';
 import { PlayDate } from 'src/app/model/playdate';
 
 @Component({
   selector: 'app-playdates-form',
   templateUrl: './playdates-form.component.html',
-  styleUrls: ['./playdates-form.component.css']
+  styleUrls: ['./playdates-form.component.css', ],
 })
 export class PlaydatesFormComponent implements OnInit{
 
@@ -21,29 +21,29 @@ export class PlaydatesFormComponent implements OnInit{
   hostPets: Pet[] = [];
   hostPetList: any[] = [];
   selectedHostPets: any[] = [];
-  hostPetDropdownSettings: any = {};
+  hostPetDropdownSettings: IDropdownSettings = {};
 
   // Location
   locations: Location[] = [];
   selectedLocation: {id: number | undefined, name: string} = {id: 0, name: ''};
   location: Location; // Set up at submit()
   newLocation: Location;
-  locationOptions: {id: number | undefined, name: string}[] = []; // Location Model
+  locationOptions: {id: number | undefined, name: string}[] = [];
   isNewLocation: boolean = false;
 
   // Event
   events: EventType[] = [];
-  selectedEvent: string = '';
+  selectedEvent: {id: number | undefined, name: string} = {id: 0, name: ''};
   event: EventType;
   newEvent: EventType;
-  eventOptions: any[] = []; // Location Model
+  eventOptions: {id: number | undefined, name: string}[] = [];
   isNewEvent: boolean = false;
 
   // Local Pets
   localPets: Pet[] = [];
   localPetList: any[] = [];
   selectedLocalPets: any[] = [];
-  localPetDropdownSettings: any = {};
+  localPetDropdownSettings: IDropdownSettings = {};
 
   startTime: Date = new Date();
   endTime: Date = new Date();
@@ -57,10 +57,11 @@ export class PlaydatesFormComponent implements OnInit{
       id: 0,
       petParentId: 0,
       locationId: 0,
-      eventId: 0,
-      pets: [],
+      eventTypeId: 0,
       startTime: new Date(),
-      endTime: new Date()
+      endTime: new Date(),
+      hostPets: [],
+      invitedPets: []
     }
 
     this.location = {
@@ -173,7 +174,7 @@ onSubmit() {
 
   // Event ID
   if (this.event.id) {
-    this.playDate.eventId = this.event.id;
+    this.playDate.eventTypeId = this.event.id;
   } else {
     // Create Event
   }
@@ -183,22 +184,27 @@ onSubmit() {
   this.playDate.startTime = this.startTime;
   this.playDate.endTime = this.endTime;
   // Validate that start is not after end and no more than 24 hrs long
-  
-  // Require one Host Pet
-  // Post the Play Date
-  // TODO Make sure the host cannot make a play date that conflict with their own playdates
-
   // Pets IDs - Loop through each id and add it to the submitted play date
-  // Host Pets
+    // Host Pets
   this.selectedHostPets.forEach(element => {
-    this.playDate.pets.push(element.pet_id)
+    // Add Pet to Play Date if successfully created
+    this.playDate.hostPets.push(element.pet_id)
   });
   // Local Pets
   this.selectedLocalPets.forEach(element => {
-    this.playDate.pets.push(element.pet_id)
+    this.playDate.invitedPets.push(element.pet_id)
   });
+  // Require one Host Pet
+  // Post the Play Date
+  this.apiService.addPlayDate(this.playDate).subscribe(response => {
+    console.log(response);
+    this.router.navigate(['playdates/' + response.id]);
+  });
+  // TODO Make sure the host cannot make a play date that conflict with their own playdates
+
+  
+  
   // Route to Play Date Details
-  console.log(this.playDate);
 }
 
 onItemSelect(item: any) {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PawMates.CORE.DTOs;
+using PawMates.CORE.Exceptions;
 using PawMates.CORE.Interfaces;
 using PawMates.CORE.Mappers;
 using PawMates.CORE.Models;
@@ -64,7 +65,7 @@ namespace PawMates.PlayDateAPI.Controllers
         // /api/playDates/{playDateId}/pets/{petId} -POST - # Add the pet to the playDate
         [HttpPost, Route("{playDateId}/pets/{petId}")]
         //[Authorize]
-        public async Task<IActionResult> PostpetOnplayDate(int playDateId, int petId)
+        public async Task<IActionResult> PostPetOnPlayDate(int playDateId, int petId)
         {
             var playDate = _repo.GetById(playDateId).Data;
             if (playDate == null)
@@ -126,7 +127,23 @@ namespace PawMates.PlayDateAPI.Controllers
                 return BadRequest(ModelState);
             }
             var playDate = value.MapToEntity();
-            _repo.Add(playDate);
+            try
+            {
+                _repo.Add(playDate);
+                foreach (var hostPets in value.HostPets)
+                {
+                    _repo.AddPetToPlayDate(playDate.Id, hostPets);
+                }
+                foreach (var hostPets in value.InvitedPets)
+                {
+                    _repo.AddPetToPlayDate(playDate.Id, hostPets);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new DALException("Unable to add PlayDate", ex);
+            }
             return CreatedAtAction(nameof(GetById), new { id = playDate.Id }, playDate.MapToDto());
         }
 
