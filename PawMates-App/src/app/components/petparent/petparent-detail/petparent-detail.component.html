@@ -104,6 +104,11 @@
                         <input type="text" class="form-control" id="phone"
                         name="phone" [(ngModel)]="parent.phoneNumber">
                     </div>
+                    <div class="col-sm-12" style="margin-top: 25px;">
+                      <label for="phone">About Me</label>
+                        <input type="text" class="form-control" id="about" 
+                        name="about" [(ngModel)]="parent.description">
+                    </div>
                   </div>
               </div>
             </div>
@@ -120,10 +125,9 @@
                 <div class="card-body card text-center">
                   <h5 class="card-title">{{ pet.name }}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{ pet.breed }} Age: {{ pet.age }}</h6>
-                  <!-- <p class="card-text">
-                    This is a longer card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
-                  </p> -->
+                  <p class="card-text">
+                    {{ pet.description }}
+                  </p>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button [routerLink]="['pets', pet.id, 'edit']" type="button" class="btn btn-primary ms-2" id="accent">Edit</button>
                     <button type="submit" (click)="deletePet()" class="btn btn-outline-danger ms-2">Delete</button>

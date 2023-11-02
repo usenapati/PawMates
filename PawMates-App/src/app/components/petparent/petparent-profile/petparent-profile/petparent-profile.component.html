@@ -78,10 +78,6 @@
                 <div class="card-body card text-center border-0">
                   <h5 class="card-title">{{ pet.name }}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{ pet.breed }} Age: {{ pet.age }}</h6>
-                  <!-- <p class="card-text">
-                    This is a longer card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
-                  </p> -->
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button [routerLink]="['/pets', pet.id]" type="button" class="btn btn-primary ms-2" id="accent">View Details</button>
                   </div>

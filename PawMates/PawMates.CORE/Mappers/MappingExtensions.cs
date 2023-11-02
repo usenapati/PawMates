@@ -18,6 +18,7 @@ namespace PawMates.CORE.Mappers
                 Age = source.Age,
                 PostalCode = source.PostalCode,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
             };
         }
         public static Pet MapToEntity(this PetDTO source)
@@ -32,6 +33,7 @@ namespace PawMates.CORE.Mappers
                 Age = source.Age,
                 PostalCode = source.PostalCode,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description
 
             };
         }
@@ -57,6 +59,11 @@ namespace PawMates.CORE.Mappers
                 Id = source.Id,
                 HostName = source.PetParent.FirstName + " " + source.PetParent.LastName,
                 LocationName = source.Location.Name,
+                Address = source.Location.Street1,
+                City = source.Location.City,
+                State = source.Location.State,
+                PostalCode = source.Location.PostalCode,
+                PetTypeId = source.Location.PetTypeId, 
                 EventName = source.EventType.Name,
                 EventDescription = source.EventType.Description,
                 StartTime = source.StartTime,
@@ -142,6 +149,10 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode
             };
         }
 
@@ -155,6 +166,10 @@ namespace PawMates.CORE.Mappers
                 Email = source.Email,
                 PhoneNumber = source.PhoneNumber,
                 ImageUrl = source.ImageUrl,
+                Description = source.Description,
+                City = source.City,
+                State = source.State,
+                PostalCode = source.PostalCode
             };
         }
         public static EventTypeDTO MapToDto(this EventType source)
