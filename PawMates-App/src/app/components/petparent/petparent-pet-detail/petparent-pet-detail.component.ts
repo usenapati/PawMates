@@ -40,4 +40,6 @@ export class PetparentPetDetailComponent implements OnInit {
   handleImageError(){
     this.pet.imageUrl = "../../assets/for-pet-without-image.png";
   }
+
+
 }
