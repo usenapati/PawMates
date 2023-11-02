@@ -108,6 +108,9 @@ namespace PawMates.ParentAPI.Controllers
                 parent.PhoneNumber = value.PhoneNumber;
                 parent.ImageUrl = value.ImageUrl;
                 parent.Description = value.Description;
+                parent.City = value.City;
+                parent.State = value.State;
+                parent.PostalCode = value.PostalCode;
                 _parentRepository.Update(parent);
                 return NoContent();
             }
