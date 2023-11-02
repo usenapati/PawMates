@@ -7,6 +7,7 @@ import { EventType } from 'src/app/model/eventtype';
 import { Pet } from 'src/app/model/pet';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { forkJoin } from 'rxjs';
+import { PlayDate } from 'src/app/model/playdate';
 
 @Component({
   selector: 'app-playdates-form',
@@ -24,7 +25,7 @@ export class PlaydatesFormComponent implements OnInit{
 
   // Location
   locations: Location[] = [];
-  selectedLocation: any;
+  selectedLocation: {id: number | undefined, name: string} = {id: 0, name: ''};
   location: Location; // Set up at submit()
   newLocation: Location;
   locationOptions: {id: number | undefined, name: string}[] = []; // Location Model
@@ -32,7 +33,7 @@ export class PlaydatesFormComponent implements OnInit{
 
   // Event
   events: EventType[] = [];
-  selectedEvent: any;
+  selectedEvent: string = '';
   event: EventType;
   newEvent: EventType;
   eventOptions: any[] = []; // Location Model
@@ -47,8 +48,20 @@ export class PlaydatesFormComponent implements OnInit{
   startTime: Date = new Date();
   endTime: Date = new Date();
 
+  playDate: PlayDate;
+
   constructor(private authService: AuthenticationService, private apiService: ApiService, private router: Router) {
     this.host = { fullName: '', id: 0}
+
+    this.playDate = {
+      id: 0,
+      petParentId: 0,
+      locationId: 0,
+      eventId: 0,
+      pets: [],
+      startTime: new Date(),
+      endTime: new Date()
+    }
 
     this.location = {
       id: 0,
@@ -86,7 +99,7 @@ export class PlaydatesFormComponent implements OnInit{
 
   ngOnInit() {
     // Get Host Name from Token
-    this.host.id = this.authService.getDecodedToken().PetParentId;
+    this.host.id = parseInt(this.authService.getDecodedToken().PetParentId, 10);
     if (this.host.id) {
       this.apiService.getParentById(+this.host.id)
       .subscribe({
@@ -149,15 +162,43 @@ export class PlaydatesFormComponent implements OnInit{
 
 onSubmit() {
   // Host ID
-  // Location ID
-    // If new - Create Location and get new ID
-  // Event ID
-    // If new - Create Event and get new ID
-  // Validate Location and Event Pet Restriction match
-  // Pets IDs
-  // Start and End Time
-  // Validate that start is not after end and no more than 24 hrs long
+  this.playDate.petParentId = this.host.id;
 
+  // Location ID
+  if (this.location.id) {
+    this.playDate.locationId = this.location.id;
+  } else {
+    // Create Location
+  }
+
+  // Event ID
+  if (this.event.id) {
+    this.playDate.eventId = this.event.id;
+  } else {
+    // Create Event
+  }
+  // TODO Validate Location and Event Pet Restriction match
+
+  // Start and End Time
+  this.playDate.startTime = this.startTime;
+  this.playDate.endTime = this.endTime;
+  // Validate that start is not after end and no more than 24 hrs long
+  
+  // Require one Host Pet
+  // Post the Play Date
+  // TODO Make sure the host cannot make a play date that conflict with their own playdates
+
+  // Pets IDs - Loop through each id and add it to the submitted play date
+  // Host Pets
+  this.selectedHostPets.forEach(element => {
+    this.playDate.pets.push(element.pet_id)
+  });
+  // Local Pets
+  this.selectedLocalPets.forEach(element => {
+    this.playDate.pets.push(element.pet_id)
+  });
+  // Route to Play Date Details
+  console.log(this.playDate);
 }
 
 onItemSelect(item: any) {
@@ -173,6 +214,12 @@ onLocationSelect(location: any) {
   } else {
     this.isNewLocation = false;
   }
+  var locationId = this.locations.find(l => l.name == location);
+  if (locationId) {
+    this.location = locationId;
+  } else {
+    this.location = this.newLocation;
+  }
 }
 
 onEventSelect(event: any) {
@@ -181,6 +228,12 @@ onEventSelect(event: any) {
   } else {
     this.isNewEvent = false;
     
+  }
+  var eventId = this.events.find(e => e.name == event);
+  if (eventId) {
+    this.event = eventId;
+  } else {
+    this.event = this.newEvent;
   }
 }
 }
