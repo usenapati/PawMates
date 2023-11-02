@@ -4,5 +4,7 @@ export interface PlayDate {
     locationId: number,
     eventTypeId: number,
     startTime: Date,
-    endTime: Date
+    endTime: Date,
+    hostPets: number[],
+    invitedPets: number[]
 }

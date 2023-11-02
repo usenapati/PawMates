@@ -12,7 +12,7 @@ import { PlayDate } from 'src/app/model/playdate';
 @Component({
   selector: 'app-playdates-form',
   templateUrl: './playdates-form.component.html',
-  styleUrls: ['./playdates-form.component.scss', ],
+  styleUrls: ['./playdates-form.component.css', ],
 })
 export class PlaydatesFormComponent implements OnInit{
 
@@ -59,7 +59,9 @@ export class PlaydatesFormComponent implements OnInit{
       locationId: 0,
       eventTypeId: 0,
       startTime: new Date(),
-      endTime: new Date()
+      endTime: new Date(),
+      hostPets: [],
+      invitedPets: []
     }
 
     this.location = {
@@ -182,27 +184,24 @@ onSubmit() {
   this.playDate.startTime = this.startTime;
   this.playDate.endTime = this.endTime;
   // Validate that start is not after end and no more than 24 hrs long
-  
-  // Require one Host Pet
-  // Post the Play Date
-  this.apiService.addPlayDate(this.playDate).subscribe(response => {
-
-  }, error => {
-      console.error('Create Play Date failed');
-  });
-  // TODO Make sure the host cannot make a play date that conflict with their own playdates
-
   // Pets IDs - Loop through each id and add it to the submitted play date
-  // Host Pets
+    // Host Pets
   this.selectedHostPets.forEach(element => {
     // Add Pet to Play Date if successfully created
-    //this.playDate.pets.push(element.pet_id)
+    this.playDate.hostPets.push(element.pet_id)
   });
   // Local Pets
   this.selectedLocalPets.forEach(element => {
-    //this.playDate.pets.push(element.pet_id)
+    this.playDate.invitedPets.push(element.pet_id)
   });
-  console.log(this.playDate);
+  // Require one Host Pet
+  // Post the Play Date
+  this.apiService.addPlayDate(this.playDate).subscribe(response => {
+    console.log(response);
+  });
+  // TODO Make sure the host cannot make a play date that conflict with their own playdates
+
+  
   
   // Route to Play Date Details
 }
