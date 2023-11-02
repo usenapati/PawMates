@@ -57,6 +57,7 @@ namespace PawMates.CORE.Mappers
             return new PlayDateDTO2
             {
                 Id = source.Id,
+                HostId = source.PetParentId,
                 HostName = source.PetParent.FirstName + " " + source.PetParent.LastName,
                 LocationName = source.Location.Name,
                 Address = source.Location.Street1,

@@ -5,5 +5,8 @@ export interface Parent {
     email: string,
     phoneNumber: string,
     imageUrl?: string,
-    description: string
+    description: string,
+    city: string,
+    state: string,
+    postalCode: string
 }
