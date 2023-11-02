@@ -12,12 +12,16 @@
             required
           />
           <label mdbLabel class="form-label" for="form1">Name</label>
-          <mdb-error *ngIf="name?.invalid && (name?.dirty || name?.touched)"
-            >Name is required</mdb-error
-          >
+          <mdb-error *ngIf="name?.hasError('required') && (name?.dirty || name?.touched)">
+            Name is required
+          </mdb-error>
+          <mdb-error *ngIf="name?.hasError('maxlength') && (name?.dirty || name?.touched)">
+            Name must be no more than 50 characters
+          </mdb-error>
           <mdb-success
             *ngIf="name?.valid && (name?.dirty || name?.touched)"
-            ></mdb-success
+            >
+            </mdb-success
           >
         </mdb-form-control>
       </div>
@@ -40,9 +44,12 @@
             required
           />
           <label mdbLabel class="form-label" for="form3">Breed</label>
-          <mdb-error *ngIf="breed?.invalid && (breed?.dirty || breed?.touched)"
-            >Breed is required</mdb-error
-          >
+          <mdb-error *ngIf="breed?.hasError('required') && (breed?.dirty || breed?.touched)">
+            Breed is required
+          </mdb-error>
+          <mdb-error *ngIf="breed?.hasError('maxlength') && (breed?.dirty || breed?.touched)">
+            Breed must be no more than 50 characters
+          </mdb-error>
           <mdb-success *ngIf="breed?.valid && (breed?.dirty || breed?.touched)"
             ></mdb-success
           >
@@ -61,9 +68,18 @@
             required
           />
           <label mdbLabel class="form-label" for="form4">Age</label>
-          <mdb-error *ngIf="age?.invalid && (age?.dirty || age?.touched)"
-            >age is required</mdb-error
-          >
+          <mdb-error *ngIf="age?.hasError('required') && (age?.dirty || age?.touched)">
+            Age is required
+          </mdb-error>
+          <mdb-error *ngIf="age?.hasError('min') && (age?.dirty || age?.touched)">
+            Age must be no less than 0
+          </mdb-error>
+          <mdb-error *ngIf="age?.hasError('max') && (age?.dirty || age?.touched)">
+            Age must be no more than 100
+          </mdb-error>
+          <mdb-error *ngIf="age?.hasError('pattern') && (age?.dirty || age?.touched)">
+            Age must be a number
+          </mdb-error>
           <mdb-success *ngIf="age?.valid && (age?.dirty || age?.touched)"
             ></mdb-success
           >
@@ -81,10 +97,13 @@
             formControlName="postalCode"
             required
           />
-          <label mdbLabel class="form-label" for="form5">postalCode</label>
-          <mdb-error *ngIf="postalCode?.invalid && (postalCode?.dirty || postalCode?.touched)"
-            >postalCode is required</mdb-error
-          >
+          <label mdbLabel class="form-label" for="form5">Postal Code</label>
+          <mdb-error *ngIf="postalCode?.hasError('required') && (postalCode?.dirty || postalCode?.touched)">
+            Postal Code is required
+          </mdb-error>
+          <mdb-error *ngIf="postalCode?.hasError('maxlength') && (postalCode?.dirty || postalCode?.touched)">
+            Postal Code must be no more than 10 characters
+          </mdb-error>
           <mdb-success *ngIf="postalCode?.valid && (postalCode?.dirty || postalCode?.touched)"
             ></mdb-success
           >
@@ -102,10 +121,13 @@
             formControlName="imageUrl"
             required
           />
-          <label mdbLabel class="form-label" for="form6">imageUrl</label>
-          <mdb-error *ngIf="imageUrl?.invalid && (imageUrl?.dirty || imageUrl?.touched)"
-            >imageUrl is required</mdb-error
-          >
+          <label mdbLabel class="form-label" for="form6">Image Url</label>
+          <mdb-error *ngIf="imageUrl.hasError('required') && (imageUrl.dirty || imageUrl.touched)">
+            Image Url is required
+          </mdb-error>
+          <mdb-error *ngIf="imageUrl.hasError('maxlength') && (imageUrl.dirty || imageUrl.touched)">
+            Image Url must be no more than 255 characters
+          </mdb-error>
           <mdb-success *ngIf="imageUrl?.valid && (imageUrl?.dirty || imageUrl?.touched)"
             ></mdb-success
           >
@@ -124,9 +146,12 @@
             required
           />
           <label mdbLabel class="form-label" for="form7">Description</label>
-          <mdb-error *ngIf="description?.invalid && (description?.dirty || description?.touched)"
-            >imageUrl is required</mdb-error
-          >
+          <mdb-error *ngIf="description.hasError('required') && (description.dirty || description.touched)">
+            Description is required
+          </mdb-error>
+          <mdb-error *ngIf="description.hasError('maxlength') && (description.dirty || description.touched)">
+            Description must be no more than 255 characters
+          </mdb-error>
           <mdb-success *ngIf="description?.valid && (description?.dirty || description?.touched)"
             ></mdb-success
           >

@@ -110,17 +110,17 @@
                   <div class="row" style="margin-top: 25px;">
                     <div class="col-sm-6">
                       <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" 
+                        <input type="text" class="form-control" id="city"
                         name="city" [(ngModel)]="parent.city">
                     </div>
                     <div class="col-sm-3">
                       <label for="city">State</label>
-                        <input type="text" class="form-control" id="state" 
+                        <input type="text" class="form-control" id="state"
                         name="state" [(ngModel)]="parent.state">
                     </div>
                     <div class="col-sm-3">
                       <label for="city">Postal Code</label>
-                        <input type="text" class="form-control" id="postalCode" 
+                        <input type="text" class="form-control" id="postalCode"
                         name="postalCode" [(ngModel)]="parent.postalCode">
                     </div>
                   </div>
@@ -128,11 +128,11 @@
                   <div class="row" style="margin-top: 25px;">
                     <div class="col-sm-12">
                       <label for="phone">About Me</label>
-                        <input type="text" class="form-control" id="about" 
+                        <input type="text" class="form-control" id="about"
                         name="about" [(ngModel)]="parent.description">
                     </div>
                   </div>
-                  
+
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@
                     routerLink="/profile/{{ pet.id }}"
                     routerLinkActive="active"
                     class="card h-100">
-                <img id="pet" src="{{ pet.imageUrl }}" class="card-img-top" alt="Pet photo"/>
+                <img id="pet" src="{{ pet.imageUrl }}" (error)="handleImageError(pet)" class="card-img-top" alt="Pet photo" />
                 <div class="card-body card text-center">
                   <h5 class="card-title">{{ pet.name }}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{ pet.breed }} Age: {{ pet.age }}</h6>
@@ -153,7 +153,7 @@
                   </p>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button [routerLink]="['pets', pet.id, 'edit']" type="button" class="btn btn-primary ms-2" id="accent">Edit</button>
-                    <button type="submit" (click)="deletePet()" class="btn btn-outline-danger ms-2">Delete</button>
+                    <button type="submit" (click)="deletePet(pet)" class="btn btn-outline-danger ms-2">Delete</button>
                   </div>
 
               </div>
