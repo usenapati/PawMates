@@ -14,6 +14,11 @@ namespace PawMates.CORE.DTOs
         public int Id { get; set; }
         public string HostName { get; set; }
         public string LocationName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string PostalCode { get; set; }
+        public int PetTypeId { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
         public DateTime StartTime { get; set; }
