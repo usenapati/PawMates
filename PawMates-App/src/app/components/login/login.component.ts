@@ -35,7 +35,7 @@ export class LoginComponent{
   }
 
   loginDemoUser(){
-    this.apiService.login("bsmith72", "X)EcRaUmE}=tWgq").subscribe(response => {
+    this.apiService.login("jchen2", "pb60}mRl%kJgz0J").subscribe(response => {
       this.authService.setToken(response.token);
       // navigate to home page
       this.router.navigate(['/']);
