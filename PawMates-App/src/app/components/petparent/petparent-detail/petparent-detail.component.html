@@ -19,7 +19,9 @@
               <h5 class="my-3">{{ parent.firstName }} {{ parent.lastName }}</h5>
               <div class="d-flex justify-content-center mb-2">
                 <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-primary" id="accent">Edit</button>
-                <button *ngIf="isEditing" (click)="editParent()" type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Save</button>
+                <form [formGroup]="validationForm" (ngSubmit)="onSubmit()" class="parent-form">
+                  <button *ngIf="isEditing" type="submit" class="btn btn-outline-primary ms-1" id="accentoutline">Save</button>
+                </form>
                 <button *ngIf="!isEditing" [routerLink]="['pets/add']" type="button" class="btn btn-outline-primary ms-1" id="accentoutline">Add Pet</button>
               </div>
             </div>
@@ -81,58 +83,245 @@
         <div *ngIf="isEditing" class="col-lg-8">
             <div class="card mb-4">
               <div class="card-body">
+              <form [formGroup]="validationForm" (ngSubmit)="onSubmit()" class="parent-form">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" id="firstName"
-                        name="firstName" [(ngModel)]="parent.firstName">
+                      <label mdbLabel class="form-label" for="form1">First Name</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form1"
+                          class="form-control"
+                          formControlName="firstName"
+                          required
+                          [(ngModel)]="parent.firstName"
+                        />
+                        <mdb-error *ngIf="firstName?.hasError('required') && (firstName?.dirty || firstName?.touched)">
+                          First Name is required
+                        </mdb-error>
+                        <mdb-error *ngIf="firstName?.hasError('maxlength') && (firstName?.dirty || firstName?.touched)">
+                          First Name must be no more than 50 characters
+                        </mdb-error>
+                        <mdb-success
+                          *ngIf="firstName?.valid && (firstName?.dirty || firstName?.touched)"
+                          >
+                          </mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                     <div class="col-sm-6">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" id="lastName"
-                        name="lastName" [(ngModel)]="parent.lastName">
+                      <label mdbLabel class="form-label" for="form2">Last Name</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form2"
+                          class="form-control"
+                          formControlName="lastName"
+                          required
+                          [(ngModel)]="parent.lastName"
+                        />
+                        <mdb-error *ngIf="lastName?.hasError('required') && (lastName?.dirty || lastName?.touched)">
+                          Last Name is required
+                        </mdb-error>
+                        <mdb-error *ngIf="lastName?.hasError('maxlength') && (lastName?.dirty || lastName?.touched)">
+                          Last Name must be no more than 50 characters
+                        </mdb-error>
+                        <mdb-success
+                          *ngIf="lastName?.valid && (lastName?.dirty || lastName?.touched)"
+                          >
+                          </mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                   </div>
 
-                  <div class="row" style="margin-top: 25px;">
+                  <div class="row" id="form-row">
                     <div class="col-sm-6">
-                      <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email"
-                        name="email" [(ngModel)]="parent.email">
+                      <label mdbLabel class="form-label" for="form3">Email</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form3"
+                          class="form-control"
+                          formControlName="email"
+                          required
+                          [(ngModel)]="parent.email"
+                        />
+                        <mdb-error *ngIf="email?.hasError('required') && (email?.dirty || email?.touched)">
+                          Email is required
+                        </mdb-error>
+                        <mdb-error *ngIf="email?.hasError('maxlength') && (email?.dirty || email?.touched)">
+                          Email must be no more than 50 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="email?.valid && (email?.dirty || email?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                     <div class="col-sm-6">
-                      <label for="phone">Phone</label>
-                        <input type="text" class="form-control" id="phone"
-                        name="phone" [(ngModel)]="parent.phoneNumber">
+                      <label mdbLabel class="form-label" for="form4">Phone Number</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form4"
+                          class="form-control"
+                          formControlName="phoneNumber"
+                          required
+                          [(ngModel)]="parent.phoneNumber"
+                        />
+                        <mdb-error *ngIf="phoneNumber?.hasError('required') && (phoneNumber?.dirty || phoneNumber?.touched)">
+                          Phone Number is required
+                        </mdb-error>
+                        <mdb-error *ngIf="phoneNumber?.hasError('maxlength') && (phoneNumber?.dirty || phoneNumber?.touched)">
+                          Phone Number must be no more than 15 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="phoneNumber?.valid && (phoneNumber?.dirty || phoneNumber?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                   </div>
 
-                  <div class="row" style="margin-top: 25px;">
+                  <div class="row" id="form-row">
                     <div class="col-sm-6">
-                      <label for="city">City</label>
-                        <input type="text" class="form-control" id="city"
-                        name="city" [(ngModel)]="parent.city">
+                      <label mdbLabel class="form-label" for="form5">City</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form5"
+                          class="form-control"
+                          formControlName="city"
+                          required
+                          [(ngModel)]="parent.city"
+                        />
+                        <mdb-error *ngIf="city?.hasError('required') && (city?.dirty || city?.touched)">
+                          City is required
+                        </mdb-error>
+                        <mdb-error *ngIf="city?.hasError('maxlength') && (city?.dirty || city?.touched)">
+                          City must be no more than 50 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="city?.valid && (city?.dirty || city?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                     <div class="col-sm-3">
-                      <label for="city">State</label>
-                        <input type="text" class="form-control" id="state"
-                        name="state" [(ngModel)]="parent.state">
+                      <label mdbLabel class="form-label" for="form6">State</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form6"
+                          class="form-control"
+                          formControlName="state"
+                          required
+                          [(ngModel)]="parent.state"
+                        />
+                        <mdb-error *ngIf="state?.hasError('required') && (state?.dirty || state?.touched)">
+                          Email is required
+                        </mdb-error>
+                        <mdb-error *ngIf="state?.hasError('maxlength') && (state?.dirty || state?.touched)">
+                          Email must be no more than 50 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="state?.valid && (state?.dirty || state?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                     <div class="col-sm-3">
-                      <label for="city">Postal Code</label>
-                        <input type="text" class="form-control" id="postalCode"
-                        name="postalCode" [(ngModel)]="parent.postalCode">
+                      <label mdbLabel class="form-label" for="form7">Postal Code</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form7"
+                          class="form-control"
+                          formControlName="postalCode"
+                          required
+                          [(ngModel)]="parent.postalCode"
+                        />
+                        <mdb-error *ngIf="postalCode?.hasError('required') && (postalCode?.dirty || postalCode?.touched)">
+                          Postal Code is required
+                        </mdb-error>
+                        <mdb-error *ngIf="postalCode?.hasError('maxlength') && (postalCode?.dirty || postalCode?.touched)">
+                          Postal Code must be no more than 15 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="postalCode?.valid && (postalCode?.dirty || postalCode?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                   </div>
 
-                  <div class="row" style="margin-top: 25px;">
+                  <div class="row" id="form-row">
                     <div class="col-sm-12">
-                      <label for="phone">About Me</label>
-                        <input type="text" class="form-control" id="about"
-                        name="about" [(ngModel)]="parent.description">
+                      <label mdbLabel class="form-label" for="form8">Image Url</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form8"
+                          class="form-control"
+                          formControlName="imageUrl"
+                          required
+                          [(ngModel)]="parent.imageUrl"
+                        />
+                        
+                        <mdb-error *ngIf="imageUrl.hasError('required') && (imageUrl.dirty || imageUrl.touched)">
+                          Image Url is required
+                        </mdb-error>
+                        <mdb-error *ngIf="imageUrl.hasError('maxlength') && (imageUrl.dirty || imageUrl.touched)">
+                          Image Url must be no more than 255 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="imageUrl?.valid && (imageUrl?.dirty || imageUrl?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
                     </div>
                   </div>
 
+                  <div class="row" id="form-row">
+                    <div class="col-sm-12">
+                      <label mdbLabel class="form-label" for="form9">About Me</label>
+                      <mdb-form-control>
+                        <input
+                          mdbValidate
+                          mdbInput
+                          type="text"
+                          id="form9"
+                          class="form-control"
+                          formControlName="description"
+                          required
+                          [(ngModel)]="parent.description"
+                        />
+                        
+                        <mdb-error *ngIf="description.hasError('required') && (description.dirty || description.touched)">
+                          Description is required
+                        </mdb-error>
+                        <mdb-error *ngIf="description.hasError('maxlength') && (description.dirty || description.touched)">
+                          Description must be no more than 255 characters
+                        </mdb-error>
+                        <mdb-success *ngIf="description?.valid && (description?.dirty || description?.touched)"
+                          ></mdb-success
+                        >
+                      </mdb-form-control>
+                    </div>
+                  </div>
+
+                </form>  
               </div>
             </div>
           </div>
