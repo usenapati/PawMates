@@ -39,6 +39,42 @@ namespace PawMates.DAL.EF
             return response;
         }
 
+        public Response DeletePetFromPlayDate(int playDateId, int petId)
+        {
+            Response response = new Response() { Success = false };
+            try
+            {
+                var getResponse = GetById(petId);
+                if (!getResponse.Success)
+                {
+                    response.Message = getResponse.Message;
+                    return response;
+                }
+
+                PlayDate? getPlayDate = _context.PlayDates.Find(playDateId);
+                if (getPlayDate == null)
+                {
+                    response.Message = $"PlayDate {playDateId} does not exist.";
+                    return response;
+                }
+
+                bool PetInPlayDate = getPlayDate.Pets.Any(x => x.Id == petId);
+                if (!PetInPlayDate)
+                {
+                    response.Success = true;
+                    return response;
+                }
+                getPlayDate.Pets.Remove(getResponse.Data);
+                _context.SaveChanges();
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
         public Response Delete(Pet entity)
         {
             Response response = new Response() { Success = false };
@@ -49,6 +85,16 @@ namespace PawMates.DAL.EF
                 {
                     response.Message = getResponse.Message;
                     return response;
+                }
+
+                List<int> playDateIds = getResponse.Data.PlayDates.Select(x => x.Id).ToList();
+
+                if (playDateIds.Count > 0)
+                {
+                    foreach (var playDateId in playDateIds)
+                    {
+                        DeletePetFromPlayDate(playDateId, entity.Id);
+                    }
                 }
 
                 _context.Pets.Remove(getResponse.Data);
@@ -99,7 +145,7 @@ namespace PawMates.DAL.EF
             var response = new Response<Pet>() { Success = false };
             try
             {
-                var entity = _context.Pets.Include(a => a.PetParent).Include(a => a.PetType).FirstOrDefault(x => x.Id == id);
+                var entity = _context.Pets.Include(a => a.PetParent).Include(a => a.PetType).Include(a => a.PlayDates).FirstOrDefault(x => x.Id == id);
                 if (entity == null)
                 {
                     response.Message = "Pet not found.";
