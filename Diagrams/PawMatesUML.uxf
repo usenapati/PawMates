@@ -1,0 +1,158 @@
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><element><id>UMLPackage</id><coordinates><x>75</x><y>120</y><w>880</w><h>375</h></coordinates><panel_attributes>PawMates.Core
+--
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>85</x><y>145</y><w>120</w><h>35</h></coordinates><panel_attributes>Response
+--
++ Success: bool {g/s}
++ Message : string {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>245</x><y>145</y><w>120</w><h>30</h></coordinates><panel_attributes>Response&lt;T&gt;
+--
++ Data: T {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>245</x><y>185</y><w>120</w><h>50</h></coordinates><panel_attributes>User
+--
++ Id: int {g/s}
++ UserName: string {g/s}
++ Password: string {g/s}
++ PetParentId: int {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>85</x><y>185</y><w>120</w><h>95</h></coordinates><panel_attributes>PetParent
+--
++ Id: int {g/s}
++ FirstName: string {g/s}
++ LastName: string {g/s}
++ PhoneNumber: string {g/s}
++ Email: string {g/s}
++ Description: string {g/s}
++ ImageUrl: string {g/s}
++ City: string {g/s}
++ State: string {g/s}
++ PostalCode: string {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>245</x><y>240</y><w>120</w><h>95</h></coordinates><panel_attributes>Pet
+--
++ Id : Int {g/s}
++ PetTypeId : Int {g/s}
++ PetParentId : Int {g/s}
++ PetParent: PetParent {g/s}
++ Name: string {g/s}
++ Description: string {g/s}
++ ImageURL: string
++ Breed? : string {g/s}
++ Age : Int {g/s}
++ PostalCode : string {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>245</x><y>340</y><w>120</w><h>80</h></coordinates><panel_attributes>Location
+--
++ Id: Int {g/s}
++ Name: string {g/s}
++ StreetAddress: string {g/s}
++ City: string {g/s}
++ State: string {g/s}
++ Postal Code: string {g/s}
++ RecommendPetType: PetType {g/s}
++ MinimumPetAge: Int {g/s}
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>85</x><y>320</y><w>120</w><h>95</h></coordinates><panel_attributes>PlayDate
+--
++ Id : Int {g/s}
++ HostId: Int {g/s}
++ Host: PetParent
++ LocationId: Int {g/s}
++ Location: Location {g/s}
++ EventTypeId: Int {g/s}
++ EventType: EventType
++ StartTime: DateTime
++ EndTime: DateTime
++ Pets: List&lt;Pets&gt;
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>245</x><y>425</y><w>120</w><h>60</h></coordinates><panel_attributes>EventType
+--
++ Id: Int {g/s}
++ Name: string {g/s}
++ Description: string {g/s}
++ RestrictionType: RestrictionType {g/s}
++ RecommendPetType: PetType {g/s}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>425</x><y>450</y><w>120</w><h>35</h></coordinates><panel_attributes>RestrictionType
+--
++Id: Int {g/s}
++Name: string {g/s}
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>425</x><y>350</y><w>120</w><h>35</h></coordinates><panel_attributes>PetType
+--
++Id: Int {g/s}
++Species: string {g/s}
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>205</y><w>55</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>155</y><w>55</w><h>20</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>90;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>135</x><y>275</y><w>25</w><h>55</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>280</y><w>55</w><h>75</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;120;50;120;50;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>370</y><w>55</w><h>20</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>405</y><w>55</w><h>55</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;10;50;10;50;90;90;90</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>455</y><w>75</w><h>35</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;10;80;10;80;50;130;50</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>360</y><w>75</w><h>20</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>370</y><w>75</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;150;80;150;80;10;130;10</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>960</x><y>120</y><w>205</w><h>375</h></coordinates><panel_attributes>PawMates.DAL
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>560</x><y>140</y><w>390</w><h>350</h></coordinates><panel_attributes>PawMAtes.Core.Interfaces
+--
+bg=green
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>565</x><y>155</y><w>185</w><h>80</h></coordinates><panel_attributes>IRepository&lt;T&gt;
+--
++ GetAll(): Response&lt;IEnumerable&lt;T&gt;&gt;
++ GetById(int id): Response&lt;T&gt;
++ Add(T entity): Response&lt;T&gt;
++ Update(T entity): Response
++ Delete(T entity): Response
++ GetAll(Func&lt;T, bool&gt; predicate): Response&lt;IEnumerable&lt;T&gt;&gt; 
++ GetOne(Func&lt;T, bool&gt; predicate): Response&lt;T&gt; 
+
+
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>265</y><w>270</w><h>45</h></coordinates><panel_attributes>IParentRepository
+--
++ GetPets(PetParent petParent): Response&lt;IEnumerable&lt;Pet&gt;&gt; 
++ AddPetToParent(int parentId, int petId): Response&lt;Pet&gt; 
++ DeletePetFromParent(int parentId, int petId): Response&lt;Pet&gt; </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>320</y><w>270</w><h>35</h></coordinates><panel_attributes>IPlayDateRepository
+--
++ AddPetToPlayDate(int playDateId, int petId): Response           
++ DeletePetFromPlayDate(int playDateId, int petId): Response </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>565</x><y>380</y><w>270</w><h>45</h></coordinates><panel_attributes>ReportsRepository
+--
++ GetTopPetParents(): Response&lt;List&lt;TopPetParentsListItem&gt;&gt;
++ GetPlayDatesBySpecies(string species): Response&lt;List&lt;PlayDatesBySpeciesListItem&gt;&gt;
++ GetPlayDatesByLocation(string postalCode): Response&lt;List&lt;PlayDatesByLocationListItem&gt;&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>595</x><y>230</y><w>55</w><h>70</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>90;120;10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>595</x><y>230</y><w>55</w><h>120</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>90;220;10;220;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>145</y><w>185</w><h>35</h></coordinates><panel_attributes>EFRepository&lt;T&gt;
+--
+- _context: PawMatesContext
++ EFRepository(PawMatesContext context)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>155</y><w>230</w><h>20</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>440;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>190</y><w>185</w><h>95</h></coordinates><panel_attributes>PawMatesContext
+--
++ EventTypes: DbSet&lt;EventType&gt;
++ Locations: DbSet&lt;Location&gt;
++ Pets: DbSet&lt;Pet&gt;
++ PetParents: DbSet&lt;PetParent&gt;
++ PetTypes: DbSet&lt;PetType&gt;
++ PlayDates: DbSet&lt;PlayDate&gt;
++ RestrictionTypes: DbSet&lt;RestrictionType&gt;
++ Users: DbSet&lt;User&gt;
++ PawMatesContext()
++ PawMatesContext(DbContextOptions&lt;PawMatesContext&gt;)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>390</y><w>185</w><h>45</h></coordinates><panel_attributes>ADOReportsRepository
+--
+- _connectionString: string
++ ADOReportsRepository(string)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>405</y><w>150</w><h>20</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>280;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>345</y><w>185</w><h>35</h></coordinates><panel_attributes>EFPlayDateRepository
+--
+- _context: PawMatesContext
++ EFPlayDateRepository(PawMatesContext context)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>300</y><w>185</w><h>35</h></coordinates><panel_attributes>EFParentRepository
+--
+- _context: PawMatesContext
++ EFParentRepository(PawMatesContext context)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>905</x><y>290</y><w>75</w><h>40</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>130;60;70;60;70;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>340</y><w>75</w><h>40</h></coordinates><panel_attributes>lt=.&gt;
+&lt;&lt;extends&gt;&gt;</panel_attributes><additional_attributes>130;60;70;60;70;10;10;10</additional_attributes></element></diagram>
