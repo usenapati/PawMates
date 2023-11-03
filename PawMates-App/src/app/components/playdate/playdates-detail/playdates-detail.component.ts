@@ -42,6 +42,9 @@ export class PlaydatesDetailComponent implements OnInit {
     state: '',
     postalCode: ''
   };
+  userPetsOnPlayDate: Pet[] = [];
+  userPetList: any[] = [];
+  selectedUserPets: any[] = [];
   // Host Pets
   hostPets: Pet[] = [];
   hostPetList: any[] = [];
@@ -49,6 +52,8 @@ export class PlaydatesDetailComponent implements OnInit {
   hostPetDropdownSettings: IDropdownSettings = {};
 
   isEditing = false;
+  isDelete = false;
+  isAdd = false;
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -82,8 +87,27 @@ export class PlaydatesDetailComponent implements OnInit {
     };
   }
 
-  edit() {
+  delete() {
     this.isEditing = true;
+    this.isDelete = true;
+    this.myPetsOnPlayDate();
+    this.userPetList = this.userPetsOnPlayDate.map(p => ({pet_id: p.id, pet_name: p.name}));
+  }
+  add() {
+    this.isEditing = true;
+    this.isAdd = true;
+  }
+
+  myPetsOnPlayDate() {
+    for (let i = 0; i < this.playDate.pets.length; i++) {
+      for (let j = 0; j < this.hostPets.length; j++) {
+        if (this.playDate.pets[i].id === this.hostPets[j].id) {
+          this.userPetsOnPlayDate.push(this.hostPets[j])
+        }
+      }
+    }
+    console.log(this.userPetsOnPlayDate)
+    return this.userPetsOnPlayDate;
   }
 
   addPet() {
@@ -96,5 +120,20 @@ export class PlaydatesDetailComponent implements OnInit {
         this.router.navigate(['playdates']);
       });
     });
+  }
+
+  removePet() {
+    for (let i = 0; i < this.playDate.pets.length; i++) {
+      for (let j = 0; j < this.hostPets.length; j++) {
+        let petId = this.hostPets[j].id;
+        if (this.playDate.pets[i].id === this.hostPets[j].id) {
+          this.apiService.removePetFromPlayDate(this.playDate.id, petId)
+          .subscribe(response => {
+        console.log(response);
+        this.router.navigate(['playdates']);
+      });
+        }
+      }
+    }
   }
 }

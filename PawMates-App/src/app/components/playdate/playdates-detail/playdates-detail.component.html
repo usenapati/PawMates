@@ -49,10 +49,14 @@
                     class="img-fluid rounded-circle me-3" width="35"
                     [routerLink]="['/pets', pet.id]">
                 </a>
-                <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                <!-- Add and Remove Pets From PlayDate -->
+                <button *ngIf="!isEditing" (click)="add()" type="button" class="btn btn-outline-dark btn-sm btn-floating" style="margin-right: 10px;">
                   <i *ngIf="!isEditing" class="fas fa-plus"></i>
                 </button>
-                <div *ngIf="isEditing">
+                <button *ngIf="!isEditing" (click)="delete()" type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                  <i *ngIf="!isEditing" class="fas fa-minus"></i>
+                </button>
+                <div *ngIf="isEditing && isAdd">
                   <ng-multiselect-dropdown
                     mdbInput
                     [placeholder]="'Choose Your Pet(s)'"
@@ -63,7 +67,19 @@
                     class="custom-color">
                   </ng-multiselect-dropdown>
                 </div>
-                <button *ngIf="isEditing" (click)="addPet()" type="button" class="btn btn-outline-primary ms-1" id="accent">Save</button>
+                <div *ngIf="isEditing && isDelete">
+                  <ng-multiselect-dropdown
+                    mdbInput
+                    [placeholder]="'Choose Your Pet(s)'"
+                    [settings]="hostPetDropdownSettings"
+                    [data]="userPetList"
+                    [(ngModel)]="selectedUserPets"
+                    id="userPet"
+                    class="custom-color">
+                  </ng-multiselect-dropdown>
+                </div>
+                <button *ngIf="isEditing && isAdd" (click)="addPet()" type="button" class="btn btn-outline-primary ms-1" id="accent">Save</button>
+                <button *ngIf="isEditing && isDelete" (click)="removePet()" type="button" class="btn btn-outline-primary ms-1" id="accent">Remove</button>
               </div>
             </div>
           </div>
