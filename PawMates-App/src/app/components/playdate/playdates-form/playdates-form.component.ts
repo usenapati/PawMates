@@ -6,7 +6,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { forkJoin } from 'rxjs';
 import { Pet } from 'src/app/model/pet';
 import { Location } from 'src/app/model/location';
-import { EventType } from 'src/app/model/eventType';
+import { EventType } from 'src/app/model/eventtype';
 import { PlayDate } from 'src/app/model/playdate';
 import { PetType } from 'src/app/model/petType';
 import { RestrictionType } from 'src/app/model/restrictionType';

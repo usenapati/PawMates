@@ -4,7 +4,7 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterModel } from '../model/registerModel';
 import { Parent } from '../model/parent';
 import { switchMap } from 'rxjs';
-import { EventType } from '../model/eventType';
+import { EventType } from '../model/eventtype';
 import { Location } from '../model/location';
 import { PlayDateDTO } from '../model/playdatedto';
 
