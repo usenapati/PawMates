@@ -35,7 +35,7 @@
           </li>
           <!-- Avatar -->
           <!-- TODO Hide and disable if not logged in -->
-      
+
         </ul>
         <!-- Right links -->
         <!-- TODO Add Click Event and Update if logged in -->
@@ -51,13 +51,14 @@
               style="margin-right: 30px;"
             >
             <!-- Replace imageUrl with this -->
-            <!-- src="{{ parent.imageUrl }}" -->
+            <!-- src="{{ parent.imageUrl }} "  "https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" -->
               <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" 
+                [src]="parent.imageUrl?  parent.imageUrl : '../../assets/for-parent-without-image.png'"
                 class="rounded-circle"
                 height="30"
                 alt=""
                 loading="lazy"
+                (error)="handleParentImageError()"
               />
             </a>
             <ul mdbDropdownMenu class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
@@ -71,7 +72,7 @@
           </li>
         </ul>
         <div *ngIf="!isLoggedin" class="d-flex align-items-center">
-            
+
             <button type="button" class="btn btn-link px-3 me-2" id="login" routerLink="login">
               Login
             </button>
