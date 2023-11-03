@@ -5,7 +5,7 @@ import { Pet } from 'src/app/model/pet';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ParentDTO } from 'src/app/model/parentdto';
+
 
 @Component({
   selector: 'app-petparent-detail',
@@ -73,17 +73,6 @@ export class PetparentDetailComponent implements OnInit {
 
   edit() {
     this.isEditing = true;
-  }
-
-  editParent() {
-    this.apiService.updateParent(this.parent.id, this.parent)
-    .subscribe({
-      next: (response) => {
-        console.log('Editing....');
-        this.router.navigate(['profile']);
-        location.reload();
-      }
-    });
   }
 
   deletePet(pet: any) {
