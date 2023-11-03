@@ -87,4 +87,8 @@ export class PetparentDetailComponent implements OnInit {
     pet.imageUrl = "../../assets/for-pet-without-image.png";
   }
 
+  handleParentImageError(){
+    this.parent.imageUrl = "../../assets/for-parent-without-image.png"
+  }
+
 }
