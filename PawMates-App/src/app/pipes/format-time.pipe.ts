@@ -9,7 +9,7 @@ export class FormatTimePipe implements PipeTransform {
     let dt = new Date(value);
     let hour = dt.getHours();
     let minutes = (dt.getMinutes()).toString().padStart(2, '0');
-    let part = hour > 12 ? 'pm' : 'am';
+    let part = hour >= 12 ? 'pm' : 'am';
          if(hour == 0) {
           hour = 12;
          }   
