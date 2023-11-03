@@ -1,217 +1,170 @@
-<section class="vh-100">
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-5">
-            <!-- Temp Image -->
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            class="img-fluid" alt="Sample image">
+<section class="bg-light">
+    <div class="container py-5 h-100" style="margin-bottom: -70px;"> 
+        <div class="card border-0" id="topCard">
+            <div class="card-body">
+                <h2 class="card-title">Set Up Play Date</h2>
+            </div>
         </div>
-        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mb-4">
-              <p class="lead fw-normal mb-0 me-3">Set Up Play Date</p>
-            </div>
-
-           
-            <div class="row mb-4">
-                 <!-- First Name input -->
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
-                        <input mdbInput disabled="true" id="fullName" class="form-control"
-                            placeholder="Host Full Name"
-                            [(ngModel)]="host.fullName" />
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card mb-5" style="border-radius: 15px;">
+            <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <!-- First Name input -->
                         <label mdbLabel class="form-label" for="fullName" >Host Name</label>
-                    </div>
-                </mdb-form-control>
-                <!-- Pet Select input -->
-                <ng-multiselect-dropdown
-                    mdbInput
-                    [placeholder]="'Host\'s Pet(s)'"
-                    [settings]="hostPetDropdownSettings"
-                    [data]="hostPetList"
-                    [(ngModel)]="selectedHostPets"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)"
-                    id="hostPet"
-                    class="custom-color"
-                >
-                </ng-multiselect-dropdown>
-            </div>
-            <!-- Location Select input -->
-            <div>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
-                    <select mdbInput class="form-control" 
-                            name="selectLocation.name" 
-                            id="locations" 
-                            (ngModelChange)="onLocationSelect($event)"
-                            [(ngModel)]="selectedLocation">
-                        <option *ngFor="let op of locationOptions" [value]="op.name">>
-                        {{op.name}}
-                        </option> 
-                    </select>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput disabled="true" id="fullName" class="form-control"
+                                   placeholder="Host Full Name"
+                                   [(ngModel)]="host.fullName" />
+                               
+                           </div>
+                       </mdb-form-control>
+                       <!-- Pet Select input -->
+                       <ng-multiselect-dropdown
+                           mdbInput
+                           [placeholder]="'My Pet(s)'"
+                           [settings]="hostPetDropdownSettings"
+                           [data]="hostPetList"
+                           [(ngModel)]="selectedHostPets"
+                           (onSelect)="onItemSelect($event)"
+                           (onSelectAll)="onSelectAll($event)"
+                           id="hostPet"
+                           class="custom-color"
+                       >
+                       </ng-multiselect-dropdown>
+                   </div>
+                   <!-- Location Select input -->
+                   <div>
                     <label mdbLabel class="form-label" for="locations">Location</label>
-                    </div>
-                </mdb-form-control>
-            </div>
-            <!-- Location Form -->
-            <div *ngIf="isNewLocation" class="row">
-                <mdb-form-control class="col-md-6">
-                    <div class="form-outline ">
-                        <input mdbInput id="locationName" class="form-control"
-                            placeholder="Location Name"
-                            [(ngModel)]="newLocation.name" />
-                        <label mdbLabel class="form-label" for="locationName" >Name</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-6 mb-4">
-                    <div class="form-outline ">
-                        <input mdbInput id="locationAddress" class="form-control"
-                            placeholder="Street Address"
-                            [(ngModel)]="newLocation.street1" />
-                        <label mdbLabel class="form-label" for="locationAddress" >Address</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-4 mb-4">
-                    <div class="form-outline">
-                        <input mdbInput id="locationCity" class="form-control"
-                            placeholder="City"
-                            [(ngModel)]="newLocation.city" />
-                        <label mdbLabel class="form-label" for="locationCity" >City</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-4 mb-4">
-                    <div class="form-outline ">
-                        <input mdbInput id="locationState" class="form-control"
-                            placeholder="State"
-                            [(ngModel)]="newLocation.state" />
-                        <label mdbLabel class="form-label" for="locationState" >State</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-4 mb-4">
-                    <div class="form-outline">
-                        <input mdbInput id="locationPostalCode" class="form-control"
-                            placeholder="Postal Code"
-                            [(ngModel)]="newLocation.postalCode" />
-                        <label mdbLabel class="form-label" for="locationPostalCode" >Postal Code</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-6 mb-4">
-                    <div class="form-outline ">
-                    <select mdbInput class="form-control" 
-                            name="selectPetType" 
-                            id="petTypes" 
-
-                            (ngModelChange)="onPetTypeSelect($event)"
-                            [(ngModel)]="selectedPetType">
-                        <option *ngFor="let op of petTypeOptions" [value]="op.name">>
-                        {{op.name}}
-                        </option> 
-                    </select>
-                    <label mdbLabel class="form-label" for="petTypes">Pet Type</label>
-                    </div>
-                </mdb-form-control>
-            </div>
-            <!-- Event Select input -->
-            <div>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
-                    <select mdbInput class="form-control" 
-                            name="selectEvent" 
-                            id="events" 
-
-                            (ngModelChange)="onEventSelect($event)"
-                            [(ngModel)]="selectedEvent">
-                        <option *ngFor="let op of eventOptions" [value]="op.name">>
-                        {{op.name}}
-                        </option> 
-                    </select>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                           <select mdbInput class="form-control" 
+                                   name="selectLocation.name" 
+                                   id="locations" 
+                                   (ngModelChange)="onLocationSelect($event)"
+                                   [(ngModel)]="selectedLocation">
+                               <option *ngFor="let op of locationOptions" [value]="op.name">>
+                               {{op.name}}
+                               </option> 
+                           </select>   
+                        </div>
+                       </mdb-form-control>
+                   </div>
+                   <!-- Location Form -->
+                   <div *ngIf="isNewLocation" class="input-group">
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="locationName" class="form-control"
+                                   placeholder="Location Name"
+                                   [(ngModel)]="newLocation.name" />
+                               <label mdbLabel class="form-label" for="locationName" >Name</label>
+                           </div>
+                       </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="locationAddress" class="form-control"
+                                   placeholder="Street Address"
+                                   [(ngModel)]="newLocation.street1" />
+                               <label mdbLabel class="form-label" for="locationAddress" >Address</label>
+                           </div>
+                       </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="locationCity" class="form-control"
+                                   placeholder="City"
+                                   [(ngModel)]="newLocation.city" />
+                               <label mdbLabel class="form-label" for="locationCity" >City</label>
+                           </div>
+                       </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="locationState" class="form-control"
+                                   placeholder="State"
+                                   [(ngModel)]="newLocation.state" />
+                               <label mdbLabel class="form-label" for="locationState" >State</label>
+                           </div>
+                       </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="locationPostalCode" class="form-control"
+                                   placeholder="Postal Code"
+                                   [(ngModel)]="newLocation.postalCode" />
+                               <label mdbLabel class="form-label" for="locationPostalCode" >Postal Code</label>
+                           </div>
+                       </mdb-form-control>
+                   </div>
+                   <!-- Event Select input -->
+                   <div>
                     <label mdbLabel class="form-label" for="events">Event Type</label>
-                    </div>
-                </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                           <select mdbInput class="form-control" 
+                                   name="selectEvent" 
+                                   id="events" 
+                                   (ngModelChange)="onEventSelect($event)"
+                                   [(ngModel)]="selectedEvent">
+                               <option *ngFor="let op of eventOptions" [value]="op.name">>
+                               {{op.name}}
+                               </option> 
+                           </select>
+                           
+                           </div>
+                       </mdb-form-control>
+                   </div>
+                   <!-- Event Form -->
+                   <div *ngIf="isNewEvent" class="input-group">
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <input mdbInput id="eventName" class="form-control"
+                                   placeholder="Event Name"
+                                   [(ngModel)]="newEvent.name" />
+                               <label mdbLabel class="form-label" for="eventName" >Name</label>
+                           </div>
+                       </mdb-form-control>
+                       <mdb-form-control>
+                           <div class="form-outline mb-4">
+                               <textarea  mdbInput id="eventDescription" class="form-control"
+                                   placeholder="Event Description"
+                                   [(ngModel)]="newEvent.description" rows="3"></textarea>
+                               <label mdbLabel class="form-label" for="eventDescription" >Description</label>
+                           </div>
+                       </mdb-form-control>
+                       <!-- Pet Type Select -->
+                       <!-- Restriction Select -->
+                   </div>
+                   <!-- Start and End Date Time Picker -->
+                   <div class="row mb-4">
+                       <div class="col-sm-3">
+                           <label mdbLabel class="form-label" for="startTime" >Start Time</label>
+                           <input [(ngModel)]="startTime" id="startTime"  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Start Time">
+                           <owl-date-time #dt1></owl-date-time> 
+                       </div>
+                       <div class="col-sm-3">
+                           <label mdbLabel class="form-label" for="endTime" >End Time</label>
+                           <input [(ngModel)]="endTime" id="endTime" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="End Time">
+                           <owl-date-time #dt2></owl-date-time>
+                       </div>
+                   </div>
+                   <!-- Local Pet Select input -->
+                   <div class="row mb-4">
+                           <ng-multiselect-dropdown
+                                   [placeholder]="'Select Local Pets'"
+                                   class="multiselect-dropdown"
+                                   [settings]="localPetDropdownSettings"
+                                   [data]="localPetList"
+                                   [(ngModel)]="selectedLocalPets"
+                                   (onSelect)="onItemSelect($event)"
+                                   (onSelectAll)="onSelectAll($event)"
+                                   class="custom-color"
+                           ></ng-multiselect-dropdown>
+                   </div>
+                   <!-- Create PlayDate Button -->
+                   <div>
+                       <button mdbRipple type="button" (click)="onSubmit()" class="btn submit-button btn-block">Create Play Date</button>
+                   </div>
             </div>
-            <!-- Event Form -->
-            <div *ngIf="isNewEvent" class="row">
-                <mdb-form-control class="col-md-6 mb-4">
-                    <div class="form-outline">
-                        <input mdbInput id="eventName" class="form-control"
-                            placeholder="Event Name"
-                            [(ngModel)]="newEvent.name" />
-                        <label mdbLabel class="form-label" for="eventName" >Name</label>
-                    </div>
-                </mdb-form-control>
-                <mdb-form-control class="col-md-6 mb-4">
-                    <div class="form-outline">
-                        <textarea  mdbInput id="eventDescription" class="form-control"
-                            placeholder="Event Description"
-                            [(ngModel)]="newEvent.description" rows="2"></textarea>
-                        <label mdbLabel class="form-label" for="eventDescription" >Description</label>
-                    </div>
-                </mdb-form-control>
-                <!-- Pet Type Select -->
-                <mdb-form-control class="col-md-6 mb-4" >
-                    <div class="form-outline ">
-                    <select mdbInput class="form-control" 
-                            name="selectPetType" 
-                            id="petTypes" 
-
-                            (ngModelChange)="onPetTypeSelect($event)"
-                            [(ngModel)]="selectedPetType">
-                        <option *ngFor="let op of petTypeOptions" [value]="op.name">>
-                        {{op.name}}
-                        </option> 
-                    </select>
-                    <label mdbLabel class="form-label" for="petTypes">Pet Type</label>
-                    </div>
-                </mdb-form-control>
-                <!-- Restriction Select -->
-                <mdb-form-control class="col-md-6 mb-4">
-                    <div class="form-outline">
-                    <select mdbInput class="form-control" 
-                            name="selectRestrictionType" 
-                            id="restrictionTypes" 
-
-                            (ngModelChange)="onRestrictionTypeSelect($event)"
-                            [(ngModel)]="selectedRestriction">
-                        <option *ngFor="let op of restrictionTypeOptions" [value]="op.name">>
-                        {{op.name}}
-                        </option> 
-                    </select>
-                    <label mdbLabel class="form-label" for="restrictionTypes">Restriction Type</label>
-                    </div>
-                </mdb-form-control>
-            </div>
-            <!-- Start and End Date Time Picker -->
-            <div class="row mb-4">
-                <div class="col d-flex">
-                    <input [(ngModel)]="startTime" id="startTime"  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Start Time">
-                    <owl-date-time #dt1></owl-date-time>
-                </div>
-                <div class="col d-flex">
-                    <span> to </span>
-                </div>
-                <div class="col d-flex">
-                    <input [(ngModel)]="endTime" id="endTime" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="End Time">
-                    <owl-date-time #dt2></owl-date-time>
-                </div>
-            </div>
-            <br>
-            <!-- Local Pet Select input -->
-            <div class="row mb-4">
-                    <ng-multiselect-dropdown
-                            [placeholder]="'Select Local Pets'"
-                            class="multiselect-dropdown"
-                            [settings]="localPetDropdownSettings"
-                            [data]="localPetList"
-                            [(ngModel)]="selectedLocalPets"
-                            (onSelect)="onItemSelect($event)"
-                            (onSelectAll)="onSelectAll($event)"
-                            class="custom-color"
-                    ></ng-multiselect-dropdown>
-            </div>
-            <!-- Create PlayDate Button -->
-            <div>
-                <button mdbRipple type="button" (click)="onSubmit()" class="btn submit-button btn-block">Create Play Date</button>
-            </div>
+          </div>
         </div>
       </div>
     </div>

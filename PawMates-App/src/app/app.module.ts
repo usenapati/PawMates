@@ -37,9 +37,7 @@ import { PlaydatesFormComponent } from './components/playdate/playdates-form/pla
 import { PetsComponent } from './components/pet/pets/pets.component';
 import { PetsPetComponent } from './components/pet/pets-pet/pets-pet.component';
 import { PetparentDetailComponent } from './components/petparent/petparent-detail/petparent-detail.component';
-import { PetparentPetComponent } from './components/petparent/petparent-pet/petparent-pet.component';
 import { PetparentPetDetailComponent } from './components/petparent/petparent-pet-detail/petparent-pet-detail.component';
-import { PetparentPetFormComponent } from './components/petparent/petparent-pet-form/petparent-pet-form.component';
 import { NavComponent } from './components/nav/nav.component';
 import { PetDetailsComponent } from './components/pet/pet-details/pet-details.component';
 import { PetFormComponent } from './components/pet/pet-form/pet-form.component';
@@ -63,9 +61,7 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     PetsComponent,
     PetsPetComponent,
     PetparentDetailComponent,
-    PetparentPetComponent,
     PetparentPetDetailComponent,
-    PetparentPetFormComponent,
     NavComponent,
     PetDetailsComponent,
     PetFormComponent,
