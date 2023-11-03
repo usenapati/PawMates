@@ -60,8 +60,8 @@ export class PlaydatesFormComponent implements OnInit{
   selectedLocalPets: any[] = [];
   localPetDropdownSettings: IDropdownSettings = {};
 
-  startTime: Date = new Date();
-  endTime: Date = new Date();
+  startTime: Date = new Date;
+  endTime: Date = new Date;
 
   playDate: PlayDate;
 
@@ -193,40 +193,31 @@ export class PlaydatesFormComponent implements OnInit{
     this.apiService.getRestrictionTypes().subscribe(restrictionTypes => {
       this.restrictionTypes = restrictionTypes;
       this.restrictionTypeOptions = this.restrictionTypes.map((r : RestrictionType) => ({id: r.id, name: r.name}));
+      this.restrictionTypeOptions.push({ id: 0, name: "No Restrictions"});
     })
     
+}
+convertUTCDateToLocalDate(date: Date) {
+  var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+  var offset = date.getTimezoneOffset() / 60;
+  var hours = date.getHours();
+
+  newDate.setHours(hours - offset);
+
+  return newDate;   
 }
 
   onSubmit() {
     // Host ID
     this.playDate.petParentId = this.host.id;
 
-    // Location ID
-    if (this.location.id) {
-      this.playDate.locationId = this.location.id;
-    } else {
-      // Create Location
-      this.apiService.addLocation(this.newLocation).subscribe(response => {
-        this.playDate.locationId = response.id
-      });
-    }
-
-    // Event ID
-    if (this.event.id) {
-      this.playDate.eventTypeId = this.event.id;
-    } else {
-      // Create Event
-      this.apiService.addEvent(this.newEvent).subscribe(response => {
-        this.playDate.eventTypeId = response.id
-      });
-    }
-    // TODO Validate Location and Event Pet Restriction match
-
     // Start and End Time
-    this.playDate.startTime = this.startTime;
-    this.playDate.endTime = this.endTime;
+    this.playDate.startTime = this.convertUTCDateToLocalDate(new Date(this.startTime));
+    this.playDate.endTime = this.convertUTCDateToLocalDate(new Date(this.endTime));
+
     // Pets IDs - Loop through each id and add it to the submitted play date
-      // Host Pets
+    // Host Pets
     this.selectedHostPets.forEach(element => {
       this.playDate.hostPets.push(element.pet_id)
     });
@@ -234,13 +225,58 @@ export class PlaydatesFormComponent implements OnInit{
     this.selectedLocalPets.forEach(element => {
       this.playDate.invitedPets.push(element.pet_id)
     });
-    // Post the Play Date
-    this.apiService.addPlayDate(this.playDate).subscribe(response => {
-      // Route to Play Date Details
-      this.router.navigate(['playdates/' + response.id]);
-    });
-  
+
+    // Location ID
+    if (this.location.id) {
+      this.playDate.locationId = this.location.id;
+      // Event ID
+      if (this.event.id) {
+        this.playDate.eventTypeId = this.event.id;
+        this.apiService.addPlayDate(this.playDate).subscribe(response => {
+          // Route to Play Date Details
+          this.router.navigate(['playdates/' + response.id]);
+          return;
+        });
+      } else {
+        // Create Event
+        this.apiService.addEvent(this.newEvent).subscribe(response => {
+          this.playDate.eventTypeId = response.id
+          this.apiService.addPlayDate(this.playDate).subscribe(response => {
+            // Route to Play Date Details
+            this.router.navigate(['playdates/' + response.id]);
+          });
+          return;
+        });
+    }
+    } else {
+      // Create Location
+      this.apiService.addLocation(this.newLocation).subscribe(response => {
+        this.playDate.locationId = response.id
+        // Event ID
+        if (this.event.id) {
+          this.playDate.eventTypeId = this.event.id;
+          this.apiService.addPlayDate(this.playDate).subscribe(response => {
+            // Route to Play Date Details
+            this.router.navigate(['playdates/' + response.id]);
+          });
+          return;
+        } else {
+          // Create Event
+          this.apiService.addEvent(this.newEvent).subscribe(response => {
+            this.playDate.eventTypeId = response.id
+            // Post the Play Date
+            this.apiService.addPlayDate(this.playDate).subscribe(response => {
+              // Route to Play Date Details
+              this.router.navigate(['playdates/' + response.id]);
+            });
+            return;
+          });
+    }
+      });
+    }
+
     
+    // TODO Validate Location and Event Pet Restriction match
   }
 
   onItemSelect(item: any) {
@@ -280,20 +316,24 @@ export class PlaydatesFormComponent implements OnInit{
   }
 
   onPetTypeSelect(petType: any) {
+    console.log(petType)
     var petTypeId = this.petTypes.find(p => p.species == petType);
     if (petTypeId) {
       this.newLocation.petTypeId = petTypeId.id;
+      this.newEvent.petTypeId = petType.id;
     } else {
       this.newLocation.petTypeId = 1;
+      this.newEvent.petTypeId = 1;
     }
   }
 
   onRestrictionTypeSelect(restrictionType: any) {
+    console.log(restrictionType)
     var restrictionTypeId = this.restrictionTypes.find(r => r.name == restrictionType);
     if (restrictionTypeId) {
       this.newEvent.restrictionTypeId = restrictionTypeId.id;
     } else {
-      this.newEvent.restrictionTypeId = 0;
+      this.newEvent.restrictionTypeId = undefined;
     }
   }
 }

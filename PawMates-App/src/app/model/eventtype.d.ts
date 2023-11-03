@@ -1,6 +1,6 @@
 export interface EventType {
     id?: number,
-    restrictionTypeId: number,
+    restrictionTypeId?: number,
     petTypeId: number,
     name: string,
     description: string

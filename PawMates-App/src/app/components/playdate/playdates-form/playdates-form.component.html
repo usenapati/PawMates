@@ -54,45 +54,60 @@
                 </mdb-form-control>
             </div>
             <!-- Location Form -->
-            <div *ngIf="isNewLocation" class="input-group">
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+            <div *ngIf="isNewLocation" class="row">
+                <mdb-form-control class="col-md-6">
+                    <div class="form-outline ">
                         <input mdbInput id="locationName" class="form-control"
                             placeholder="Location Name"
                             [(ngModel)]="newLocation.name" />
                         <label mdbLabel class="form-label" for="locationName" >Name</label>
                     </div>
                 </mdb-form-control>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-6 mb-4">
+                    <div class="form-outline ">
                         <input mdbInput id="locationAddress" class="form-control"
                             placeholder="Street Address"
                             [(ngModel)]="newLocation.street1" />
                         <label mdbLabel class="form-label" for="locationAddress" >Address</label>
                     </div>
                 </mdb-form-control>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-4 mb-4">
+                    <div class="form-outline">
                         <input mdbInput id="locationCity" class="form-control"
                             placeholder="City"
                             [(ngModel)]="newLocation.city" />
                         <label mdbLabel class="form-label" for="locationCity" >City</label>
                     </div>
                 </mdb-form-control>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-4 mb-4">
+                    <div class="form-outline ">
                         <input mdbInput id="locationState" class="form-control"
                             placeholder="State"
                             [(ngModel)]="newLocation.state" />
                         <label mdbLabel class="form-label" for="locationState" >State</label>
                     </div>
                 </mdb-form-control>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-4 mb-4">
+                    <div class="form-outline">
                         <input mdbInput id="locationPostalCode" class="form-control"
                             placeholder="Postal Code"
                             [(ngModel)]="newLocation.postalCode" />
                         <label mdbLabel class="form-label" for="locationPostalCode" >Postal Code</label>
+                    </div>
+                </mdb-form-control>
+                <mdb-form-control class="col-md-6 mb-4">
+                    <div class="form-outline ">
+                    <select mdbInput class="form-control" 
+                            name="selectPetType" 
+                            id="petTypes" 
+
+                            (ngModelChange)="onPetTypeSelect($event)"
+                            [(ngModel)]="selectedPetType">
+                        <option *ngFor="let op of petTypeOptions" [value]="op.name">>
+                        {{op.name}}
+                        </option> 
+                    </select>
+                    <label mdbLabel class="form-label" for="petTypes">Pet Type</label>
                     </div>
                 </mdb-form-control>
             </div>
@@ -116,16 +131,16 @@
             </div>
             <!-- Event Form -->
             <div *ngIf="isNewEvent" class="row">
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-6 mb-4">
+                    <div class="form-outline">
                         <input mdbInput id="eventName" class="form-control"
                             placeholder="Event Name"
                             [(ngModel)]="newEvent.name" />
                         <label mdbLabel class="form-label" for="eventName" >Name</label>
                     </div>
                 </mdb-form-control>
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-6 mb-4">
+                    <div class="form-outline">
                         <textarea  mdbInput id="eventDescription" class="form-control"
                             placeholder="Event Description"
                             [(ngModel)]="newEvent.description" rows="2"></textarea>
@@ -133,8 +148,8 @@
                     </div>
                 </mdb-form-control>
                 <!-- Pet Type Select -->
-                <mdb-form-control>
-                    <div class="form-outline mb-4">
+                <mdb-form-control class="col-md-6 mb-4" >
+                    <div class="form-outline ">
                     <select mdbInput class="form-control" 
                             name="selectPetType" 
                             id="petTypes" 
@@ -149,6 +164,21 @@
                     </div>
                 </mdb-form-control>
                 <!-- Restriction Select -->
+                <mdb-form-control class="col-md-6 mb-4">
+                    <div class="form-outline">
+                    <select mdbInput class="form-control" 
+                            name="selectRestrictionType" 
+                            id="restrictionTypes" 
+
+                            (ngModelChange)="onRestrictionTypeSelect($event)"
+                            [(ngModel)]="selectedRestriction">
+                        <option *ngFor="let op of restrictionTypeOptions" [value]="op.name">>
+                        {{op.name}}
+                        </option> 
+                    </select>
+                    <label mdbLabel class="form-label" for="restrictionTypes">Restriction Type</label>
+                    </div>
+                </mdb-form-control>
             </div>
             <!-- Start and End Date Time Picker -->
             <div class="row mb-4">
