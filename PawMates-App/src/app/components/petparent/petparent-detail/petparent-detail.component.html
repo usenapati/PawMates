@@ -15,7 +15,7 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-                <img src="{{ parent.imageUrl }}" alt="Profile Picture" id="pfp"  class="img-fluid rounded-circle">
+                <img src="{{ parent.imageUrl }}" alt="Profile Picture" id="pfp"  class="img-fluid rounded-circle" (error)="handleParentImageError()">
               <h5 class="my-3">{{ parent.firstName }} {{ parent.lastName }}</h5>
               <div class="d-flex justify-content-center mb-2">
                 <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-primary" id="accent">Edit</button>
