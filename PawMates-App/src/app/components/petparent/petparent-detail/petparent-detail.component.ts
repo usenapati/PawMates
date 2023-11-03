@@ -153,10 +153,11 @@ export class PetparentDetailComponent implements OnInit {
       });
       this.validationForm.reset();
     }
+}
 
-  handleParentImageError(){
-    this.parent.imageUrl = "../../assets/for-parent-without-image.png"
+handleParentImageError() {
+  this.parent.imageUrl = "../../assets/for-parent-without-image.png";
 
-  }
+}
 
 }
