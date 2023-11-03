@@ -170,6 +170,9 @@ onSubmit() {
     this.playDate.locationId = this.location.id;
   } else {
     // Create Location
+    this.apiService.addLocation(this.newLocation).subscribe(response => {
+      this.playDate.locationId = response.id
+    });
   }
 
   // Event ID
@@ -177,34 +180,31 @@ onSubmit() {
     this.playDate.eventTypeId = this.event.id;
   } else {
     // Create Event
+    this.apiService.addEvent(this.newEvent).subscribe(response => {
+      this.playDate.eventTypeId = response.id
+    });
   }
   // TODO Validate Location and Event Pet Restriction match
 
   // Start and End Time
   this.playDate.startTime = this.startTime;
   this.playDate.endTime = this.endTime;
-  // Validate that start is not after end and no more than 24 hrs long
   // Pets IDs - Loop through each id and add it to the submitted play date
     // Host Pets
   this.selectedHostPets.forEach(element => {
-    // Add Pet to Play Date if successfully created
     this.playDate.hostPets.push(element.pet_id)
   });
   // Local Pets
   this.selectedLocalPets.forEach(element => {
     this.playDate.invitedPets.push(element.pet_id)
   });
-  // Require one Host Pet
   // Post the Play Date
   this.apiService.addPlayDate(this.playDate).subscribe(response => {
-    console.log(response);
+    // Route to Play Date Details
     this.router.navigate(['playdates/' + response.id]);
   });
-  // TODO Make sure the host cannot make a play date that conflict with their own playdates
-
+ 
   
-  
-  // Route to Play Date Details
 }
 
 onItemSelect(item: any) {

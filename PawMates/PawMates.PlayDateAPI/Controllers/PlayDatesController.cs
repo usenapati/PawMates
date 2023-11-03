@@ -126,6 +126,17 @@ namespace PawMates.PlayDateAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            // PlayDate cannot overlap with existing play date by host within their time range
+            var existingPlayDate = _repo.GetAll(
+                p => p.PetParentId == value.PetParentId && 
+                ((p.StartTime >= value.StartTime && p.StartTime <= value.EndTime) || (p.EndTime >= value.StartTime && p.EndTime <= value.EndTime)));
+            if (existingPlayDate != null && existingPlayDate.Success && existingPlayDate.Data.Count() > 0)
+            {
+                return BadRequest("Play Date interferes with existing Play Date by same host.");
+            }
+            // Event Type and Location have matching Restrictions
+
             var playDate = value.MapToEntity();
             try
             {

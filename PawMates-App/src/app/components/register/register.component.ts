@@ -23,6 +23,10 @@ export class RegisterComponent implements OnInit {
       email: '',
       phoneNumber: '',
       profileImageURL: '',
+      description: '',
+      city: '',
+      state: '',
+      postalCode: '',
     };
 
    }

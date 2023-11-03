@@ -18,6 +18,7 @@ export class ApiService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   private getAuthHeaders(): HttpHeaders {
+    console.log(this.authService.getToken());
     return new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken()}`
     });
@@ -61,44 +62,6 @@ export class ApiService {
     });
   }
 
-  public login(username: string, password: string) {
-    return this.http.post<{ token: any }>(baseUrl + '/login', {
-      id: 0,
-      username: username,
-      password: password
-    });
-  }
-
-  public register(register: RegisterModel)
-  {
-    var petParentId = 0;
-    var petParent = {
-      firstName: register.firstName,
-      lastName: register.lastName,
-      email: register.email,
-      phoneNumber: register.phoneNumber,
-      imageUrl: register.profileImageURL
-    };
-
-    return this.addPetParent(petParent).pipe(
-      switchMap(parent => {
-        return this.http.post<{ token: any }>(baseUrl + '/register', {
-            id: 0,
-            petParentId: parent.id,
-            username: register.userName,
-            password: register.password
-        }).pipe(
-          switchMap(registeredUser => {
-            return this.http.post<{ token: any }>(baseUrl + '/login', {
-                username: register.userName,
-                password: register.password
-              });
-          })
-        );
-      })
-    );
-  }
-
   public getParentById(id: number) {
     return this.http.get<Parent>(`${baseUrl}/parents/${id}`);
   }
@@ -121,6 +84,51 @@ export class ApiService {
     return this.http.get<any[]>(`${baseUrl}/parents/${parentId}/pets`);
   }
 
+  // Login and Register
+  public login(username: string, password: string) {
+    return this.http.post<{ token: any }>(baseUrl + '/login', {
+      id: 0,
+      username: username,
+      password: password
+    });
+  }
+
+  public register(register: RegisterModel)
+  {
+    var petParentId = 0;
+    var petParent = {
+      firstName: register.firstName,
+      lastName: register.lastName,
+      email: register.email,
+      phoneNumber: register.phoneNumber,
+      imageUrl: register.profileImageURL,
+      description: register.description,
+      city: register.city,
+      state: register.state,
+      postalCode: register.postalCode
+    };
+
+    return this.addPetParent(petParent).pipe(
+      switchMap(parent => {
+        return this.http.post<{ token: any }>(baseUrl + '/register', {
+            id: 0,
+            petParentId: parent.id,
+            username: register.userName,
+            password: register.password
+        }).pipe(
+          switchMap(registeredUser => {
+            return this.http.post<{ token: any }>(baseUrl + '/login', {
+                username: register.userName,
+                password: register.password
+              });
+          })
+        );
+      })
+    );
+  }
+
+  
+
   // PlayDates
   public getPlayDates() {
     return this.http.get<PlayDateDTO[]>(baseUrl  + '/playdates');
@@ -137,7 +145,7 @@ export class ApiService {
   }
 
   public addPetToPlayDate(playDateId: number, petId: number) {
-    return this.http.post<any>(`${baseUrl}/playdates/${playDateId}/pets/${petId}`, {
+    return this.http.post<any>(`${baseUrl}/playdates/${playDateId}/pets/${petId}`, null, {
       headers: this.getAuthHeaders()
     });
   }
@@ -151,6 +159,12 @@ export class ApiService {
     return this.http.get<EventType>(`${baseUrl}/eventtype/${id}`);
   }
 
+  public addEvent(Event: any) {
+    return this.http.post<any>(baseUrl + '/eventtype', Event, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   //Locations
   public getLocations() {
     return this.http.get<Location[]>(baseUrl  + '/locations');
@@ -158,6 +172,12 @@ export class ApiService {
 
   public getLocationById(id: number) {
     return this.http.get<Location>(`${baseUrl}/locations/${id}`);
+  }
+
+  public addLocation(Location: any) {
+    return this.http.post<any>(baseUrl + '/locations', Location, {
+      headers: this.getAuthHeaders()
+    });
   }
 
   public getPetTypes() {

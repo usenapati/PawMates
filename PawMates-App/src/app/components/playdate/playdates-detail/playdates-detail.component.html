@@ -1,4 +1,4 @@
-<section>
+<section class="bg-light">
     <div class="container py-5 h-100" style="margin-bottom: -70px;"> 
         <div class="card border-0" id="topCard">
             <div class="card-body">
@@ -49,9 +49,21 @@
                     class="img-fluid rounded-circle me-3" width="35"
                     [routerLink]="['/pets', pet.id]">
                 </a>
-                <button type="button" class="btn btn-outline-dark btn-sm btn-floating">
-                  <i class="fas fa-plus"></i>
+                <button *ngIf="!isEditing" (click)="edit()" type="button" class="btn btn-outline-dark btn-sm btn-floating">
+                  <i *ngIf="!isEditing" class="fas fa-plus"></i>
                 </button>
+                <div *ngIf="isEditing">
+                  <ng-multiselect-dropdown
+                    mdbInput
+                    [placeholder]="'Choose Your Pet(s)'"
+                    [settings]="hostPetDropdownSettings"
+                    [data]="hostPetList"
+                    [(ngModel)]="selectedHostPets"
+                    id="hostPet"
+                    class="custom-color">
+                  </ng-multiselect-dropdown>
+                </div>
+                <button *ngIf="isEditing" (click)="addPet()" type="button" class="btn btn-outline-primary ms-1" id="accent">Save</button>
               </div>
             </div>
           </div>

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Parent } from 'src/app/model/parent';
-import { Pet } from 'src/app/model/pet';
-import { PlayDate } from 'src/app/model/playdate';
 import { PlayDateDTO } from 'src/app/model/playdatedto';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -37,7 +34,7 @@ export class PlaydatesComponent implements OnInit {
         next: (playDates: PlayDateDTO[]) => {
           this.playDates = playDates;
       }});
-  }
+}
   //most recent events first
   public sortPlayDatesByDateDesc() {
     let sorted = this.playDates.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
@@ -68,4 +65,5 @@ export class PlaydatesComponent implements OnInit {
       });
     return pastEvents;
   }
+
 }
