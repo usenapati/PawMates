@@ -23,7 +23,6 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
                                 <th scope="col">Location</th>
-                                <th scope="col">Restrictions</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -31,7 +30,6 @@
                                 <th scope="row">{{ playDate.startTime | formatDate }}</th>
                                 <td>{{ playDate.startTime | formatTime }} - {{ playDate.endTime | formatTime }}</td>
                                 <td>{{ playDate.locationName }}<br />{{ playDate.address }}<br />{{ playDate.city }}, {{playDate.state}} {{playDate.postalCode}}</td>
-                                <td>@mdo</td>
                               </tr>
                             </tbody>
                           </table>
